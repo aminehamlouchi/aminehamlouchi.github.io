@@ -32,6 +32,7 @@ html {
 body {
   min-width: 320px;
   margin: 0;
+  overflow-x: hidden;
   background:
     linear-gradient(90deg, rgba(20, 20, 20, 0.04) 1px, transparent 1px),
     linear-gradient(rgba(20, 20, 20, 0.035) 1px, transparent 1px),
@@ -280,7 +281,7 @@ h3 {
 .hero-copy h1 {
   max-width: 10ch;
   margin-bottom: 22px;
-  font-size: clamp(4.2rem, 15vw, 12.5rem);
+  font-size: clamp(4.2rem, 11.2vw, 10.5rem);
   line-height: 0.82;
   letter-spacing: 0;
 }
@@ -581,6 +582,12 @@ h3 {
   gap: 11px;
 }
 
+.plain-list a {
+  color: var(--ink);
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
 .tag-list,
 .skill-cloud {
   display: flex;
@@ -618,6 +625,10 @@ h3 {
   gap: 20px;
 }
 
+.resume-entry + .resume-entry {
+  margin-top: 30px;
+}
+
 .resume-entry h3 {
   margin-bottom: 6px;
   font-size: 1.45rem;
@@ -650,7 +661,26 @@ h3 {
 }
 
 .resume-entry.compact {
-  gap: 0;
+  gap: 12px;
+}
+
+.resume-entry.compact p {
+  margin-bottom: 0;
+}
+
+.skill-groups {
+  display: grid;
+  gap: 18px;
+}
+
+.skill-group {
+  display: grid;
+  gap: 10px;
+}
+
+.skill-group h3 {
+  margin-bottom: 0;
+  font-size: 1.08rem;
 }
 
 @keyframes ticker {
@@ -750,12 +780,12 @@ h3 {
   }
 
   .hero-copy h1 {
-    font-size: clamp(3.15rem, 16vw, 5.2rem);
+    font-size: clamp(2.85rem, 13.8vw, 4.7rem);
   }
 
   .hero-actions,
   .button {
-    width: 100%;
+    width: calc(100% - 8px);
   }
 
   .button {
@@ -765,6 +795,10 @@ h3 {
   .signal-row {
     grid-template-columns: 72px 1fr;
     padding-inline: 14px;
+  }
+
+  .signal-panel {
+    max-width: calc(100% - 10px);
   }
 
   .split-layout h2,
