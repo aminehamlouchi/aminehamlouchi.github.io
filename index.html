@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Personal website for Amine Hamlouchi, with an intro, resume, and room for future projects."
+    >
+    <meta name="theme-color" content="#f7f8f3">
+    <title>Amine Hamlouchi | Personal Website</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-header>
+      <a class="brand-mark" href="index.html" aria-label="Amine Hamlouchi home">
+        <span>AH</span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="index.html" aria-current="page">Intro</a>
+        <a href="resume.html">Resume</a>
+      </nav>
+      <a class="icon-link" href="resume.html" aria-label="Open resume">
+        <i data-lucide="file-user"></i>
+      </a>
+    </header>
+
+    <main id="main">
+      <section class="hero-section" aria-labelledby="hero-title">
+        <canvas class="motion-field" data-motion-field aria-hidden="true"></canvas>
+        <div class="hero-noise" aria-hidden="true"></div>
+        <div class="hero-grid" aria-hidden="true"></div>
+
+        <div class="hero-copy">
+          <p class="eyebrow">Personal site v1.0 / getting live first</p>
+          <h1 id="hero-title">Amine Hamlouchi</h1>
+          <p class="hero-lede">
+            A sharp little corner of the internet for intro notes, resume details, and
+            the kind of work that gets built before the perfect portfolio exists.
+          </p>
+          <div class="hero-actions" aria-label="Primary actions">
+            <a class="button primary" href="resume.html">
+              <span>View resume</span>
+              <i data-lucide="arrow-up-right"></i>
+            </a>
+            <a class="button ghost" href="#now">
+              <span>See what this is</span>
+              <i data-lucide="move-down"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="signal-panel" aria-label="Site signals">
+          <div class="signal-row">
+            <span class="signal-label">Mode</span>
+            <span>build in public</span>
+          </div>
+          <div class="signal-row">
+            <span class="signal-label">Energy</span>
+            <span>polished, moving, alive</span>
+          </div>
+          <div class="signal-row">
+            <span class="signal-label">Next</span>
+            <span>projects, writing, links</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="ticker-section" aria-label="Personal rhythm">
+        <div class="ticker-track">
+          <span>clean interfaces</span>
+          <span>direct momentum</span>
+          <span>useful details</span>
+          <span>modern motion</span>
+          <span>room to grow</span>
+          <span>clean interfaces</span>
+          <span>direct momentum</span>
+          <span>useful details</span>
+          <span>modern motion</span>
+          <span>room to grow</span>
+        </div>
+      </section>
+
+      <section id="now" class="content-band intro-band" aria-labelledby="now-title">
+        <div class="section-kicker">Now</div>
+        <div class="split-layout">
+          <div>
+            <h2 id="now-title">Start simple. Make it feel intentional.</h2>
+          </div>
+          <div class="copy-stack">
+            <p>
+              This first version is built around the information that is actually known:
+              your name, the plan to go live on GitHub, and a preference for a site with
+              movement, polish, and personality instead of a blank resume shell.
+            </p>
+            <p>
+              The project space is intentionally open. When you have projects, writing,
+              photos, social links, or a real resume PDF, this layout already has places
+              for them without needing to start over.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="content-band" aria-labelledby="principles-title">
+        <div class="section-kicker">Principles</div>
+        <div class="tile-grid three-up">
+          <article class="tile">
+            <i data-lucide="sparkles"></i>
+            <h3 id="principles-title">Polish counts</h3>
+            <p>Small interactions, responsive spacing, and precise typography do a lot of quiet work.</p>
+          </article>
+          <article class="tile">
+            <i data-lucide="rocket"></i>
+            <h3>Live beats perfect</h3>
+            <p>The site is structured for GitHub Pages now, then ready to evolve as your story fills in.</p>
+          </article>
+          <article class="tile">
+            <i data-lucide="layers-3"></i>
+            <h3>Room for depth</h3>
+            <p>Intro today, resume next, and future projects without forcing fake content into the page.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="content-band dark-band" aria-labelledby="future-title">
+        <div class="section-kicker">Next Layer</div>
+        <div class="split-layout">
+          <div>
+            <h2 id="future-title">Built so the next update is easy.</h2>
+          </div>
+          <div class="timeline-list">
+            <div class="timeline-item">
+              <span>01</span>
+              <p>Add real resume entries, education, contact links, and a PDF when ready.</p>
+            </div>
+            <div class="timeline-item">
+              <span>02</span>
+              <p>Drop in projects later without redesigning the whole site around placeholders.</p>
+            </div>
+            <div class="timeline-item">
+              <span>03</span>
+              <p>Connect a custom domain once GitHub Pages is live.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; <span data-year></span> Amine Hamlouchi</p>
+      <a href="resume.html">Resume</a>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="assets/script.js"></script>
+  </body>
+</html>
