@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Play 3D Tic-Tac-Toe on Amine Hamlouchi's personal website."
+    >
+    <meta name="theme-color" content="#f7f8f3">
+    <title>Play 3D Tic-Tac-Toe | Amine Hamlouchi</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header solid" data-header>
+      <a class="brand-mark" href="index.html" aria-label="Amine Hamlouchi home">
+        <span>AH</span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="index.html">Intro</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="resume.html">Resume</a>
+      </nav>
+      <a class="icon-link" href="https://github.com/aminehamlouchi/three-d-tic-tac-toe" target="_blank" rel="noreferrer" aria-label="Open 3D Tic-Tac-Toe on GitHub">
+        <i data-lucide="git-fork"></i>
+      </a>
+    </header>
+
+    <main id="main" class="game-page">
+      <section class="game-stage ttt-stage" aria-labelledby="ttt-title">
+        <div class="game-copy">
+          <p class="eyebrow">Playable project / 3D Tic-Tac-Toe</p>
+          <h1 id="ttt-title">A 3x3x3 board with all the weird diagonals.</h1>
+          <p class="game-lede">
+            A browser version of the command-line project with three stacked layers, local two-player turns,
+            undo, draw detection, and every spatial winning line checked.
+          </p>
+          <div class="game-actions" aria-label="3D Tic-Tac-Toe links">
+            <a class="button primary" href="https://github.com/aminehamlouchi/three-d-tic-tac-toe" target="_blank" rel="noreferrer">
+              <span>View repo</span>
+              <i data-lucide="arrow-up-right"></i>
+            </a>
+            <a class="button ghost" href="checkers.html">
+              <span>Play Checkers</span>
+              <i data-lucide="gamepad-2"></i>
+            </a>
+          </div>
+        </div>
+
+        <section class="game-console ttt-console" aria-label="Playable 3D Tic-Tac-Toe board">
+          <div class="game-status-grid">
+            <div class="status-pill">
+              <span>Turn</span>
+              <strong data-ttt-turn>X</strong>
+            </div>
+            <div class="status-pill">
+              <span>X moves</span>
+              <strong data-ttt-x-count>0</strong>
+            </div>
+            <div class="status-pill">
+              <span>O moves</span>
+              <strong data-ttt-o-count>0</strong>
+            </div>
+          </div>
+
+          <p class="game-message" data-ttt-message>X to move. Connect three in any row, column, layer, or 3D diagonal.</p>
+
+          <div class="ttt-layers" data-ttt-board aria-label="3D Tic-Tac-Toe layers"></div>
+
+          <div class="game-toolbar" aria-label="3D Tic-Tac-Toe controls">
+            <button class="button primary game-button" type="button" data-ttt-reset>
+              <span>New game</span>
+              <i data-lucide="rotate-ccw"></i>
+            </button>
+            <button class="button ghost game-button" type="button" data-ttt-undo>
+              <span>Undo</span>
+              <i data-lucide="undo-2"></i>
+            </button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; <span data-year></span> Amine Hamlouchi</p>
+      <div class="footer-links" aria-label="Footer links">
+        <a href="index.html#projects">Projects</a>
+        <a href="resume.html">Resume</a>
+        <a href="checkers.html">Checkers</a>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="assets/script.js"></script>
+    <script src="assets/tictactoe3d.js"></script>
+  </body>
+</html>

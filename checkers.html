@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Play PyCheckers on Amine Hamlouchi's personal website."
+    >
+    <meta name="theme-color" content="#f7f8f3">
+    <title>Play Checkers | Amine Hamlouchi</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="assets/styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header solid" data-header>
+      <a class="brand-mark" href="index.html" aria-label="Amine Hamlouchi home">
+        <span>AH</span>
+      </a>
+      <nav class="main-nav" aria-label="Primary navigation">
+        <a href="index.html">Intro</a>
+        <a href="index.html#projects">Projects</a>
+        <a href="resume.html">Resume</a>
+      </nav>
+      <a class="icon-link" href="https://github.com/aminehamlouchi/pycheckers" target="_blank" rel="noreferrer" aria-label="Open PyCheckers on GitHub">
+        <i data-lucide="git-fork"></i>
+      </a>
+    </header>
+
+    <main id="main" class="game-page">
+      <section class="game-stage checkers-stage" aria-labelledby="checkers-title">
+        <div class="game-copy">
+          <p class="eyebrow">Playable project / PyCheckers</p>
+          <h1 id="checkers-title">Checkers you can actually play.</h1>
+          <p class="game-lede">
+            A browser version of the Pygame project with local two-player turns, forced captures,
+            multi-jump chaining, kings, undo, and a board that feels portfolio-ready.
+          </p>
+          <div class="game-actions" aria-label="Checkers links">
+            <a class="button primary" href="https://github.com/aminehamlouchi/pycheckers" target="_blank" rel="noreferrer">
+              <span>View repo</span>
+              <i data-lucide="arrow-up-right"></i>
+            </a>
+            <a class="button ghost" href="tic-tac-toe-3d.html">
+              <span>Play 3D Tic-Tac-Toe</span>
+              <i data-lucide="boxes"></i>
+            </a>
+          </div>
+        </div>
+
+        <section class="game-console checkers-console" aria-label="Playable checkers board">
+          <div class="game-status-grid">
+            <div class="status-pill">
+              <span>Turn</span>
+              <strong data-checkers-turn>Red</strong>
+            </div>
+            <div class="status-pill">
+              <span>Red captures</span>
+              <strong data-checkers-red-score>0</strong>
+            </div>
+            <div class="status-pill">
+              <span>Blue captures</span>
+              <strong data-checkers-blue-score>0</strong>
+            </div>
+          </div>
+
+          <p class="game-message" data-checkers-message>Red to move.</p>
+
+          <div class="checkers-board-wrap">
+            <div class="checkers-board" data-checkers-board aria-label="Checkers board"></div>
+          </div>
+
+          <div class="game-toolbar" aria-label="Checkers controls">
+            <button class="button primary game-button" type="button" data-checkers-reset>
+              <span>New game</span>
+              <i data-lucide="rotate-ccw"></i>
+            </button>
+            <button class="button ghost game-button" type="button" data-checkers-undo>
+              <span>Undo</span>
+              <i data-lucide="undo-2"></i>
+            </button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>&copy; <span data-year></span> Amine Hamlouchi</p>
+      <div class="footer-links" aria-label="Footer links">
+        <a href="index.html#projects">Projects</a>
+        <a href="resume.html">Resume</a>
+        <a href="tic-tac-toe-3d.html">3D Tic-Tac-Toe</a>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="assets/script.js"></script>
+    <script src="assets/checkers.js"></script>
+  </body>
+</html>
