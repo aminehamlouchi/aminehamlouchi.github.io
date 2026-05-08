@@ -27,10 +27,11 @@
       </a>
       <nav class="main-nav" aria-label="Primary navigation">
         <a href="index.html" aria-current="page">Intro</a>
+        <a href="#projects">Projects</a>
         <a href="resume.html">Resume</a>
       </nav>
-      <a class="icon-link" href="resume.html" aria-label="Open resume">
-        <i data-lucide="file-user"></i>
+      <a class="icon-link" href="https://github.com/aminehamlouchi" target="_blank" rel="noreferrer" aria-label="Open GitHub profile">
+        <i data-lucide="git-fork"></i>
       </a>
     </header>
 
@@ -41,7 +42,7 @@
         <div class="hero-grid" aria-hidden="true"></div>
 
         <div class="hero-copy">
-          <p class="eyebrow">Personal site v1.0 / getting live first</p>
+          <p class="eyebrow">Personal site v1.1 / projects now live</p>
           <h1 id="hero-title">Amine Hamlouchi</h1>
           <p class="hero-lede">
             Computer science student at the University of Louisville building useful
@@ -54,8 +55,12 @@
               <i data-lucide="arrow-up-right"></i>
             </a>
             <a class="button ghost" href="#now">
-              <span>See what this is</span>
+              <span>Start here</span>
               <i data-lucide="move-down"></i>
+            </a>
+            <a class="button ghost" href="#projects">
+              <span>View projects</span>
+              <i data-lucide="folder-git-2"></i>
             </a>
           </div>
         </div>
@@ -71,7 +76,7 @@
           </div>
           <div class="signal-row">
             <span class="signal-label">Next</span>
-            <span>internships, projects, links</span>
+            <span>internships, shipped work</span>
           </div>
         </div>
       </section>
@@ -82,11 +87,15 @@
           <span>software engineering</span>
           <span>data analytics</span>
           <span>workflow automation</span>
+          <span>systems thinking</span>
+          <span>public GitHub repos</span>
           <span>community tech</span>
           <span>clean interfaces</span>
           <span>software engineering</span>
           <span>data analytics</span>
           <span>workflow automation</span>
+          <span>systems thinking</span>
+          <span>public GitHub repos</span>
           <span>community tech</span>
         </div>
       </section>
@@ -110,6 +119,121 @@
               and the everyday operations problems that reward clear thinking.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section id="projects" class="content-band projects-band" aria-labelledby="projects-title">
+        <div class="section-kicker">Projects</div>
+        <div class="section-heading">
+          <h2 id="projects-title">Six public repos, cleaned up and ready to inspect.</h2>
+          <p class="section-lead">
+            A mix of analytics, automation, games, and systems coursework. The through-line is practical:
+            take a messy workflow or rule set, make it understandable, and give it a cleaner interface.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <a class="project-card" href="https://github.com/aminehamlouchi/superstore-retail-analytics" target="_blank" rel="noreferrer" aria-label="Open Superstore Retail Analytics on GitHub">
+            <span class="project-card-top">
+              <span class="project-icon"><i data-lucide="chart-line"></i></span>
+              <span class="project-link">GitHub <i data-lucide="arrow-up-right"></i></span>
+            </span>
+            <h3>Superstore Retail Analytics</h3>
+            <p>
+              Cleaned 9,994 retail orders, explored discount-profit behavior, and compared baseline ML models
+              with a decision tree reaching 94.36% accuracy.
+            </p>
+            <span class="project-tags">
+              <span>Python</span>
+              <span>Jupyter</span>
+              <span>scikit-learn</span>
+            </span>
+          </a>
+
+          <a class="project-card" href="https://github.com/aminehamlouchi/king-iphones-inventory-automation" target="_blank" rel="noreferrer" aria-label="Open King iPhones Inventory Automation on GitHub">
+            <span class="project-card-top">
+              <span class="project-icon"><i data-lucide="scan-line"></i></span>
+              <span class="project-link">GitHub <i data-lucide="arrow-up-right"></i></span>
+            </span>
+            <h3>King iPhones Inventory Automation</h3>
+            <p>
+              Sanitized Electron workflow for batch IMEI lookups and Google Sheets inventory updates, rebuilt
+              around environment-based configuration.
+            </p>
+            <span class="project-tags">
+              <span>Electron</span>
+              <span>Node.js</span>
+              <span>Google Sheets</span>
+            </span>
+          </a>
+
+          <a class="project-card" href="https://github.com/aminehamlouchi/three-d-tic-tac-toe" target="_blank" rel="noreferrer" aria-label="Open 3D Tic-Tac-Toe on GitHub">
+            <span class="project-card-top">
+              <span class="project-icon"><i data-lucide="boxes"></i></span>
+              <span class="project-link">GitHub <i data-lucide="arrow-up-right"></i></span>
+            </span>
+            <h3>3D Tic-Tac-Toe</h3>
+            <p>
+              C++17 command-line game with full 3x3x3 spatial win detection, safer input handling, and a simple
+              replayable loop.
+            </p>
+            <span class="project-tags">
+              <span>C++17</span>
+              <span>Game logic</span>
+              <span>Makefile</span>
+            </span>
+          </a>
+
+          <a class="project-card" href="https://github.com/aminehamlouchi/pycheckers" target="_blank" rel="noreferrer" aria-label="Open PyCheckers on GitHub">
+            <span class="project-card-top">
+              <span class="project-icon"><i data-lucide="gamepad-2"></i></span>
+              <span class="project-link">GitHub <i data-lucide="arrow-up-right"></i></span>
+            </span>
+            <h3>PyCheckers</h3>
+            <p>
+              Pygame checkers implementation with clickable pieces, legal-move highlights, captures, multi-jumps,
+              kings, and endgame detection.
+            </p>
+            <span class="project-tags">
+              <span>Python</span>
+              <span>Pygame</span>
+              <span>UI</span>
+            </span>
+          </a>
+
+          <a class="project-card" href="https://github.com/aminehamlouchi/c-mapreduce-word-counter" target="_blank" rel="noreferrer" aria-label="Open C MapReduce Word Counter on GitHub">
+            <span class="project-card-top">
+              <span class="project-icon"><i data-lucide="network"></i></span>
+              <span class="project-link">GitHub <i data-lucide="arrow-up-right"></i></span>
+            </span>
+            <h3>C MapReduce Word Counter</h3>
+            <p>
+              Systems project using forked mappers, bounded buffers, sender threads, System V message queues,
+              and reducer aggregation.
+            </p>
+            <span class="project-tags">
+              <span>C</span>
+              <span>pthreads</span>
+              <span>IPC</span>
+            </span>
+          </a>
+
+          <a class="project-card" href="https://github.com/aminehamlouchi/c-random-io-benchmark" target="_blank" rel="noreferrer" aria-label="Open C Random I/O Benchmark on GitHub">
+            <span class="project-card-top">
+              <span class="project-icon"><i data-lucide="hard-drive"></i></span>
+              <span class="project-link">GitHub <i data-lucide="arrow-up-right"></i></span>
+            </span>
+            <h3>C Random I/O Benchmark</h3>
+            <p>
+              Storage benchmark that creates block files, samples randomized reads, and reports median latency
+              for repeatable low-level I/O tests.
+            </p>
+            <span class="project-tags">
+              <span>C</span>
+              <span>Benchmarking</span>
+              <span>Storage</span>
+            </span>
+          </a>
         </div>
       </section>
 
@@ -143,11 +267,11 @@
           <div class="timeline-list">
             <div class="timeline-item">
               <span>01</span>
-              <p>Turn the retail analytics, weather site, and 3D tic-tac-toe work into project case studies.</p>
+              <p>Add richer case-study pages for the strongest repos as the screenshots, metrics, and demos mature.</p>
             </div>
             <div class="timeline-item">
               <span>02</span>
-              <p>Add GitHub, LinkedIn, and any public project links once the profiles are ready to feature.</p>
+              <p>Keep tightening the GitHub READMEs so each project explains the problem, setup, and result quickly.</p>
             </div>
             <div class="timeline-item">
               <span>03</span>
@@ -160,7 +284,11 @@
 
     <footer class="site-footer">
       <p>&copy; <span data-year></span> Amine Hamlouchi</p>
-      <a href="resume.html">Resume</a>
+      <div class="footer-links" aria-label="Footer links">
+        <a href="#projects">Projects</a>
+        <a href="resume.html">Resume</a>
+        <a href="https://github.com/aminehamlouchi" target="_blank" rel="noreferrer">GitHub</a>
+      </div>
     </footer>
 
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
