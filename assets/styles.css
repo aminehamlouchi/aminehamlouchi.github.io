@@ -1047,6 +1047,7 @@ h3 {
 }
 
 .sidebar-block {
+  min-width: 0;
   border: 1px solid var(--ink);
   border-radius: var(--radius);
   padding: 20px;
@@ -1085,10 +1086,12 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 9px;
+  min-width: 0;
 }
 
 .tag-list li,
 .skill-cloud span {
+  max-width: 100%;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   padding: 8px 11px;
@@ -1096,14 +1099,17 @@ h3 {
   color: var(--ink);
   font-size: 0.88rem;
   font-weight: 800;
+  overflow-wrap: anywhere;
 }
 
 .resume-main {
   display: grid;
+  min-width: 0;
   gap: 22px;
 }
 
 .resume-section {
+  min-width: 0;
   border-top: 1px solid var(--ink);
   padding-top: 22px;
 }
@@ -1114,6 +1120,7 @@ h3 {
 
 .resume-entry {
   display: grid;
+  min-width: 0;
   gap: 20px;
 }
 
@@ -1129,6 +1136,7 @@ h3 {
 .entry-meta {
   margin-bottom: 0;
   color: var(--accent);
+  overflow-wrap: anywhere;
 }
 
 .resume-entry ul {
