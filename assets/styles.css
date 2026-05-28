@@ -1021,6 +1021,13 @@ h3 {
   align-items: end;
 }
 
+.resume-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
 .resume-title-row h1 {
   max-width: 9ch;
   margin-bottom: 20px;
@@ -1029,6 +1036,47 @@ h3 {
 .resume-title-row p {
   max-width: 760px;
   margin-bottom: 0;
+}
+
+.resume-pdf-section {
+  display: grid;
+  width: min(100%, var(--max-width));
+  gap: 20px;
+  margin: 0 auto clamp(44px, 6vw, 82px);
+  padding: 0 clamp(20px, 5vw, 72px);
+}
+
+.resume-pdf-copy {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid var(--ink);
+  padding-top: 22px;
+}
+
+.resume-pdf-copy h2 {
+  max-width: 720px;
+  margin: 0;
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
+  line-height: 1;
+}
+
+.resume-pdf-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.resume-pdf-frame {
+  width: 100%;
+  height: min(78vh, 860px);
+  min-height: 620px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  background: var(--paper-2);
+  box-shadow: 8px 8px 0 rgba(35, 76, 232, 0.2);
 }
 
 .resume-layout {
@@ -1283,6 +1331,15 @@ h3 {
   .resume-title-row .button {
     width: fit-content;
   }
+
+  .resume-pdf-copy {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .resume-pdf-actions {
+    justify-content: flex-start;
+  }
 }
 
 @media (max-width: 620px) {
@@ -1337,7 +1394,9 @@ h3 {
   }
 
   .hero-actions,
-  .button {
+  .button,
+  .resume-hero-actions,
+  .resume-pdf-actions {
     width: calc(100% - 8px);
   }
 
@@ -1387,6 +1446,11 @@ h3 {
 
   .resume-sidebar {
     grid-template-columns: 1fr;
+  }
+
+  .resume-pdf-frame {
+    height: 560px;
+    min-height: 560px;
   }
 
   .site-footer {
