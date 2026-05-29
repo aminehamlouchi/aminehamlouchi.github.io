@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Alnur Mosque Islamic Center</title>
+  <style>
+    :root {
+      --ink: #17342f;
+      --green: #0e5a4f;
+      --green-deep: #092f2a;
+      --gold: #c99b3e;
+      --plum: #4b253f;
+      --teal: #dff3ec;
+      --paper: #fbfaf4;
+      --soft: #f1efe4;
+      --line: rgba(23, 52, 47, .14);
+      --shadow: 0 24px 70px rgba(15, 43, 38, .18);
+      --radius: 8px;
+      color-scheme: light;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(201, 155, 62, .16), transparent 28rem),
+        radial-gradient(circle at 85% 18%, rgba(14, 90, 79, .14), transparent 30rem),
+        var(--paper);
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 18px;
+      padding: 11px clamp(18px, 4vw, 58px);
+      color: rgba(255, 255, 255, .84);
+      background: var(--green-deep);
+      font-size: 13px;
+    }
+
+    .topbar div { display: flex; gap: 18px; flex-wrap: wrap; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 24px;
+      padding: 14px clamp(18px, 4vw, 58px);
+      background: rgba(251, 250, 244, .94);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-mark {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      background:
+        radial-gradient(circle at 50% 68%, rgba(255, 255, 255, .20) 0 19%, transparent 20%),
+        linear-gradient(135deg, var(--gold), #e7c77b);
+      border: 1px solid rgba(99, 71, 22, .22);
+      border-radius: 50% 50% 48% 48%;
+      box-shadow: 0 8px 22px rgba(99, 71, 22, .22);
+    }
+
+    .brand small {
+      display: block;
+      margin-top: 2px;
+      color: rgba(23, 52, 47, .62);
+      font-weight: 650;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: clamp(14px, 2vw, 28px);
+      font-size: 14px;
+      font-weight: 750;
+    }
+
+    .nav a { padding: 8px 0; border-bottom: 2px solid transparent; }
+    .nav a:hover { border-color: var(--gold); }
+
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 10px 16px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      color: var(--ink);
+      font-weight: 800;
+      box-shadow: 0 8px 22px rgba(23, 52, 47, .08);
+    }
+
+    .button-primary {
+      background: var(--green);
+      border-color: var(--green);
+      color: #fff;
+    }
+
+    .hero {
+      position: relative;
+      min-height: 760px;
+      overflow: hidden;
+      background:
+        linear-gradient(110deg, rgba(9, 47, 42, .95), rgba(14, 90, 79, .84) 48%, rgba(75, 37, 63, .88)),
+        url("assets/0043_2024-03-02_184617_IMG_8975_BE2085EA.jpg") center 46% / cover;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: .22;
+      background-image:
+        linear-gradient(30deg, rgba(255, 255, 255, .18) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, .18) 87.5%, rgba(255, 255, 255, .18)),
+        linear-gradient(150deg, rgba(255, 255, 255, .18) 12%, transparent 12.5%, transparent 87%, rgba(255, 255, 255, .18) 87.5%, rgba(255, 255, 255, .18));
+      background-size: 76px 132px;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, calc(100% - 36px));
+      margin: 0 auto;
+      min-height: 760px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, .78fr);
+      align-items: center;
+      gap: clamp(28px, 5vw, 72px);
+      padding: 78px 0;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      color: #ffe7a9;
+      font-weight: 850;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: .12em;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 38px;
+      height: 2px;
+      background: var(--gold);
+    }
+
+    h1, h2, h3, p { margin: 0; }
+
+    h1 {
+      max-width: 780px;
+      color: #fff;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(48px, 7vw, 92px);
+      line-height: .96;
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 700px;
+      margin-top: 24px;
+      color: rgba(255, 255, 255, .84);
+      font-size: clamp(17px, 2.2vw, 21px);
+      line-height: 1.72;
+    }
+
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 42px;
+      max-width: 760px;
+    }
+
+    .metric {
+      padding: 18px;
+      color: #fff;
+      background: rgba(255, 255, 255, .09);
+      border: 1px solid rgba(255, 255, 255, .18);
+      border-radius: var(--radius);
+      backdrop-filter: blur(14px);
+    }
+
+    .metric strong { display: block; font-size: 24px; color: #ffe7a9; }
+    .metric span { display: block; margin-top: 4px; color: rgba(255, 255, 255, .78); font-size: 13px; }
+
+    .prayer-card {
+      overflow: hidden;
+      background: rgba(255, 255, 255, .96);
+      border: 1px solid rgba(255, 255, 255, .54);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .prayer-head {
+      padding: 24px;
+      color: #fff;
+      background:
+        linear-gradient(135deg, rgba(9, 47, 42, .95), rgba(75, 37, 63, .86)),
+        repeating-linear-gradient(45deg, rgba(255,255,255,.08) 0 1px, transparent 1px 18px);
+    }
+
+    .prayer-head h2 {
+      font-size: 24px;
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.15;
+    }
+
+    .prayer-frame {
+      height: 610px;
+      width: 100%;
+      border: 0;
+      display: block;
+      background: #fff;
+    }
+
+    .jumuah-note {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      padding: 14px 18px 18px;
+      background: #fff;
+      border-top: 1px solid var(--line);
+      font-weight: 850;
+    }
+
+    .jumuah-note span {
+      padding: 10px;
+      border-radius: var(--radius);
+      background: var(--soft);
+      text-align: center;
+    }
+
+    .section { padding: 86px clamp(18px, 4vw, 58px); }
+    .section-soft { background: linear-gradient(180deg, #f7f3e8, #fffaf0); }
+
+    .section-inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+    }
+
+    .section-title {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(260px, .45fr);
+      align-items: end;
+      gap: 28px;
+      margin-bottom: 34px;
+    }
+
+    h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.05;
+      color: var(--green-deep);
+    }
+
+    .lede {
+      color: rgba(23, 52, 47, .72);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+
+    .about-image {
+      min-height: 420px;
+      border-radius: var(--radius);
+      background: url("assets/0151_2025-06-13_220906_IMG_6761_40B00046.jpg") center / cover;
+      box-shadow: var(--shadow);
+    }
+
+    .about-copy {
+      padding: clamp(28px, 4vw, 48px);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: #fff;
+      box-shadow: 0 14px 45px rgba(23, 52, 47, .09);
+    }
+
+    .about-copy p {
+      color: rgba(23, 52, 47, .76);
+      line-height: 1.75;
+      font-size: 17px;
+    }
+
+    .about-copy p + p { margin-top: 16px; }
+
+    .program-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .program-card {
+      position: relative;
+      min-height: 250px;
+      overflow: hidden;
+      padding: 24px;
+      border: 1px solid rgba(201, 155, 62, .28);
+      border-radius: var(--radius);
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.96), rgba(247,243,232,.95)),
+        radial-gradient(circle at 88% 0, rgba(201,155,62,.22), transparent 120px);
+      box-shadow: 0 16px 42px rgba(23, 52, 47, .09);
+    }
+
+    .program-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--green), var(--gold));
+    }
+
+    .program-time {
+      display: inline-block;
+      margin-bottom: 18px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(14, 90, 79, .1);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+    }
+
+    .program-card h3 {
+      margin-bottom: 12px;
+      color: var(--plum);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+      line-height: 1.12;
+    }
+
+    .program-card p {
+      color: rgba(23, 52, 47, .73);
+      line-height: 1.62;
+    }
+
+    .program-meta {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+      color: var(--green-deep);
+      font-weight: 850;
+      font-size: 13px;
+    }
+
+    .feature-band {
+      padding: 28px clamp(18px, 4vw, 58px);
+      color: #fff;
+      background:
+        linear-gradient(90deg, var(--green-deep), var(--green), var(--plum));
+    }
+
+    .feature-inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .feature-inner div {
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: var(--radius);
+      background: rgba(255,255,255,.08);
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr .85fr;
+      grid-auto-rows: 260px;
+      gap: 14px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--green-deep);
+      box-shadow: 0 16px 42px rgba(23, 52, 47, .12);
+    }
+
+    .gallery-item:first-child { grid-row: span 2; }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity .35s ease, transform .65s ease;
+    }
+
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-item.is-changing img { opacity: 0; }
+
+    .gallery-label {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      padding: 9px 12px;
+      color: #fff;
+      background: rgba(9, 47, 42, .84);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: var(--radius);
+      font-weight: 850;
+      backdrop-filter: blur(10px);
+    }
+
+    .donate-card {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+      padding: clamp(28px, 5vw, 58px);
+      color: #fff;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(9, 47, 42, .94), rgba(75, 37, 63, .92)),
+        url("assets/0389_2026-03-20_133840_IMG_2553_2FD6C14A.jpg") center / cover;
+      box-shadow: var(--shadow);
+    }
+
+    .donate-card h2 { color: #fff; }
+    .donate-card p {
+      margin-top: 14px;
+      max-width: 720px;
+      color: rgba(255,255,255,.82);
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    .footer {
+      padding: 34px clamp(18px, 4vw, 58px);
+      color: rgba(255,255,255,.78);
+      background: var(--green-deep);
+    }
+
+    .footer-inner {
+      width: min(1180px, 100%);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .chat-note {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 8;
+      padding: 12px 14px;
+      color: #fff;
+      background: var(--plum);
+      border: 1px solid rgba(255,255,255,.18);
+      border-radius: 999px;
+      box-shadow: 0 12px 32px rgba(23, 52, 47, .22);
+      font-weight: 850;
+      font-size: 13px;
+    }
+
+    @media (max-width: 900px) {
+      .topbar, .site-header { grid-template-columns: 1fr; text-align: center; }
+      .brand, .nav, .header-actions { justify-content: center; flex-wrap: wrap; }
+      .hero-inner, .about-grid, .section-title, .donate-card { grid-template-columns: 1fr; }
+      .hero-inner { min-height: auto; padding: 70px 0; }
+      .hero-metrics, .program-grid, .feature-inner { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 270px; }
+      .gallery-item:first-child { grid-row: auto; }
+      .prayer-frame { height: 570px; }
+    }
+
+    @media (max-width: 560px) {
+      .topbar { display: none; }
+      .site-header { position: static; }
+      .section { padding: 64px 18px; }
+      .jumuah-note { grid-template-columns: 1fr; }
+      .hero-actions .button { width: 100%; }
+      h1 { font-size: 46px; }
+      .chat-note { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <div>
+      <span>2815 S 4th St, Louisville, KY 40208</span>
+      <a href="mailto:info@alnurmasjid.org">info@alnurmasjid.org</a>
+      <a href="tel:5026146790">502-614-6790</a>
+    </div>
+    <div>
+      <a href="https://www.facebook.com/alnurmosque">Facebook</a>
+      <a href="https://www.instagram.com/alnurmosqueislamiccenter?igsh=cjQ5YnIyYm1rZnc4&utm_source=qr">Instagram</a>
+      <a href="https://www.youtube.com/channel/UCGiW1PQEFWfQzfrDya4KdVg">YouTube</a>
+    </div>
+  </div>
+
+  <header class="site-header">
+    <a class="brand" href="#">
+      <span class="brand-mark">AM</span>
+      <span>Alnur Mosque Islamic Center<small>Louisville, Kentucky</small></span>
+    </a>
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#donate">Donate</a>
+      <a href="https://www.alnurmasjid.org/contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a class="button" href="https://www.alnurmasjid.org/events">Events</a>
+      <a class="button button-primary" href="https://www.alnurmasjid.org/donate">Donate</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <span class="kicker">Prayer, knowledge, community</span>
+          <h1>Alnur Mosque Islamic Center</h1>
+          <p class="hero-copy">A welcoming place for daily salah, beneficial knowledge, Quran, youth programs, and family learning upon the Quran and Sunnah.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#programs">View Programs</a>
+            <a class="button" href="https://www.alnurmasjid.org/donate">Support the Masjid</a>
+          </div>
+          <div class="hero-metrics" aria-label="Masjid highlights">
+            <div class="metric"><strong>5</strong><span>Daily prayers</span></div>
+            <div class="metric"><strong>1995</strong><span>Serving Greater Louisville</span></div>
+            <div class="metric"><strong>1:10</strong><span>Jumuah khutbah</span></div>
+          </div>
+        </div>
+        <aside class="prayer-card" aria-label="Prayer timings">
+          <div class="prayer-head">
+            <h2>Prayer Timings</h2>
+            <p>Live MasjidAl schedule, kept updated automatically.</p>
+          </div>
+          <iframe class="prayer-frame" title="Masjidal prayer timings" src="https://timing.athanplus.com/masjid/widgets/embed?theme=1&masjid_id=oxdNXPLV"></iframe>
+          <div class="jumuah-note">
+            <span>Khutbah 1:10 PM</span>
+            <span>Salah 1:40 PM</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-inner about-grid">
+        <div class="about-image" aria-label="Alnur Mosque community moment"></div>
+        <div class="about-copy">
+          <span class="kicker" style="color: var(--gold)">Welcome</span>
+          <h2>Serving Greater Louisville since 1995.</h2>
+          <p>Al Nur Masjid, located in the heart of Greater Louisville, is a vibrant and inclusive space for Muslims from diverse backgrounds. Established in 2008, our mosque has grown to become a beacon of faith, education, and community support.</p>
+          <p>We offer daily prayers, weekly educational sessions, youth and sisters programs, Quran learning, community meals, and opportunities to grow together in worship, manners, and beneficial knowledge.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="programs">
+      <div class="section-inner">
+        <div class="section-title">
+          <h2>Regular Programs</h2>
+          <p class="lede">Programs for new Muslims, youth, families, and students of Quran, rooted in worship, sound belief, adab, and beneficial knowledge.</p>
+        </div>
+        <div class="program-grid">
+          <article class="program-card">
+            <span class="program-time">Fridays at 6:00 PM</span>
+            <h3>Islam 101 / New Muslims Class</h3>
+            <p>Open to all. Covers Islamic fundamentals and Quran practice in a welcoming setting.</p>
+            <div class="program-meta">Open to all</div>
+          </article>
+          <article class="program-card">
+            <span class="program-time">Fridays, Asr to Isha</span>
+            <h3>YM / Young Muslims</h3>
+            <p>For high school boys to gather, learn, build brotherhood, and stay connected to the masjid.</p>
+            <div class="program-meta">High school boys</div>
+          </article>
+          <article class="program-card">
+            <span class="program-time">Sundays at Maghrib</span>
+            <h3>Sunday Halaqa</h3>
+            <p>With Sheikh Abu Zakariyya. A weekly gathering for reminders, learning, and steady growth.</p>
+            <div class="program-meta">With Sheikh Abu Zakariyya</div>
+          </article>
+          <article class="program-card">
+            <span class="program-time">Sunday-Thursday</span>
+            <h3>Dar ul Quran</h3>
+            <p>Quran learning and practice during the week for students connected to the masjid.</p>
+            <div class="program-meta">12:00 PM - 2:00 PM</div>
+          </article>
+          <article class="program-card">
+            <span class="program-time">Sundays, 10:30 AM - 3:00 PM</span>
+            <h3>Alnur Sprouts Academy</h3>
+            <p>For ages 5+. Quran, Arabic, and Islamic Studies in a structured Sunday program.</p>
+            <div class="program-meta">For ages 5+</div>
+          </article>
+          <article class="program-card">
+            <span class="program-time">Monday-Thursday</span>
+            <h3>Sprouts Summer Program</h3>
+            <p>Part of Alnur Sprouts Academy. A summer program for ages 5+ with Quran, Arabic, and Islamic Studies.</p>
+            <div class="program-meta">10:30 AM - 2:00 PM</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="feature-band" aria-label="Website highlights">
+      <div class="feature-inner">
+        <div><strong>Prayer times stay live.</strong><br>Powered by the MasjidAl widget.</div>
+        <div><strong>Programs are clear.</strong><br>Families can find weekly classes quickly.</div>
+        <div><strong>Photos tell the story.</strong><br>Recent approved photos rotate with older moments still included.</div>
+      </div>
+    </section>
+
+    <section class="section" id="gallery">
+      <div class="section-inner">
+        <div class="section-title">
+          <h2>What We Have Been Up To</h2>
+          <p class="lede">A living homepage gallery can highlight classes, youth programs, community meals, visiting teachers, and everyday life around worship and learning.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="gallery-item" data-gallery-slot="0">
+            <img src="assets/0398_2026-05-25_011711_IMG_3686_41EC81BD.jpg" alt="Recent gathering at Alnur Masjid">
+            <figcaption class="gallery-label">Life at Alnur</figcaption>
+          </figure>
+          <figure class="gallery-item" data-gallery-slot="1">
+            <img src="assets/0067_2025-01-19_183157_IMG_4220_C6F0AD36.jpg" alt="Children gathered for learning at Alnur Masjid">
+            <figcaption class="gallery-label">Youth & Learning</figcaption>
+          </figure>
+          <figure class="gallery-item" data-gallery-slot="2">
+            <img src="assets/0288_2026-02-15_194647_IMG_2117_9B16D834.jpg" alt="Teacher seated for a study circle at Alnur Masjid">
+            <figcaption class="gallery-label">Weekly Halaqas</figcaption>
+          </figure>
+          <figure class="gallery-item" data-gallery-slot="3">
+            <img src="assets/0389_2026-03-20_133840_IMG_2553_2FD6C14A.jpg" alt="Community members outside Alnur Masjid">
+            <figcaption class="gallery-label">Community Moments</figcaption>
+          </figure>
+          <figure class="gallery-item" data-gallery-slot="4">
+            <img src="assets/0390_2026-03-20_160932_IMG_2557_3F860B45.jpg" alt="Community meal at Alnur Masjid">
+            <figcaption class="gallery-label">Community Meals</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-soft" id="donate">
+      <div class="section-inner">
+        <div class="donate-card">
+          <div>
+            <h2>Help maintain the house of Allah and strengthen community programs.</h2>
+            <p>Please help support the Mosque's maintenance costs as well as strategic programs such as Waqf. Donations also support Quran education, dawah, and community service.</p>
+          </div>
+          <a class="button button-primary" href="https://www.alnurmasjid.org/donate">Donate</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <span>Alnur Mosque Islamic Center</span>
+      <span>2815 S 4th St, Louisville, KY 40208</span>
+      <a href="mailto:info@alnurmasjid.org">info@alnurmasjid.org</a>
+    </div>
+  </footer>
+
+  <div class="chat-note">Wix Chat stays available on the live site</div>
+
+  <script>
+    const photos = [
+      { src: "assets/0398_2026-05-25_011711_IMG_3686_41EC81BD.jpg", date: "2026-05-25", label: "Life at Alnur", alt: "Recent gathering at Alnur Masjid" },
+      { src: "assets/0393_2026-03-26_213313_IMG_2664_5667865A.jpg", date: "2026-03-26", label: "Children's Programs", alt: "Children's activity at Alnur Masjid" },
+      { src: "assets/0390_2026-03-20_160932_IMG_2557_3F860B45.jpg", date: "2026-03-20", label: "Community Meals", alt: "Community meal at Alnur Masjid" },
+      { src: "assets/0389_2026-03-20_133840_IMG_2553_2FD6C14A.jpg", date: "2026-03-20", label: "Community Moments", alt: "Community members outside Alnur Masjid" },
+      { src: "assets/0365_2026-03-20_130858_IMG_2529_0EADC901.jpg", date: "2026-03-20", label: "Weekly Programs", alt: "Speaker at Alnur Masjid program" },
+      { src: "assets/0310_2026-02-15_201026_IMG_2151_C0FCB402.jpg", date: "2026-02-15", label: "Weekly Halaqas", alt: "Teacher seated for a study circle at Alnur Masjid" },
+      { src: "assets/0288_2026-02-15_194647_IMG_2117_9B16D834.jpg", date: "2026-02-15", label: "Sunday Halaqa", alt: "Sheikh Abu Zakariyya seated for a study circle" },
+      { src: "assets/0067_2025-01-19_183157_IMG_4220_C6F0AD36.jpg", date: "2025-01-19", label: "Youth & Learning", alt: "Children gathered for learning at Alnur Masjid" },
+      { src: "assets/0043_2024-03-02_184617_IMG_8975_BE2085EA.jpg", date: "2024-03-02", label: "Community Gatherings", alt: "Community gathering at Alnur Masjid" }
+    ];
+
+    function photoWeight(photo) {
+      const ageDays = Math.max(0, (Date.now() - new Date(photo.date).getTime()) / 86400000);
+      return 0.22 + Math.exp(-ageDays / 365) * 2.8;
+    }
+
+    function pickPhoto(exclude) {
+      const pool = photos.filter(photo => !exclude.has(photo.src));
+      const total = pool.reduce((sum, photo) => sum + photoWeight(photo), 0);
+      let cursor = Math.random() * total;
+      for (const photo of pool) {
+        cursor -= photoWeight(photo);
+        if (cursor <= 0) return photo;
+      }
+      return pool[0] || photos[0];
+    }
+
+    function rotateGallery() {
+      const used = new Set();
+      document.querySelectorAll("[data-gallery-slot]").forEach((slot, index) => {
+        const current = slot.querySelector("img");
+        if (current) used.add(current.getAttribute("src"));
+        if (index > 1 && Math.random() > 0.55) return;
+        const next = pickPhoto(used);
+        used.add(next.src);
+        slot.classList.add("is-changing");
+        setTimeout(() => {
+          const img = slot.querySelector("img");
+          const label = slot.querySelector(".gallery-label");
+          img.src = next.src;
+          img.alt = next.alt;
+          label.textContent = next.label;
+          slot.classList.remove("is-changing");
+        }, 360);
+      });
+    }
+
+    setInterval(rotateGallery, 9000);
+  </script>
+</body>
+</html>
