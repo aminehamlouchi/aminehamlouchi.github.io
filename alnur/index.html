@@ -637,7 +637,7 @@
   </footer>
 
   <script>
-    const photos = [
+    const fallbackPhotos = [
       { src: "assets/0398_2026-05-25_011711_IMG_3686_41EC81BD.jpg", date: "2026-05-25", label: "Life at Alnur", alt: "Recent gathering at Alnur Masjid" },
       { src: "assets/0393_2026-03-26_213313_IMG_2664_5667865A.jpg", date: "2026-03-26", label: "Children's Programs", alt: "Children's activity at Alnur Masjid" },
       { src: "assets/0390_2026-03-20_160932_IMG_2557_3F860B45.jpg", date: "2026-03-20", label: "Community Meals", alt: "Community meal at Alnur Masjid" },
@@ -649,9 +649,21 @@
       { src: "assets/0043_2024-03-02_184617_IMG_8975_BE2085EA.jpg", date: "2024-03-02", label: "Community Gatherings", alt: "Community gathering at Alnur Masjid" }
     ];
 
+    let photos = fallbackPhotos.slice();
+
+    function normalizePhoto(photo) {
+      return {
+        src: photo.src,
+        date: photo.date || new Date().toISOString().slice(0, 10),
+        label: photo.label || "Life at Alnur",
+        alt: photo.alt || "Community moment at Alnur Mosque Islamic Center"
+      };
+    }
+
     function photoWeight(photo) {
-      const ageDays = Math.max(0, (Date.now() - new Date(photo.date).getTime()) / 86400000);
-      return 0.22 + Math.exp(-ageDays / 365) * 2.8;
+      const takenAt = new Date(`${photo.date}T12:00:00`).getTime();
+      const ageDays = Math.max(0, (Date.now() - takenAt) / 86400000);
+      return 0.32 + Math.exp(-ageDays / 60) * 4.5;
     }
 
     function pickPhoto(exclude) {
@@ -665,27 +677,50 @@
       return pool[0] || photos[0];
     }
 
-    function rotateGallery() {
+    function updateSlot(slot, next, animate) {
+      if (!next) return;
+      if (animate) slot.classList.add("is-changing");
+      setTimeout(() => {
+        const img = slot.querySelector("img");
+        const label = slot.querySelector(".gallery-label");
+        img.src = next.src;
+        img.alt = next.alt;
+        label.textContent = next.label;
+        slot.classList.remove("is-changing");
+      }, animate ? 360 : 0);
+    }
+
+    function paintGallery(animate, rotateSome) {
       const used = new Set();
       document.querySelectorAll("[data-gallery-slot]").forEach((slot, index) => {
         const current = slot.querySelector("img");
         if (current) used.add(current.getAttribute("src"));
-        if (index > 1 && Math.random() > 0.55) return;
+        if (rotateSome && index > 1 && Math.random() > 0.55) return;
         const next = pickPhoto(used);
         used.add(next.src);
-        slot.classList.add("is-changing");
-        setTimeout(() => {
-          const img = slot.querySelector("img");
-          const label = slot.querySelector(".gallery-label");
-          img.src = next.src;
-          img.alt = next.alt;
-          label.textContent = next.label;
-          slot.classList.remove("is-changing");
-        }, 360);
+        updateSlot(slot, next, animate);
       });
     }
 
-    setInterval(rotateGallery, 9000);
+    async function loadGalleryManifest() {
+      try {
+        const version = Math.floor(Date.now() / 300000);
+        const response = await fetch(`gallery.json?v=${version}`, { cache: "no-store" });
+        if (!response.ok) throw new Error("Gallery manifest unavailable");
+        const manifest = await response.json();
+        const loaded = (manifest.photos || []).map(normalizePhoto).filter(photo => photo.src);
+        if (loaded.length) {
+          photos = loaded;
+          paintGallery(false, false);
+        }
+      } catch (error) {
+        photos = fallbackPhotos.slice();
+      }
+    }
+
+    paintGallery(false, false);
+    loadGalleryManifest();
+    setInterval(() => paintGallery(true, true), 9000);
   </script>
 </body>
 </html>

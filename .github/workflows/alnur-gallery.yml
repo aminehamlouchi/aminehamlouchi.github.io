@@ -1,0 +1,45 @@
+name: Build Alnur gallery
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - "alnur/photo-drop/**"
+      - "alnur/assets/**"
+      - "scripts/build_alnur_gallery.py"
+      - ".github/workflows/alnur-gallery.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  build-gallery:
+    if: ${{ github.event_name == 'workflow_dispatch' || !contains(github.event.head_commit.message, '[skip gallery]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install image tooling
+        run: python -m pip install --upgrade pip pillow
+
+      - name: Rebuild gallery
+        run: python scripts/build_alnur_gallery.py
+
+      - name: Commit generated gallery
+        run: |
+          if [ -z "$(git status --porcelain alnur/gallery alnur/gallery.json)" ]; then
+            echo "No gallery changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add alnur/gallery alnur/gallery.json
+          git commit -m "Update Alnur gallery [skip gallery]"
+          git push

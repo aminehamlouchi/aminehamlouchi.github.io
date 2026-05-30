@@ -1,0 +1,77 @@
+{
+  "generatedAt": "2026-05-29T23:58:27+00:00",
+  "photoDrop": "alnur/photo-drop",
+  "notes": "Add approved JPG, PNG, or WebP photos to alnur/photo-drop. GitHub Actions rebuilds this file automatically.",
+  "photos": [
+    {
+      "src": "gallery/2026-05-25-0398-2026-05-25-011711-img-3686-41ec81bd-6313244341.jpg",
+      "date": "2026-05-25",
+      "label": "Life at Alnur",
+      "alt": "Life at Alnur at Alnur Mosque Islamic Center",
+      "source": "alnur/assets/0398_2026-05-25_011711_IMG_3686_41EC81BD.jpg"
+    },
+    {
+      "src": "gallery/2026-03-26-0393-2026-03-26-213313-img-2664-5667865a-ba285b4345.jpg",
+      "date": "2026-03-26",
+      "label": "Children's Programs",
+      "alt": "Children's Programs at Alnur Mosque Islamic Center",
+      "source": "alnur/assets/0393_2026-03-26_213313_IMG_2664_5667865A.jpg"
+    },
+    {
+      "src": "gallery/2026-03-20-0390-2026-03-20-160932-img-2557-3f860b45-fa5293aa76.jpg",
+      "date": "2026-03-20",
+      "label": "Community Meals",
+      "alt": "Community Meals at Alnur Mosque Islamic Center",
+      "source": "alnur/assets/0390_2026-03-20_160932_IMG_2557_3F860B45.jpg"
+    },
+    {
+      "src": "gallery/2026-03-20-0389-2026-03-20-133840-img-2553-2fd6c14a-3c4c0f0803.jpg",
+      "date": "2026-03-20",
+      "label": "Community Moments",
+      "alt": "Community Moments at Alnur Mosque Islamic Center",
+      "source": "alnur/assets/0389_2026-03-20_133840_IMG_2553_2FD6C14A.jpg"
+    },
+    {
+      "src": "gallery/2026-03-20-0365-2026-03-20-130858-img-2529-0eadc901-c5eacd084a.jpg",
+      "date": "2026-03-20",
+      "label": "Weekly Programs",
+      "alt": "Weekly Programs at Alnur Mosque Islamic Center",
+      "source": "alnur/assets/0365_2026-03-20_130858_IMG_2529_0EADC901.jpg"
+    },
+    {
+      "src": "gallery/2026-02-15-0310-2026-02-15-201026-img-2151-c0fcb402-49a2be5cc1.jpg",
+      "date": "2026-02-15",
+      "label": "Weekly Halaqas",
+      "alt": "Weekly Halaqas at Alnur Mosque Islamic Center",
+      "source": "alnur/assets/0310_2026-02-15_201026_IMG_2151_C0FCB402.jpg"
+    },
+    {
+      "src": "gallery/2026-02-15-0288-2026-02-15-194647-img-2117-9b16d834-87cad60fcd.jpg",
+      "date": "2026-02-15",
+      "label": "Sunday Halaqa",
+      "alt": "Sunday Halaqa at Alnur Mosque Islamic Center",
+      "source": "alnur/assets/0288_2026-02-15_194647_IMG_2117_9B16D834.jpg"
+    },
+    {
+      "src": "gallery/2025-06-13-0151-2025-06-13-220906-img-6761-40b00046-055a85e53a.jpg",
+      "date": "2025-06-13",
+      "label": "Life at Alnur",
+      "alt": "Life at Alnur at Alnur Mosque Islamic Center",
+      "source": "alnur/assets/0151_2025-06-13_220906_IMG_6761_40B00046.jpg"
+    },
+    {
+      "src": "gallery/2025-01-19-0067-2025-01-19-183157-img-4220-c6f0ad36-ef89cdce26.jpg",
+      "date": "2025-01-19",
+      "label": "Youth & Learning",
+      "alt": "Youth & Learning at Alnur Mosque Islamic Center",
+      "source": "alnur/assets/0067_2025-01-19_183157_IMG_4220_C6F0AD36.jpg"
+    },
+    {
+      "src": "gallery/2024-03-02-0043-2024-03-02-184617-img-8975-be2085ea-20f81e356a.jpg",
+      "date": "2024-03-02",
+      "label": "Community Gatherings",
+      "alt": "Community Gatherings at Alnur Mosque Islamic Center",
+      "source": "alnur/assets/0043_2024-03-02_184617_IMG_8975_BE2085EA.jpg"
+    }
+  ]
+}
