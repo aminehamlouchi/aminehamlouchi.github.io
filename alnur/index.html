@@ -334,6 +334,20 @@
       text-align: center;
     }
 
+    .prayer-calendar-link {
+      display: none;
+      margin: 0 18px 18px;
+      justify-content: center;
+      min-height: 44px;
+      padding: 12px 14px;
+      border: 1px solid rgba(17, 91, 78, .18);
+      border-radius: 10px;
+      background: #fff;
+      color: var(--green);
+      font-weight: 850;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .76);
+    }
+
     .section {
       position: relative;
       padding: 86px clamp(18px, 4vw, 58px);
@@ -645,6 +659,8 @@
     @media (max-width: 560px) {
       body {
         background-size: 76px 132px, 76px 132px, auto, auto, auto;
+        overflow-x: hidden;
+        touch-action: pan-y;
       }
 
       .topbar { display: none; }
@@ -652,8 +668,8 @@
         position: static;
         display: flex;
         flex-direction: column;
-        gap: 14px;
-        padding: 16px 16px 18px;
+        gap: 12px;
+        padding: 14px 16px 16px;
         text-align: center;
       }
 
@@ -662,29 +678,26 @@
       .brand {
         flex-direction: column;
         gap: 8px;
-        font-size: 20px;
+        font-size: 18px;
         line-height: 1.08;
       }
 
-      .brand-mark { height: 74px; }
-      .brand small { font-size: 13px; }
+      .brand-mark { height: 62px; }
+      .brand small { font-size: 12px; }
 
       .nav {
         width: 100%;
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        gap: 8px;
-        overflow-x: auto;
-        padding: 2px 2px 8px;
-        font-size: 13px;
-        scrollbar-width: none;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 6px;
+        overflow: visible;
+        padding: 0;
+        font-size: 12px;
       }
-
-      .nav::-webkit-scrollbar { display: none; }
 
       .nav a {
         flex: 0 0 auto;
-        padding: 8px 11px;
+        padding: 8px 9px;
         border: 1px solid rgba(23, 52, 47, .12);
         border-radius: 999px;
         background: rgba(255, 255, 255, .64);
@@ -705,6 +718,7 @@
       }
 
       .hero { min-height: auto; }
+      .hero, .prayer-card, .section { touch-action: pan-y; }
       .hero-photo { background-position: center top; }
       .hero::before { opacity: .1; background-size: 62px 108px; }
       .hero::after {
@@ -716,8 +730,8 @@
 
       .hero-inner {
         width: 100%;
-        gap: 24px;
-        padding: 46px 18px 44px;
+        gap: 20px;
+        padding: 34px 18px 34px;
       }
 
       .hero-copy-block { padding-top: 10px; }
@@ -742,24 +756,24 @@
 
       h1 {
         max-width: none;
-        font-size: clamp(38px, 12vw, 46px);
+        font-size: clamp(34px, 11vw, 42px);
         line-height: 1;
       }
 
       .hero-copy {
-        margin-top: 18px;
-        font-size: 17px;
-        line-height: 1.55;
+        margin-top: 14px;
+        font-size: 16px;
+        line-height: 1.48;
       }
 
       .hero-actions {
         gap: 10px;
-        margin-top: 24px;
+        margin-top: 20px;
       }
 
       .hero-actions .button {
         width: 100%;
-        min-height: 50px;
+        min-height: 46px;
       }
 
       .prayer-card {
@@ -768,9 +782,22 @@
         box-shadow: 0 18px 45px rgba(15, 43, 38, .18);
       }
 
-      .prayer-head { padding: 22px 20px; }
-      .prayer-head h2 { font-size: 32px; }
-      .prayer-frame { height: 540px; }
+      .prayer-head { padding: 18px; }
+      .prayer-head h2 { font-size: 28px; }
+      .prayer-head p { font-size: 15px; }
+      .prayer-frame {
+        height: 420px;
+        pointer-events: none;
+      }
+
+      .prayer-calendar-link { display: flex; }
+
+      .jumuah-note {
+        gap: 8px;
+        padding: 10px 14px 14px;
+      }
+
+      .jumuah-note span { padding: 9px 8px; }
 
       .section {
         padding: 56px 18px;
@@ -857,10 +884,11 @@
     }
 
     @media (max-width: 380px) {
-      .nav a { padding: 8px 10px; font-size: 12px; }
+      .nav { gap: 5px; }
+      .nav a { padding: 8px; font-size: 12px; }
       h1 { font-size: 40px; }
       .hero-copy { font-size: 16px; }
-      .prayer-frame { height: 520px; }
+      .prayer-frame { height: 400px; }
     }
   </style>
 </head>
@@ -919,6 +947,7 @@
             <span>Khutbah 1:10 PM</span>
             <span>Salah 1:40 PM</span>
           </div>
+          <a class="prayer-calendar-link" href="https://timing.athanplus.com/masjid/widgets/monthly?theme=1&masjid_id=oxdNXPLV" target="_blank" rel="noopener">Monthly Prayer Calendar</a>
         </aside>
       </div>
     </section>
