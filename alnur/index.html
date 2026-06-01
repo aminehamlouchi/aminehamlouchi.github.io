@@ -800,7 +800,7 @@
       .jumuah-note span { padding: 9px 8px; }
 
       .section {
-        padding: 56px 18px;
+        padding: 46px 18px;
         scroll-margin-top: 0;
       }
 
@@ -832,11 +832,15 @@
 
       .about-grid { gap: 16px; }
       .about-image {
-        min-height: 260px;
-        border-radius: 120px 120px var(--radius) var(--radius);
+        min-height: 176px;
+        order: 2;
+        border-radius: var(--radius);
       }
 
-      .about-copy { padding: 22px; }
+      .about-copy {
+        order: 1;
+        padding: 22px;
+      }
       .about-copy p {
         font-size: 16px;
         line-height: 1.65;
