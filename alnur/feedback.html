@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Share feedback, advice, ideas, or concerns with Alnur Mosque Islamic Center.">
+  <title>Feedback | Alnur Mosque Islamic Center</title>
+  <link rel="stylesheet" href="assets/subpage.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="topbar"><div><span>2815 S 4th St, Louisville, KY 40208</span><a href="mailto:info@alnurmasjid.org">info@alnurmasjid.org</a><a href="tel:5026146790">502-614-6790</a></div><div><a href="https://www.facebook.com/alnurmosque">Facebook</a><a href="https://www.instagram.com/alnurmosqueislamiccenter?igsh=cjQ5YnIyYm1rZnc4&utm_source=qr">Instagram</a><a href="https://www.youtube.com/channel/UCGiW1PQEFWfQzfrDya4KdVg">YouTube</a></div></div>
+  <header class="site-header">
+    <a class="brand" href="index.html"><img src="assets/alnur-wix-logo-tight.png" alt="Alnur Mosque Islamic Center logo"><span>Alnur Mosque Islamic Center<small>Louisville, Kentucky</small></span></a>
+    <nav class="nav" aria-label="Primary navigation"><a href="about.html">About</a><a href="programs.html">Programs</a><a href="services.html">Services</a><a href="events.html">Events</a><a href="donate.html">Donate</a><a href="contact.html">Contact</a></nav>
+    <a class="button button-primary" href="contact.html">Contact</a>
+  </header>
+
+  <main id="main">
+    <section class="page-hero" style="--hero-image: url('../gallery/2026-03-20-0390-2026-03-20-160932-img-2557-3f860b45-fa5293aa76.jpg')">
+      <div class="page-hero-inner">
+        <span class="kicker">Feedback & Suggestions</span>
+        <h1>Help Alnur serve better.</h1>
+        <p class="hero-summary">We welcome sincere advice, ideas, concerns, and suggestions that help strengthen the masjid and benefit the community.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container split">
+        <div class="copy">
+          <span class="eyebrow">Speak Your Mind</span>
+          <h2>Your thoughtful feedback matters.</h2>
+          <p>The original Alnur feedback page invited brothers and sisters not to withhold continuous advice, participation, opinions, or suggestions. This page keeps that invitation while making the experience consistent with the rest of the site.</p>
+          <p>Submitting the form opens your email app with the message prepared for <strong>info@alnurmasjid.org</strong>, allowing you to review it before sending.</p>
+        </div>
+        <form class="feedback-form" id="feedback-form">
+          <div class="field-grid">
+            <div class="field"><label for="first-name">First name</label><input id="first-name" name="firstName" autocomplete="given-name"></div>
+            <div class="field"><label for="last-name">Last name</label><input id="last-name" name="lastName" autocomplete="family-name"></div>
+            <div class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+            <div class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel"></div>
+            <div class="field field-full"><label for="topic">Choose a topic</label><select id="topic" name="topic"><option>General feedback</option><option>Programs and education</option><option>Facilities</option><option>Community services</option><option>Events</option><option>Website</option></select></div>
+            <div class="field field-full"><label for="message">Speak your mind</label><textarea id="message" name="message" required></textarea></div>
+            <div class="field field-full"><button class="button button-primary" type="submit">Prepare Feedback Email</button></div>
+          </div>
+          <p class="form-note">Your message is not sent automatically. Your email app will open so you can review and send it.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div><div class="footer-brand">Alnur Mosque Islamic Center</div><p>2815 S 4th St, Louisville, KY 40208<br><a href="tel:5026146790">502-614-6790</a><br><a href="mailto:info@alnurmasjid.org">info@alnurmasjid.org</a></p></div>
+      <div><h3>Explore</h3><div class="footer-links"><a href="index.html">Home</a><a href="services.html">Services</a><a href="programs.html">Programs</a><a href="resources.html">Resources</a></div></div>
+      <div><h3>Connect</h3><div class="footer-links"><a href="contact.html">Contact & Visit</a><a href="book-online.html">Booking & Requests</a><a href="donate.html">Donate</a></div></div>
+    </div>
+    <div class="container footer-base">Alnur Mosque Islamic Center</div>
+  </footer>
+
+  <script>
+    document.getElementById("feedback-form").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const name = [data.get("firstName"), data.get("lastName")].filter(Boolean).join(" ");
+      const subject = "Alnur Feedback: " + data.get("topic");
+      const body = [
+        "Name: " + name,
+        "Email: " + data.get("email"),
+        "Phone: " + (data.get("phone") || "Not provided"),
+        "Topic: " + data.get("topic"),
+        "",
+        data.get("message")
+      ].join("\n");
+      window.location.href = "mailto:info@alnurmasjid.org?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    });
+  </script>
+</body>
+</html>

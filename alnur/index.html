@@ -457,6 +457,49 @@
 
     .about-copy p + p { margin-top: 16px; }
 
+    .explore-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .explore-card {
+      display: flex;
+      min-height: 190px;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 24px;
+      border: 1px solid rgba(255, 255, 255, .14);
+      border-radius: var(--radius);
+      color: #fff;
+      background:
+        linear-gradient(140deg, rgba(255, 255, 255, .06), transparent 55%),
+        var(--green-deep);
+      box-shadow: 0 16px 38px rgba(23, 52, 47, .14);
+    }
+
+    .explore-card:nth-child(2n) { background-color: var(--plum); }
+    .explore-card h3 { font-size: 24px; }
+    .explore-card p {
+      margin: 10px 0 18px;
+      color: rgba(255, 255, 255, .75);
+      line-height: 1.55;
+    }
+
+    .explore-link {
+      color: var(--gold-soft);
+      font-weight: 850;
+    }
+
+    .explore-link::after { content: " →"; }
+
+    .section-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 26px;
+    }
+
     .program-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -651,6 +694,7 @@
       .hero-copy-block::before { left: -18px; top: -26px; width: 130px; height: 170px; }
       .hero-inner { min-height: auto; padding: 70px 0; }
       .program-grid { grid-template-columns: 1fr; }
+      .explore-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 270px; }
       .gallery-item:first-child { grid-row: auto; }
       .prayer-frame { height: 570px; }
@@ -847,6 +891,14 @@
       }
 
       .program-grid { gap: 12px; }
+      .explore-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+      .explore-card {
+        min-height: 160px;
+        padding: 20px;
+      }
       .program-card {
         min-height: auto;
         padding: 20px;
@@ -911,20 +963,21 @@
   </div>
 
   <header class="site-header">
-    <a class="brand" href="#">
+    <a class="brand" href="index.html">
       <img class="brand-mark" src="assets/alnur-wix-logo-tight.png" alt="Alnur Mosque Islamic Center logo">
       <span>Alnur Mosque Islamic Center<small>Louisville, Kentucky</small></span>
     </a>
     <nav class="nav" aria-label="Primary navigation">
-      <a href="#about">About</a>
-      <a href="#programs">Programs</a>
-      <a href="#gallery">Gallery</a>
-      <a href="#donate">Donate</a>
-      <a href="https://www.alnurmasjid.org/contact">Contact</a>
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="services.html">Services</a>
+      <a href="events.html">Events</a>
+      <a href="donate.html">Donate</a>
+      <a href="contact.html">Contact</a>
     </nav>
     <div class="header-actions">
-      <a class="button" href="https://www.alnurmasjid.org/events">Events</a>
-      <a class="button button-primary" href="https://www.alnurmasjid.org/donate">Donate</a>
+      <a class="button" href="#prayer">Prayer Times</a>
+      <a class="button button-primary" href="donate.html">Donate</a>
     </div>
   </header>
 
@@ -937,11 +990,11 @@
           <h1>Alnur Mosque Islamic Center</h1>
           <p class="hero-copy">A welcoming place for daily salah, beneficial knowledge, Quran, youth programs, and family learning upon the Quran and Sunnah.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#programs">View Programs</a>
-            <a class="button" href="https://www.alnurmasjid.org/donate">Support the Masjid</a>
+            <a class="button button-primary" href="programs.html">View Programs</a>
+            <a class="button" href="donate.html">Support the Masjid</a>
           </div>
         </div>
-        <aside class="prayer-card" aria-label="Prayer timings">
+        <aside class="prayer-card" id="prayer" aria-label="Prayer timings">
           <div class="prayer-head">
             <h2>Prayer Timings</h2>
             <p>Live MasjidAl schedule, kept updated automatically.</p>
@@ -961,14 +1014,34 @@
         <div class="about-image" aria-label="Alnur Mosque community moment"></div>
         <div class="about-copy">
           <span class="kicker" style="color: var(--gold)">Welcome</span>
-          <h2>Serving Greater Louisville since 1995.</h2>
+          <h2>Serving Greater Louisville and Southern Indiana.</h2>
           <p>Al Nur Masjid, located in the heart of Greater Louisville, is a vibrant and inclusive space for Muslims from diverse backgrounds. Established in 2008, our mosque has grown to become a beacon of faith, education, and community support.</p>
           <p>We offer daily prayers, weekly educational sessions, youth and sisters programs, Quran learning, community meals, and opportunities to grow together in worship, manners, and beneficial knowledge.</p>
+          <div class="section-actions"><a class="button" href="about.html">Read About Alnur</a></div>
         </div>
       </div>
     </section>
 
-    <section class="section section-soft" id="programs">
+    <section class="section section-soft" id="explore">
+      <div class="section-inner">
+        <div class="section-title">
+          <h2>Explore Alnur</h2>
+          <p class="lede">The most useful parts of the website are now easy to reach from the homepage.</p>
+        </div>
+        <div class="explore-grid">
+          <a class="explore-card" href="about.html"><div><h3>About Alnur</h3><p>Mission, services, story, facilities, and leadership.</p></div><span class="explore-link">Learn about the masjid</span></a>
+          <a class="explore-card" href="programs.html"><div><h3>Programs</h3><p>Weekly classes for new Muslims, youth, families, and Quran students.</p></div><span class="explore-link">See all programs</span></a>
+          <a class="explore-card" href="services.html"><div><h3>Services</h3><p>Nikah, funeral support, outreach, facilities, and community assistance.</p></div><span class="explore-link">Explore services</span></a>
+          <a class="explore-card" href="events.html"><div><h3>Events</h3><p>Special events, regular gatherings, and current announcements.</p></div><span class="explore-link">View events</span></a>
+          <a class="explore-card" href="resources.html"><div><h3>Resources</h3><p>Prayer calendar, forms, services, and useful community links.</p></div><span class="explore-link">Find a resource</span></a>
+          <a class="explore-card" href="donate.html"><div><h3>Donate</h3><p>Secure giving for the masjid, Quran learning, school, and Zakat.</p></div><span class="explore-link">Support Alnur</span></a>
+          <a class="explore-card" href="contact.html"><div><h3>Contact & Visit</h3><p>Directions, phone, email, feedback, and booking options.</p></div><span class="explore-link">Get in touch</span></a>
+          <a class="explore-card" href="past-events.html"><div><h3>Past Events</h3><p>Community photos, named events, and available recordings.</p></div><span class="explore-link">See the archive</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="programs">
       <div class="section-inner">
         <div class="section-title">
           <h2>Regular Programs</h2>
@@ -1012,10 +1085,11 @@
             <div class="program-meta">10:30 AM - 2:00 PM</div>
           </article>
         </div>
+        <div class="section-actions"><a class="button button-primary" href="programs.html">Full Program Details</a></div>
       </div>
     </section>
 
-    <section class="section" id="gallery">
+    <section class="section section-soft" id="gallery">
       <div class="section-inner">
         <div class="section-title">
           <h2>What We Have Been Up To</h2>
@@ -1043,17 +1117,18 @@
             <figcaption class="gallery-label">Community Meals</figcaption>
           </figure>
         </div>
+        <div class="section-actions"><a class="button" href="past-events.html">See Past Events</a></div>
       </div>
     </section>
 
-    <section class="section section-soft" id="donate">
+    <section class="section" id="donate">
       <div class="section-inner">
         <div class="donate-card">
           <div>
             <h2>Help maintain the house of Allah and strengthen community programs.</h2>
             <p>Please help support the Mosque's maintenance costs as well as strategic programs such as Waqf. Donations also support Quran education, dawah, and community service.</p>
           </div>
-          <a class="button button-primary" href="https://www.alnurmasjid.org/donate">Donate</a>
+          <a class="button button-primary" href="donate.html">Choose a Donation</a>
         </div>
       </div>
     </section>
@@ -1064,6 +1139,9 @@
       <span>Alnur Mosque Islamic Center</span>
       <span>2815 S 4th St, Louisville, KY 40208</span>
       <a href="mailto:info@alnurmasjid.org">info@alnurmasjid.org</a>
+      <a href="programs.html">Programs</a>
+      <a href="resources.html">Resources</a>
+      <a href="contact.html">Contact</a>
     </div>
   </footer>
 
