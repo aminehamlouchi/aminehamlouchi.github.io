@@ -370,6 +370,12 @@ h3 { font-size: 21px; line-height: 1.25; }
 .action-card p { color: rgba(255, 255, 255, .74); }
 .action-card .text-link { color: var(--gold-soft); }
 
+.guide-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 18px;
+}
+
 .text-link {
   display: inline-flex;
   width: fit-content;
