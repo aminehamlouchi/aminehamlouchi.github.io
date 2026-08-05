@@ -5,313 +5,201 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="Resume for Amine Hamlouchi, a University of Louisville computer science student focused on software engineering, data analytics, enterprise IT infrastructure, and technical internships."
+      content="Resume of Amine Hamlouchi — computer science student at the University of Louisville. AI/ML, full-stack development, and IT automation."
     >
-    <meta name="theme-color" content="#f7f8f3">
+    <meta name="theme-color" content="#0b0a08">
     <title>Resume | Amine Hamlouchi</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    >
+    <link rel="stylesheet" href="assets/fonts.css">
+    <link rel="stylesheet" href="assets/vendor/lenis.css">
     <link rel="stylesheet" href="assets/styles.css">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
 
-    <header class="site-header solid" data-header>
-      <a class="brand-mark" href="index.html" aria-label="Amine Hamlouchi home">
-        <span>AH</span>
+    <header class="site-header is-scrolled" data-header>
+      <a class="brand-mark" href="index.html" aria-label="Amine Hamlouchi — home">
+        <span class="brand-ar" aria-hidden="true">أمين</span>
+        <span class="brand-en" data-scramble>amine.hamlouchi</span>
       </a>
       <nav class="main-nav" aria-label="Primary navigation">
-        <a href="index.html">Intro</a>
-        <a href="index.html#projects">Projects</a>
-        <a href="resume.html" aria-current="page">Resume</a>
+        <a href="index.html#work">work</a>
+        <a href="index.html#arcade">arcade</a>
+        <a href="resume.html" aria-current="page">resume</a>
+        <a href="https://github.com/aminehamlouchi" target="_blank" rel="noreferrer">github</a>
       </nav>
-      <a class="icon-link" href="https://github.com/aminehamlouchi" target="_blank" rel="noreferrer" aria-label="Open GitHub profile">
-        <i data-lucide="git-fork"></i>
-      </a>
     </header>
 
     <main id="main" class="resume-page">
-      <section class="resume-hero" aria-labelledby="resume-title">
-        <div class="section-kicker">Resume</div>
-        <div class="resume-title-row">
+      <div class="wrap">
+        <div class="sec-head"><span class="sec-path">~/resume</span></div>
+
+        <div class="resume-head">
           <div>
-            <h1 id="resume-title">Amine Hamlouchi</h1>
-            <p>
-              Computer Science student targeting software engineering, AI-adjacent systems,
-              data analytics, and technical internship roles. Open to relocation.
+            <h1 data-reveal>Amine<br>Hamlouchi</h1>
+            <p class="resume-sub" data-reveal>
+              louisville, ky · <a href="mailto:aahaml01@louisville.edu" style="color:var(--amber)">aahaml01@louisville.edu</a>
+              · <a href="https://github.com/aminehamlouchi" target="_blank" rel="noreferrer" style="color:var(--amber)">github.com/aminehamlouchi</a>
             </p>
           </div>
-          <div class="resume-hero-actions">
-            <a class="button primary" href="assets/amine-hamlouchi-resume.pdf" target="_blank" rel="noreferrer">
-              <span>View PDF</span>
-              <i data-lucide="external-link"></i>
-            </a>
-            <a class="button ghost" href="assets/amine-hamlouchi-resume.pdf" download>
-              <span>Download</span>
-              <i data-lucide="download"></i>
+          <div class="resume-actions" data-reveal>
+            <a class="btn solid" href="assets/amine-hamlouchi-resume.pdf" target="_blank" rel="noreferrer" data-magnetic>
+              <span class="bracket l">[</span><span>download pdf</span><span class="bracket r">]</span>
             </a>
           </div>
         </div>
-      </section>
 
-      <section class="resume-pdf-section" aria-labelledby="resume-pdf-title">
-        <div class="resume-pdf-copy">
-          <div>
-            <div class="section-kicker">PDF Resume</div>
-            <h2 id="resume-pdf-title">One-page version for applications.</h2>
-          </div>
-          <div class="resume-pdf-actions">
-            <a class="button primary" href="assets/amine-hamlouchi-resume.pdf" target="_blank" rel="noreferrer">
-              <span>Open PDF</span>
-              <i data-lucide="external-link"></i>
-            </a>
-            <a class="button ghost" href="assets/amine-hamlouchi-resume.pdf" download>
-              <span>Download PDF</span>
-              <i data-lucide="download"></i>
-            </a>
-          </div>
-        </div>
-        <iframe
-          class="resume-pdf-frame"
-          src="assets/amine-hamlouchi-resume.pdf#toolbar=1&navpanes=0"
-          title="PDF resume preview for Amine Hamlouchi"
-        ></iframe>
-      </section>
-
-      <section class="resume-layout" aria-label="Resume details">
-        <aside class="resume-sidebar">
-          <div class="sidebar-block">
-            <h2>Contact</h2>
-            <ul class="plain-list">
-              <li>Louisville, KY</li>
-              <li><a href="mailto:aahaml01@louisville.edu">aahaml01@louisville.edu</a></li>
-              <li><a href="https://github.com/aminehamlouchi">github.com/aminehamlouchi</a></li>
-              <li>Open to relocation</li>
-            </ul>
-          </div>
-
-          <div class="sidebar-block">
-            <h2>Focus</h2>
-            <ul class="tag-list">
-              <li>Software engineering</li>
-              <li>Agentic AI</li>
-              <li>Full-stack products</li>
-              <li>Enterprise infrastructure</li>
-              <li>AI-ready systems</li>
-              <li>Data analytics</li>
-              <li>Technical internships</li>
-              <li>Workflow automation</li>
-              <li>Web interfaces</li>
-            </ul>
-          </div>
-        </aside>
-
-        <div class="resume-main">
-          <section class="resume-section" aria-labelledby="profile-title">
-            <h2 id="profile-title">Profile</h2>
-            <p>
-              University of Louisville computer science student with hands-on experience
-              supporting enterprise IT infrastructure, building internal tools, shipping
-              agentic AI projects, automating workflows, and creating full-stack web
-              applications. I bring a software-engineering mindset to practical systems
-              work: debug carefully, document clearly, and turn messy operational problems
-              into reliable workflows.
-            </p>
-          </section>
-
-          <section class="resume-section" aria-labelledby="education-title">
-            <h2 id="education-title">Education</h2>
-            <div class="resume-entry compact">
+        <div class="resume-body">
+          <!-- EDUCATION -->
+          <section class="resume-sec" aria-labelledby="r-edu">
+            <h2 id="r-edu">education</h2>
+            <div class="resume-item" data-reveal>
+              <div class="ri-meta">
+                <span class="when">expected may 2028</span>
+                louisville, ky
+              </div>
               <div>
-                <h3>University of Louisville, J.B. Speed School of Engineering</h3>
-                <p class="entry-meta">Bachelor of Arts in Computer Science / Expected May 2027 / Louisville, KY</p>
-              </div>
-              <p>GPA: 3.50/4.00; 95 credit hours completed.</p>
-              <p>
-                Coursework: Data Structures, Algorithms, Software Engineering, Operating
-                Systems, Computer Architecture, Database/SQL, OOP, Discrete Mathematics.
-              </p>
-            </div>
-          </section>
-
-          <section class="resume-section" aria-labelledby="experience-title">
-            <h2 id="experience-title">Experience</h2>
-            <div class="resume-entry">
-              <div>
-                <h3>IT Analyst</h3>
-                <p class="entry-meta">Parker Hannifin / May 2026 - Present / Jeffersonville, IN</p>
-              </div>
-              <ul>
-                <li>Support enterprise technology systems in an industrial environment, troubleshooting endpoint hardware, networking, access, application, and user-support issues for on-site teams.</li>
-                <li>Apply software-engineering style debugging to infrastructure incidents by isolating root causes, validating fixes, documenting repeatable steps, and escalating issues with clear technical context.</li>
-                <li>Build practical systems experience relevant to SWE and AI deployments, including device configuration, network connectivity, user environments, operational reliability, and the infrastructure layer behind production software.</li>
-              </ul>
-            </div>
-
-            <div class="resume-entry">
-              <div>
-                <h3>Software Developer</h3>
-                <p class="entry-meta">King iPhones / July 2022 - September 2023 / Louisville, KY</p>
-              </div>
-              <ul>
-                <li>Built an internal inventory, pricing, and sales-tracking system for a phone store using JavaScript, Google Apps Script, and Google Sheets.</li>
-                <li>Designed workflows to track device model, serial/IMEI, cost, sale price, profit, and transaction status across daily store operations.</li>
-                <li>Replaced manual spreadsheet work with searchable records, automated calculations, and validation logic to reduce entry mistakes and speed up reporting.</li>
-              </ul>
-            </div>
-
-            <div class="resume-entry">
-              <div>
-                <h3>Valet Hotel Manager</h3>
-                <p class="entry-meta">Parking Management Company / 2025 - Present / Louisville, KY</p>
-              </div>
-              <ul>
-                <li>Manage staffing and operations across multiple hotel accounts, coordinating schedules, coverage, and service quality with hotel managers.</li>
-                <li>Use spreadsheet-based tracking to analyze labor needs, identify understaffed shifts, and improve weekly planning for high-volume sites.</li>
-              </ul>
-            </div>
-          </section>
-
-          <section class="resume-section" aria-labelledby="projects-title">
-            <h2 id="projects-title">Projects</h2>
-            <div class="resume-entry">
-              <div>
-                <h3>SourceWise Dawah Agent</h3>
-                <p class="entry-meta">Python / FastAPI / RAG / Pydantic / Docker</p>
-              </div>
-              <ul>
-                <li>Built a source-grounded AI assistant that retrieves curated masjid/MSA notes and generates citation-backed outlines, captions, and study-circle plans with review safeguards.</li>
-                <li>Implemented a deterministic agent workflow with retrieval, outlining, formatting, safety review, CLI/API surfaces, sample data, tests, and Dockerized API setup.</li>
-              </ul>
-            </div>
-
-            <div class="resume-entry">
-              <div>
-                <h3>MasjidFlow Ops</h3>
-                <p class="entry-meta">React / TypeScript / FastAPI / SQLite</p>
-              </div>
-              <ul>
-                <li>Built a full-stack operations dashboard for community events, volunteer shifts, RSVPs, demo auth, and staffing recommendations.</li>
-                <li>Designed REST APIs, seeded relational data, responsive dashboard views, tests, Docker setup, and a reproducible local demo workflow.</li>
-              </ul>
-            </div>
-
-            <div class="resume-entry">
-              <div>
-                <h3>OpsWise Ticket Agent</h3>
-                <p class="entry-meta">Python / CLI / IT automation / Runbooks</p>
-              </div>
-              <ul>
-                <li>Built a CLI helpdesk agent that classifies endpoint, identity, network, and application tickets, retrieves runbooks, applies SLA policy, and exports reports.</li>
-                <li>Added sample enterprise IT tickets, confidence scoring, escalation criteria, Markdown/JSON output, unit tests, Dockerfile, and reproducible sample runs.</li>
-              </ul>
-            </div>
-          </section>
-
-          <section class="resume-section" aria-labelledby="skills-title">
-            <h2 id="skills-title">Skills</h2>
-            <div class="skill-groups">
-              <div class="skill-group">
-                <h3>Languages</h3>
-                <div class="skill-cloud">
-                  <span>Python</span>
-                  <span>Java</span>
-                  <span>C</span>
-                  <span>C++</span>
-                  <span>JavaScript</span>
-                  <span>TypeScript</span>
-                  <span>SQL</span>
-                  <span>C#</span>
-                  <span>HTML/CSS</span>
-                  <span>Bash</span>
-                  <span>Google Apps Script</span>
-                </div>
-              </div>
-              <div class="skill-group">
-                <h3>AI/Data</h3>
-                <div class="skill-cloud">
-                  <span>RAG</span>
-                  <span>Tool workflows</span>
-                  <span>FastAPI</span>
-                  <span>Pydantic</span>
-                  <span>pandas</span>
-                  <span>NumPy</span>
-                  <span>scikit-learn</span>
-                  <span>Jupyter</span>
-                  <span>Data cleaning</span>
-                  <span>Feature engineering</span>
-                  <span>Model evaluation</span>
-                  <span>Visualization</span>
-                </div>
-              </div>
-              <div class="skill-group">
-                <h3>Tools/Core</h3>
-                <div class="skill-cloud">
-                  <span>Git</span>
-                  <span>GitHub Actions</span>
-                  <span>React</span>
-                  <span>Node.js</span>
-                  <span>SQLite</span>
-                  <span>Docker</span>
-                  <span>REST APIs</span>
-                  <span>Linux/Ubuntu</span>
-                  <span>VS Code</span>
-                  <span>Enterprise IT</span>
-                  <span>Networking</span>
-                  <span>Endpoint troubleshooting</span>
-                  <span>Google Sheets</span>
-                  <span>Debugging</span>
-                  <span>Testing</span>
-                  <span>Workflow automation</span>
-                  <span>OOP</span>
-                  <span>Data structures</span>
-                </div>
+                <h3>University of Louisville — J.B. Speed School of Engineering</h3>
+                <span class="ri-org">Bachelor of Arts in Computer Science · Minor in Arabic · GPA 3.5/4.0</span>
+                <ul>
+                  <li><b style="color:var(--text);font-weight:500;">Relevant coursework:</b> Data Structures, Algorithms, Software Engineering, Operating Systems, Database Systems, Python &amp; Data Analytics; enrolled in Artificial Intelligence, Machine Learning, and Computer Networks.</li>
+                </ul>
               </div>
             </div>
           </section>
 
-          <section class="resume-section" aria-labelledby="leadership-title">
-            <h2 id="leadership-title">Leadership and Community Involvement</h2>
-            <div class="resume-entry">
-              <div>
-                <h3>Technical Lead for Livestreaming and Digital Materials</h3>
-                <p class="entry-meta">Alnur Mosque Islamic Center / 2024 - Present / Louisville, KY</p>
+          <!-- SKILLS -->
+          <section class="resume-sec" aria-labelledby="r-skills">
+            <h2 id="r-skills">technical skills</h2>
+            <div class="skill-rows" data-reveal>
+              <div class="row">
+                <span class="k">languages</span>
+                <span class="v">Python, Java, C, C++, JavaScript/TypeScript, SQL, Bash, HTML/CSS</span>
               </div>
-              <ul>
-                <li>Manage livestream setup and troubleshooting for educational programming across social platforms, including audio/video setup and publishing workflows.</li>
-                <li>Produce slide decks, lesson materials, and promotional content to support recurring classes and community programs.</li>
-              </ul>
+              <div class="row">
+                <span class="k">ai/ml &amp; data</span>
+                <span class="v">RAG (retrieval-augmented generation), LLM orchestration, prompt engineering, NLP / information extraction, ETL pipelines, FastAPI, pandas, NumPy, scikit-learn, model evaluation</span>
+              </div>
+              <div class="row">
+                <span class="k">web &amp; systems</span>
+                <span class="v">React, Next.js, Node.js, PostgreSQL, Supabase, SQLite, REST APIs, Docker, Vercel, GitHub Actions (CI/CD), Git, Linux, testing, documentation</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- EXPERIENCE -->
+          <section class="resume-sec" aria-labelledby="r-xp">
+            <h2 id="r-xp">experience</h2>
+
+            <div class="resume-item" data-reveal>
+              <div class="ri-meta">
+                <span class="when">may 2026 — present</span>
+                jeffersonville, in
+              </div>
+              <div>
+                <h3>IT Analyst Intern</h3>
+                <span class="ri-org">Parker Hannifin</span>
+                <ul>
+                  <li>Support enterprise technology systems in an industrial environment by troubleshooting endpoint hardware, network connectivity, account access, applications, and user-support issues for on-site teams.</li>
+                  <li>Apply a software-engineering debugging approach to infrastructure incidents by isolating root causes, validating fixes, documenting repeatable steps, and escalating with clear technical context.</li>
+                  <li>Write PowerShell, Batch, Bash, and SQL scripts to automate routine diagnostics, endpoint configuration, and data lookups, cutting repetitive manual steps.</li>
+                </ul>
+              </div>
             </div>
 
-            <div class="resume-entry">
-              <div>
-                <h3>Board Member</h3>
-                <p class="entry-meta">Muslim Student Association, University of Louisville / 2024 - Present / Louisville, KY</p>
+            <div class="resume-item" data-reveal>
+              <div class="ri-meta">
+                <span class="when">2024 — present</span>
+                louisville, ky
               </div>
-              <ul>
-                <li>Organize outreach tables, speaker events, and student programs while coordinating sponsorship and fundraising tracking with spreadsheets.</li>
-              </ul>
+              <div>
+                <h3>Technical Lead, Livestreaming &amp; Digital Operations</h3>
+                <span class="ri-org">Alnur Mosque Islamic Center</span>
+                <ul>
+                  <li>Lead livestreaming and digital operations for educational programs, coordinating camera, audio, and platform setup and troubleshooting live technical issues.</li>
+                  <li>Built and maintained Google Sheets trackers, event materials, and outreach workflows supporting volunteers, fundraising, sponsorships, and content distribution.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="resume-item" data-reveal>
+              <div class="ri-meta">
+                <span class="when">jul 2022 — sep 2023</span>
+                louisville, ky
+              </div>
+              <div>
+                <h3>Software Developer / Internal Tools Developer</h3>
+                <span class="ri-org">King iPhones</span>
+                <ul>
+                  <li>Developed internal inventory, pricing, and sales-tracking tools in JavaScript and Google Apps Script, replacing manual spreadsheet processes and improving operational visibility.</li>
+                  <li>Built an Electron/Node.js workflow for batch IMEI lookup, structured inventory updates, and repeatable business-process automation, reducing spreadsheet-based tracking errors.</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          <!-- PROJECTS -->
+          <section class="resume-sec" aria-labelledby="r-proj">
+            <h2 id="r-proj">projects</h2>
+
+            <div class="resume-item" data-reveal>
+              <div class="ri-meta">
+                <span class="when">2026</span>
+                Python · NLP · LLM orchestration · REST APIs
+              </div>
+              <div>
+                <h3>Argument Knowledge Base (RAG)</h3>
+                <ul>
+                  <li>Built an end-to-end NLP pipeline transforming 32 multi-hour audio debates into a structured, citation-verified RAG knowledge base of 731 canonical arguments and 893 paired rebuttals (1,100+ citations) for LLM retrieval.</li>
+                  <li>Engineered a two-level fact-verification system validating 712 citations against 4 primary-source text APIs (existence + exact wording), auto-flagging mismatches and dropping unverifiable claims with full audit logging.</li>
+                  <li>Designed a map-reduce LLM sub-agent orchestration (8–12 parallel workers, stable-ID merge) with rate-limit-resilient acquisition (exponential backoff, caching) across an idempotent, checkpointed pipeline over ~1,000 records.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="resume-item" data-reveal>
+              <div class="ri-meta">
+                <span class="when">2026</span>
+                TypeScript · Next.js · Supabase (Postgres) · Vercel
+              </div>
+              <div>
+                <h3>School Operations Platform</h3>
+                <ul>
+                  <li>Designed, built, and launched a production bilingual (English/Arabic, full RTL) mobile-first school-operations platform serving 80 active users across admin, teacher, family, and student roles, replacing a year of manual spreadsheets with one PostgreSQL system of record.</li>
+                  <li>Built a TypeScript serverless backend (106 API routes, 15 Postgres migrations) spanning grading, attendance, scheduling, payroll, tuition ledgers, and online class queues; migrated and validated 9,600+ historical records across 223 class days.</li>
+                  <li>Engineered role-based access (4 roles plus capability overlays) with PBKDF2 password hashing, hashed HTTP-only session tokens, Postgres row-level security, and Supabase Realtime invalidation with polling fallback, covered by 51 automated regression tests.</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="resume-item" data-reveal>
+              <div class="ri-meta">
+                <span class="when">2026</span>
+                TypeScript · Next.js · PostgreSQL · Vercel
+              </div>
+              <div>
+                <h3>Rumi — Roommate-Matching Platform <span style="font-family:var(--font-mono);font-size:0.8rem;">(<a href="https://findyourrumi.com" target="_blank" rel="noreferrer" style="color:var(--amber)">findyourrumi.com</a>)</span></h3>
+                <ul>
+                  <li>Founded and shipped a privacy-first roommate-matching web platform end to end (TypeScript/Next.js/PostgreSQL on Vercel), with a custom domain, design system, and a compliance-gated release architecture with environment-flag launch controls.</li>
+                  <li>Built a three-generation waitlist/onboarding system (double opt-in with hashed single-use tokens, 18+ validation, conversational UX) hardened via self-run security reviews (CSV-injection, rate-limit isolation, locked-down Postgres/RPC grants); designed and operated a multi-agent AI development system to ship it solo.</li>
+                </ul>
+              </div>
             </div>
           </section>
         </div>
-      </section>
+      </div>
     </main>
 
     <footer class="site-footer">
-      <p>&copy; <span data-year></span> Amine Hamlouchi</p>
-      <div class="footer-links" aria-label="Footer links">
-        <a href="index.html">Intro</a>
-        <a href="index.html#projects">Projects</a>
-        <a href="https://github.com/aminehamlouchi" target="_blank" rel="noreferrer">GitHub</a>
-      </div>
+      <p>© <span data-year></span> Amine Hamlouchi <span class="ar" aria-hidden="true">· أمين حملوشي</span></p>
+      <p class="src"><a href="index.html">← back home</a></p>
     </footer>
 
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/vendor/ScrollTrigger.min.js"></script>
+    <script src="assets/vendor/SplitText.min.js"></script>
+    <script src="assets/vendor/lenis.min.js"></script>
     <script src="assets/script.js"></script>
   </body>
 </html>

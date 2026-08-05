@@ -5,344 +5,438 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="Personal website for Amine Hamlouchi, a University of Louisville computer science student focused on software engineering, data analytics, and useful web experiences."
+      content="Amine Hamlouchi — computer science student at the University of Louisville building AI systems and full-stack platforms. Portfolio, projects, and resume."
     >
-    <meta name="theme-color" content="#f7f8f3">
-    <title>Amine Hamlouchi | Personal Website</title>
+    <meta name="theme-color" content="#0b0a08">
+    <meta property="og:title" content="Amine Hamlouchi — أمين">
+    <meta property="og:description" content="CS @ UofL. AI systems, full-stack platforms, and things you can actually use.">
+    <meta property="og:url" content="https://aminehamlouchi.github.io">
+    <title>Amine Hamlouchi — أمين | CS @ UofL</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    >
+    <link rel="stylesheet" href="assets/fonts.css">
+    <link rel="stylesheet" href="assets/vendor/lenis.css">
     <link rel="stylesheet" href="assets/styles.css">
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    <div class="scroll-progress" aria-hidden="true"></div>
 
     <header class="site-header" data-header>
-      <a class="brand-mark" href="index.html" aria-label="Amine Hamlouchi home">
-        <span>AH</span>
+      <a class="brand-mark" href="index.html" aria-label="Amine Hamlouchi — home">
+        <span class="brand-ar" aria-hidden="true">أمين</span>
+        <span class="brand-en" data-scramble>amine.hamlouchi</span>
       </a>
       <nav class="main-nav" aria-label="Primary navigation">
-        <a href="index.html" aria-current="page">Intro</a>
-        <a href="#projects">Projects</a>
-        <a href="resume.html">Resume</a>
+        <a href="#work">work</a>
+        <a href="#arcade">arcade</a>
+        <a href="resume.html">resume</a>
+        <a href="https://github.com/aminehamlouchi" target="_blank" rel="noreferrer">github</a>
+        <button class="term-toggle" type="button" data-term-open aria-label="Open terminal">&gt;_ terminal</button>
       </nav>
-      <a class="icon-link" href="https://github.com/aminehamlouchi" target="_blank" rel="noreferrer" aria-label="Open GitHub profile">
-        <i data-lucide="git-fork"></i>
-      </a>
     </header>
 
     <main id="main">
-      <section class="hero-section" aria-labelledby="hero-title">
-        <canvas class="motion-field" data-motion-field aria-hidden="true"></canvas>
-        <div class="hero-noise" aria-hidden="true"></div>
-        <div class="hero-grid" aria-hidden="true"></div>
-
-        <div class="hero-copy">
-          <p class="eyebrow">CS student / software projects</p>
-          <h1 id="hero-title">Amine Hamlouchi</h1>
-          <p class="hero-lede">
-            Computer science student at the University of Louisville building useful
-            software, cleaner data workflows, and web experiences with a little motion
-            in the room.
+      <!-- ================= HERO ================= -->
+      <section class="hero" aria-labelledby="hero-title" data-bust-on>
+        <canvas class="hero-canvas" data-particles aria-hidden="true"></canvas>
+        <div class="bust-wrap" data-bust aria-hidden="true" title="that's me — أمين"></div>
+        <div class="wrap hero-inner">
+          <p class="hero-prompt" data-hero-prompt>
+            <span class="dim">amine@louisville:~$</span> whoami
           </p>
-          <div class="hero-actions" aria-label="Primary actions">
-            <a class="button primary" href="resume.html">
-              <span>View resume</span>
-              <i data-lucide="arrow-up-right"></i>
-            </a>
-            <a class="button ghost" href="#now">
-              <span>Start here</span>
-              <i data-lucide="move-down"></i>
-            </a>
-            <a class="button ghost" href="#projects">
-              <span>View projects</span>
-              <i data-lucide="folder-git-2"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="signal-panel" aria-label="Site signals">
-          <div class="signal-row">
-            <span class="signal-label">Mode</span>
-            <span>CS + software</span>
-          </div>
-          <div class="signal-row">
-            <span class="signal-label">Energy</span>
-            <span>data, ops, community</span>
-          </div>
-          <div class="signal-row">
-            <span class="signal-label">Next</span>
-            <span>internships, shipped work</span>
-          </div>
-        </div>
-      </section>
-
-      <section class="ticker-section" aria-label="Personal rhythm">
-        <div class="ticker-track">
-          <span>clean interfaces</span>
-          <span>software engineering</span>
-          <span>data analytics</span>
-          <span>workflow automation</span>
-          <span>systems thinking</span>
-          <span>public GitHub repos</span>
-          <span>community tech</span>
-          <span>clean interfaces</span>
-          <span>software engineering</span>
-          <span>data analytics</span>
-          <span>workflow automation</span>
-          <span>systems thinking</span>
-          <span>public GitHub repos</span>
-          <span>community tech</span>
-        </div>
-      </section>
-
-      <section id="now" class="content-band intro-band" aria-labelledby="now-title">
-        <div class="section-kicker">Now</div>
-        <div class="split-layout">
-          <div>
-            <h2 id="now-title">Useful systems, clean interfaces, real momentum.</h2>
-          </div>
-          <div class="copy-stack">
-            <p>
-              I am a computer science student at UofL's J.B. Speed School of Engineering,
-              open to software engineering, data analytics, and technical internship roles.
-              The thread through the work is practical: make the messy thing easier to track,
-              explain, automate, or use.
-            </p>
-            <p>
-              That has shown up in store inventory tools, retail analytics notebooks,
-              front-end weather visualization, livestream production, student org work,
-              and the everyday operations problems that reward clear thinking.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="projects" class="content-band projects-band" aria-labelledby="projects-title">
-        <div class="section-kicker">Projects</div>
-        <div class="section-heading">
-          <h2 id="projects-title">Nine public repos, with AI agents and real workflows up front.</h2>
-          <p class="section-lead">
-            The newest projects focus on agentic AI, full-stack operations software, and IT automation,
-            backed by older analytics, systems, automation, and playable browser demos.
+          <h1 class="hero-name" id="hero-title" data-hero-name>
+            <span class="row">Amine</span>
+            <span class="row outline">Hamlouchi</span>
+          </h1>
+          <p class="hero-sub" data-hero-sub>
+            <span class="amber">//</span> computer science @ university of louisville
+            <span class="amber">·</span> building AI systems &amp; full-stack platforms
+            <span class="amber">·</span> louisville, ky
           </p>
-        </div>
-
-        <div class="project-grid">
-          <a class="project-card" href="https://github.com/aminehamlouchi/sourcewise-dawah-agent" target="_blank" rel="noreferrer" aria-label="Open SourceWise Dawah Agent on GitHub">
-            <span class="project-card-top">
-              <span class="project-icon"><i data-lucide="bot"></i></span>
-              <span class="project-link">GitHub <i data-lucide="arrow-up-right"></i></span>
-            </span>
-            <h3>SourceWise Dawah Agent</h3>
-            <p>
-              Source-grounded AI assistant that retrieves curated masjid/MSA notes and generates
-              citation-backed outlines, captions, and study-circle plans.
-            </p>
-            <span class="project-tags">
-              <span>FastAPI</span>
-              <span>RAG</span>
-              <span>Agentic AI</span>
-            </span>
-          </a>
-
-          <a class="project-card" href="https://github.com/aminehamlouchi/masjidflow-ops" target="_blank" rel="noreferrer" aria-label="Open MasjidFlow Ops on GitHub">
-            <span class="project-card-top">
-              <span class="project-icon"><i data-lucide="calendar-check"></i></span>
-              <span class="project-link">GitHub <i data-lucide="arrow-up-right"></i></span>
-            </span>
-            <h3>MasjidFlow Ops</h3>
-            <p>
-              Full-stack operations dashboard for community events, RSVPs, volunteer shifts,
-              demo auth, SQLite data, and staffing recommendations.
-            </p>
-            <span class="project-tags">
-              <span>React</span>
-              <span>TypeScript</span>
-              <span>FastAPI</span>
-            </span>
-          </a>
-
-          <a class="project-card" href="https://github.com/aminehamlouchi/opswise-ticket-agent" target="_blank" rel="noreferrer" aria-label="Open OpsWise Ticket Agent on GitHub">
-            <span class="project-card-top">
-              <span class="project-icon"><i data-lucide="ticket-check"></i></span>
-              <span class="project-link">GitHub <i data-lucide="arrow-up-right"></i></span>
-            </span>
-            <h3>OpsWise Ticket Agent</h3>
-            <p>
-              CLI helpdesk agent that classifies IT tickets, retrieves runbooks, applies SLA policy,
-              and exports Markdown/JSON triage reports.
-            </p>
-            <span class="project-tags">
-              <span>Python</span>
-              <span>Automation</span>
-              <span>IT Ops</span>
-            </span>
-          </a>
-
-          <a class="project-card" href="https://github.com/aminehamlouchi/superstore-retail-analytics" target="_blank" rel="noreferrer" aria-label="Open Superstore Retail Analytics on GitHub">
-            <span class="project-card-top">
-              <span class="project-icon"><i data-lucide="chart-line"></i></span>
-              <span class="project-link">GitHub <i data-lucide="arrow-up-right"></i></span>
-            </span>
-            <h3>Superstore Retail Analytics</h3>
-            <p>
-              Cleaned 9,994 retail orders, explored discount-profit behavior, and compared baseline ML models
-              with a decision tree reaching 94.36% accuracy.
-            </p>
-            <span class="project-tags">
-              <span>Python</span>
-              <span>Jupyter</span>
-              <span>scikit-learn</span>
-            </span>
-          </a>
-
-          <a class="project-card" href="https://github.com/aminehamlouchi/king-iphones-inventory-automation" target="_blank" rel="noreferrer" aria-label="Open King iPhones Inventory Automation on GitHub">
-            <span class="project-card-top">
-              <span class="project-icon"><i data-lucide="scan-line"></i></span>
-              <span class="project-link">GitHub <i data-lucide="arrow-up-right"></i></span>
-            </span>
-            <h3>King iPhones Inventory Automation</h3>
-            <p>
-              Sanitized Electron workflow for batch IMEI lookups and Google Sheets inventory updates, rebuilt
-              around environment-based configuration.
-            </p>
-            <span class="project-tags">
-              <span>Electron</span>
-              <span>Node.js</span>
-              <span>Google Sheets</span>
-            </span>
-          </a>
-
-          <a class="project-card playable-card" href="tic-tac-toe-3d.html" aria-label="Play 3D Tic-Tac-Toe">
-            <span class="project-card-top">
-              <span class="project-icon"><i data-lucide="boxes"></i></span>
-              <span class="project-link">Play now <i data-lucide="gamepad-2"></i></span>
-            </span>
-            <h3>3D Tic-Tac-Toe</h3>
-            <p>
-              A browser-playable take on the 3x3x3 game, with layered boards, full spatial win detection, and
-              a clean two-player flow.
-            </p>
-            <span class="project-tags">
-              <span>Playable</span>
-              <span>Game logic</span>
-              <span>JavaScript</span>
-            </span>
-          </a>
-
-          <a class="project-card playable-card" href="checkers.html" aria-label="Play PyCheckers">
-            <span class="project-card-top">
-              <span class="project-icon"><i data-lucide="gamepad-2"></i></span>
-              <span class="project-link">Play now <i data-lucide="gamepad-2"></i></span>
-            </span>
-            <h3>PyCheckers</h3>
-            <p>
-              A polished web board based on the Pygame project, with legal-move highlights, captures, multi-jumps,
-              kings, undo, and reset.
-            </p>
-            <span class="project-tags">
-              <span>Playable</span>
-              <span>Checkers</span>
-              <span>JavaScript</span>
-            </span>
-          </a>
-
-          <a class="project-card" href="https://github.com/aminehamlouchi/c-mapreduce-word-counter" target="_blank" rel="noreferrer" aria-label="Open C MapReduce Word Counter on GitHub">
-            <span class="project-card-top">
-              <span class="project-icon"><i data-lucide="network"></i></span>
-              <span class="project-link">GitHub <i data-lucide="arrow-up-right"></i></span>
-            </span>
-            <h3>C MapReduce Word Counter</h3>
-            <p>
-              Systems project using forked mappers, bounded buffers, sender threads, System V message queues,
-              and reducer aggregation.
-            </p>
-            <span class="project-tags">
-              <span>C</span>
-              <span>pthreads</span>
-              <span>IPC</span>
-            </span>
-          </a>
-
-          <a class="project-card" href="https://github.com/aminehamlouchi/c-random-io-benchmark" target="_blank" rel="noreferrer" aria-label="Open C Random I/O Benchmark on GitHub">
-            <span class="project-card-top">
-              <span class="project-icon"><i data-lucide="hard-drive"></i></span>
-              <span class="project-link">GitHub <i data-lucide="arrow-up-right"></i></span>
-            </span>
-            <h3>C Random I/O Benchmark</h3>
-            <p>
-              Storage benchmark that creates block files, samples randomized reads, and reports median latency
-              for repeatable low-level I/O tests.
-            </p>
-            <span class="project-tags">
-              <span>C</span>
-              <span>Benchmarking</span>
-              <span>Storage</span>
-            </span>
-          </a>
-        </div>
-      </section>
-
-      <section class="content-band" aria-labelledby="principles-title">
-        <div class="section-kicker">Principles</div>
-        <div class="tile-grid three-up">
-          <article class="tile">
-            <i data-lucide="sparkles"></i>
-            <h3 id="principles-title">Make it usable</h3>
-            <p>Good software should remove friction, make the next step obvious, and respect the person using it.</p>
-          </article>
-          <article class="tile">
-            <i data-lucide="rocket"></i>
-            <h3>Ship the version</h3>
-            <p>Get the thing working, learn from it, then keep tightening the details until it feels inevitable.</p>
-          </article>
-          <article class="tile">
-            <i data-lucide="layers-3"></i>
-            <h3>Connect the dots</h3>
-            <p>Data, operations, community work, and web design all meet when information needs to move clearly.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="content-band dark-band" aria-labelledby="future-title">
-        <div class="section-kicker">Next Layer</div>
-        <div class="split-layout">
-          <div>
-            <h2 id="future-title">Built so the next update is easy.</h2>
+          <div class="hero-actions" data-hero-actions>
+            <a class="btn solid" href="#work" data-magnetic>
+              <span class="bracket l">[</span><span>view work</span><span class="bracket r">]</span>
+            </a>
+            <a class="btn" href="resume.html" data-magnetic>
+              <span class="bracket l">[</span><span>resume</span><span class="bracket r">]</span>
+            </a>
           </div>
-          <div class="timeline-list">
-            <div class="timeline-item">
-              <span>01</span>
-              <p>Add richer case-study pages for the strongest repos as demos, metrics, and deployment notes mature.</p>
+          <div class="hero-data" data-hero-data>
+            <span>b.a. computer science '28</span>
+            <span>arabic minor</span>
+            <span>gpa 3.5 / 4.0</span>
+            <span>open to internships</span>
+            <span class="spacer"></span>
+            <span class="hero-hint">press <kbd>/</kbd> for terminal</span>
+          </div>
+        </div>
+      </section>
+
+      <div class="star-divider" aria-hidden="true"></div>
+
+      <!-- ================= FEATURED WORK ================= -->
+      <section id="work" aria-labelledby="work-title">
+        <div class="wrap">
+          <div class="sec-head"><span class="sec-path">~/work</span></div>
+          <h2 class="sec-title" id="work-title" data-reveal>
+            Systems that survived <em>contact with real users.</em>
+          </h2>
+
+          <div class="work-list">
+            <article class="work" data-reveal>
+              <div class="work-meta">
+                <span class="year">2026</span>
+                <span class="stack">Python · NLP · LLM orchestration · REST APIs</span>
+                <span class="status">status: private build</span>
+              </div>
+              <div class="work-body">
+                <h3>Argument Knowledge Base</h3>
+                <span class="ar-tag" aria-hidden="true">قاعدة معرفة الحُجج</span>
+                <p>
+                  32 multi-hour audio debates, distilled into a citation-verified RAG knowledge base.
+                  Every claim runs through <strong>two levels of fact-verification</strong> against four
+                  primary-source text APIs — existence first, then exact wording — and anything
+                  unverifiable gets dropped with a full audit trail. Built as a map-reduce agent
+                  orchestration: 8–12 parallel workers, stable-ID merges, exponential backoff, and an
+                  idempotent checkpointed pipeline across ~1,000 records.
+                </p>
+                <ul class="work-stats">
+                  <li><b>731</b> canonical arguments</li>
+                  <li><b>893</b> paired rebuttals</li>
+                  <li><b>1,100+</b> citations</li>
+                  <li><b>712</b> verified word-for-word</li>
+                </ul>
+                <div class="work-links">
+                  <span class="note">write-up available on request — ask me about it</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="work" data-reveal>
+              <div class="work-meta">
+                <span class="year">2026</span>
+                <span class="stack">TypeScript · Next.js · Supabase (Postgres) · Vercel</span>
+                <span class="status">status: in production</span>
+              </div>
+              <div class="work-body">
+                <h3>School Operations Platform</h3>
+                <span class="ar-tag" aria-hidden="true">منصة إدارة المدرسة — عربي / English</span>
+                <p>
+                  A bilingual (English/Arabic, full RTL) mobile-first platform that replaced a year of
+                  manual spreadsheets with <strong>one PostgreSQL system of record</strong> — grading,
+                  attendance, scheduling, payroll, tuition ledgers, and online class queues. Role-based
+                  access across four roles with capability overlays, PBKDF2 password hashing, hashed
+                  HTTP-only session tokens, Postgres row-level security, and Supabase Realtime with a
+                  polling fallback.
+                </p>
+                <ul class="work-stats">
+                  <li><b>80</b> active users</li>
+                  <li><b>106</b> API routes</li>
+                  <li><b>9,600+</b> records migrated</li>
+                  <li><b>51</b> regression tests</li>
+                </ul>
+                <div class="work-links">
+                  <span class="note">serving a real school every day</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="work" data-reveal>
+              <div class="work-meta">
+                <span class="year">2026</span>
+                <span class="stack">TypeScript · Next.js · PostgreSQL · Vercel</span>
+                <span class="status">status: live</span>
+              </div>
+              <div class="work-body">
+                <h3><a href="https://findyourrumi.com" target="_blank" rel="noreferrer">Rumi — Roommate Matching</a></h3>
+                <span class="ar-tag" aria-hidden="true">رومي — ابحث عن رفيق سكنك</span>
+                <p>
+                  A privacy-first roommate-matching platform, founded and shipped end to end — custom
+                  domain, design system, and a <strong>compliance-gated release architecture</strong> with
+                  environment-flag launch controls. Three generations of waitlist/onboarding: double
+                  opt-in with hashed single-use tokens, 18+ validation, conversational UX — hardened by
+                  self-run security reviews covering CSV injection, rate-limit isolation, and locked-down
+                  Postgres/RPC grants. Built solo, with a multi-agent AI development system I designed
+                  and operated.
+                </p>
+                <ul class="work-stats">
+                  <li><b>3</b> waitlist generations</li>
+                  <li><b>solo</b> founder-engineer</li>
+                  <li><b>0</b> frameworks harmed*</li>
+                </ul>
+                <div class="work-links">
+                  <a href="https://findyourrumi.com" target="_blank" rel="noreferrer">findyourrumi.com</a>
+                  <span class="note">*ok, one — Next.js</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= REPOS ================= -->
+      <section id="repos" aria-labelledby="repos-title">
+        <div class="wrap">
+          <div class="sec-head"><span class="sec-path">~/repos</span></div>
+          <h2 class="sec-title" id="repos-title" data-reveal>Public code, <em>readable on purpose.</em></h2>
+
+          <div class="repo-grid" data-reveal-group>
+            <a class="repo-card wide" href="https://github.com/aminehamlouchi/sourcewise-dawah-agent" target="_blank" rel="noreferrer">
+              <span class="repo-top"><span>agentic ai</span><span class="arrow">↗</span></span>
+              <h3>sourcewise-dawah-agent</h3>
+              <p>Source-grounded AI assistant that retrieves curated notes and generates citation-backed outlines, captions, and study plans.</p>
+              <span class="repo-tags">FastAPI · RAG · agents</span>
+            </a>
+            <a class="repo-card wide" href="https://github.com/aminehamlouchi/masjidflow-ops" target="_blank" rel="noreferrer">
+              <span class="repo-top"><span>full-stack</span><span class="arrow">↗</span></span>
+              <h3>masjidflow-ops</h3>
+              <p>Operations dashboard for community events — RSVPs, volunteer shifts, staffing recommendations, SQLite data layer.</p>
+              <span class="repo-tags">React · TypeScript · FastAPI</span>
+            </a>
+            <a class="repo-card" href="https://github.com/aminehamlouchi/opswise-ticket-agent" target="_blank" rel="noreferrer">
+              <span class="repo-top"><span>it automation</span><span class="arrow">↗</span></span>
+              <h3>opswise-ticket-agent</h3>
+              <p>CLI helpdesk agent: classifies tickets, retrieves runbooks, applies SLA policy, exports triage reports.</p>
+              <span class="repo-tags">Python · automation</span>
+            </a>
+            <a class="repo-card" href="https://github.com/aminehamlouchi/superstore-retail-analytics" target="_blank" rel="noreferrer">
+              <span class="repo-top"><span>data / ml</span><span class="arrow">↗</span></span>
+              <h3>superstore-retail-analytics</h3>
+              <p>9,994 retail orders cleaned and modeled — decision tree at 94.36% accuracy on discount-profit behavior.</p>
+              <span class="repo-tags">Python · scikit-learn</span>
+            </a>
+            <a class="repo-card" href="https://github.com/aminehamlouchi/king-iphones-inventory-automation" target="_blank" rel="noreferrer">
+              <span class="repo-top"><span>internal tools</span><span class="arrow">↗</span></span>
+              <h3>king-iphones-inventory-automation</h3>
+              <p>Electron workflow for batch IMEI lookups and structured Google Sheets inventory updates.</p>
+              <span class="repo-tags">Electron · Node.js</span>
+            </a>
+            <a class="repo-card" href="https://github.com/aminehamlouchi/c-mapreduce-word-counter" target="_blank" rel="noreferrer">
+              <span class="repo-top"><span>systems</span><span class="arrow">↗</span></span>
+              <h3>c-mapreduce-word-counter</h3>
+              <p>Forked mappers, bounded buffers, System V message queues, reducer aggregation. C all the way down.</p>
+              <span class="repo-tags">C · pthreads · IPC</span>
+            </a>
+            <a class="repo-card" href="https://github.com/aminehamlouchi/c-random-io-benchmark" target="_blank" rel="noreferrer">
+              <span class="repo-top"><span>systems</span><span class="arrow">↗</span></span>
+              <h3>c-random-io-benchmark</h3>
+              <p>Storage benchmark sampling randomized reads and reporting median latency for repeatable I/O tests.</p>
+              <span class="repo-tags">C · benchmarking</span>
+            </a>
+            <a class="repo-card ghost" href="https://github.com/aminehamlouchi" target="_blank" rel="noreferrer">
+              <span>ls -la github.com/aminehamlouchi →</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div class="star-divider" aria-hidden="true"></div>
+
+      <!-- ================= ARCADE ================= -->
+      <section id="arcade" aria-labelledby="arcade-title">
+        <div class="wrap">
+          <div class="sec-head"><span class="sec-path">~/arcade</span></div>
+          <h2 class="sec-title" id="arcade-title" data-reveal>
+            Playable, right here. <em>No install, no excuses.</em>
+          </h2>
+
+          <div class="arcade-grid" data-reveal-group>
+            <a class="cartridge" href="checkers.html">
+              <span class="cart-label">cartridge 01 / pygame port</span>
+              <h3>PyCheckers</h3>
+              <p>
+                Full checkers in the browser — forced captures, multi-jump chains, kings, undo.
+                Ported from my Pygame build, rules intact.
+              </p>
+              <span class="cart-cta">&gt; insert_coin --play</span>
+            </a>
+            <a class="cartridge" href="tic-tac-toe-3d.html">
+              <span class="cart-label">cartridge 02 / cli port</span>
+              <h3>3D Tic-Tac-Toe</h3>
+              <p>
+                A 3×3×3 board with every spatial win line checked — including all the weird diagonals
+                you forgot exist. Two players, undo, draw detection.
+              </p>
+              <span class="cart-cta">&gt; insert_coin --play</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= EXPERIENCE ================= -->
+      <section id="experience" aria-labelledby="xp-title">
+        <div class="wrap">
+          <div class="sec-head"><span class="sec-path">~/experience</span></div>
+          <h2 class="sec-title" id="xp-title" data-reveal>Where the debugging <em>got real.</em></h2>
+
+          <div class="xp-list">
+            <article class="xp" data-reveal>
+              <div class="xp-when">
+                may 2026 — present
+                <span class="where">jeffersonville, in</span>
+              </div>
+              <div class="xp-body">
+                <h3>IT Analyst Intern</h3>
+                <span class="org">Parker Hannifin</span>
+                <ul>
+                  <li>Support enterprise systems in an industrial environment — endpoint hardware, network connectivity, account access, applications, and user support for on-site teams.</li>
+                  <li>Apply a software-engineering debugging approach to infrastructure incidents: isolate root causes, validate fixes, document repeatable steps, escalate with clear technical context.</li>
+                  <li>Write PowerShell, Batch, Bash, and SQL scripts that automate routine diagnostics, endpoint configuration, and data lookups.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="xp" data-reveal>
+              <div class="xp-when">
+                2024 — present
+                <span class="where">louisville, ky</span>
+              </div>
+              <div class="xp-body">
+                <h3>Technical Lead, Livestreaming &amp; Digital Operations</h3>
+                <span class="org">Alnur Mosque Islamic Center</span>
+                <ul>
+                  <li>Lead livestreaming and digital operations for educational programs — camera, audio, platform setup, and live troubleshooting in real time.</li>
+                  <li>Built and maintain trackers, event materials, and outreach workflows supporting volunteers, fundraising, sponsorships, and content distribution.</li>
+                </ul>
+              </div>
+            </article>
+
+            <article class="xp" data-reveal>
+              <div class="xp-when">
+                jul 2022 — sep 2023
+                <span class="where">louisville, ky</span>
+              </div>
+              <div class="xp-body">
+                <h3>Software Developer / Internal Tools</h3>
+                <span class="org">King iPhones</span>
+                <ul>
+                  <li>Developed internal inventory, pricing, and sales-tracking tools in JavaScript and Google Apps Script, replacing manual spreadsheet processes.</li>
+                  <li>Built an Electron/Node.js workflow for batch IMEI lookup and repeatable business-process automation, cutting spreadsheet tracking errors.</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SKILLS ================= -->
+      <section id="skills" aria-labelledby="skills-title">
+        <div class="wrap">
+          <div class="sec-head"><span class="sec-path">~/skills</span></div>
+          <h2 class="sec-title visually-hidden" id="skills-title" style="position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);">Technical skills</h2>
+
+          <div class="term-window" data-reveal>
+            <div class="term-bar">
+              <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="title">amine@louisville — skills — 80×24</span>
             </div>
-            <div class="timeline-item">
-              <span>02</span>
-              <p>Keep tightening the GitHub READMEs so each project explains the problem, setup, and result quickly.</p>
+            <div class="term-body">
+              <div class="term-block">
+                <p class="cmd"><span class="user">amine@louisville:~$</span> cat skills/languages</p>
+                <p class="out">Python <span class="sep">·</span> Java <span class="sep">·</span> C <span class="sep">·</span> C++ <span class="sep">·</span> JavaScript/TypeScript <span class="sep">·</span> SQL <span class="sep">·</span> Bash <span class="sep">·</span> HTML/CSS</p>
+              </div>
+              <div class="term-block">
+                <p class="cmd"><span class="user">amine@louisville:~$</span> cat skills/ai-ml-data</p>
+                <p class="out">RAG <span class="sep">·</span> LLM orchestration <span class="sep">·</span> prompt engineering <span class="sep">·</span> NLP / information extraction <span class="sep">·</span> ETL pipelines <span class="sep">·</span> FastAPI <span class="sep">·</span> pandas <span class="sep">·</span> NumPy <span class="sep">·</span> scikit-learn <span class="sep">·</span> model evaluation</p>
+              </div>
+              <div class="term-block">
+                <p class="cmd"><span class="user">amine@louisville:~$</span> cat skills/web-systems</p>
+                <p class="out">React <span class="sep">·</span> Next.js <span class="sep">·</span> Node.js <span class="sep">·</span> PostgreSQL <span class="sep">·</span> Supabase <span class="sep">·</span> SQLite <span class="sep">·</span> REST APIs <span class="sep">·</span> Docker <span class="sep">·</span> Vercel <span class="sep">·</span> GitHub Actions <span class="sep">·</span> Git <span class="sep">·</span> Linux <span class="sep">·</span> testing <span class="sep">·</span> documentation</p>
+              </div>
             </div>
-            <div class="timeline-item">
-              <span>03</span>
-              <p>Keep tuning the site as the resume evolves through internships, classes, and shipped work.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ABOUT ================= -->
+      <section id="about" aria-labelledby="about-title">
+        <div class="wrap">
+          <div class="sec-head"><span class="sec-path">~/about</span></div>
+          <h2 class="sec-title" id="about-title" data-reveal>The thread through <em>all of it.</em></h2>
+
+          <div class="about-grid">
+            <div class="about-copy" data-reveal>
+              <p>
+                I like taking the messy thing — a year of spreadsheets, 32 hours of audio, a phone
+                store's inventory chaos — and turning it into <strong>a system people actually use</strong>.
+                Not a demo. Not a prototype that dies after the screenshot. The version that's still
+                running six months later.
+              </p>
+              <p>
+                Right now that means AI pipelines with verification built in, full-stack platforms
+                with real users, and IT automation at an industrial plant. I study computer science at
+                UofL's Speed School with a minor in Arabic — which is why this site speaks
+                <span class="amber">two languages</span>, and why the school platform I built ships
+                full RTL.
+              </p>
+              <p>
+                This site is hand-coded — no framework, no build step. View source; that's the point.
+              </p>
             </div>
+            <aside class="edu-card" data-reveal aria-label="Education">
+              <span class="edu-label">~/education</span>
+              <h3>University of Louisville</h3>
+              <p>J.B. Speed School of Engineering</p>
+              <p>B.A. Computer Science · Minor in Arabic</p>
+              <div class="edu-row"><span>expected</span><b>may 2028</b></div>
+              <div class="edu-row"><span>gpa</span><b>3.5 / 4.0</b></div>
+              <div class="edu-row"><span>current</span><b>AI · ML · networks</b></div>
+            </aside>
+          </div>
+
+          <div class="proverb" data-reveal>
+            <p class="ar" lang="ar">مَن <em>جَدَّ</em> وَجَدَ</p>
+            <p class="en">"whoever strives, finds." — the whole engineering degree, in three words</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="star-divider" aria-hidden="true"></div>
+
+      <!-- ================= CONTACT ================= -->
+      <section id="contact" class="contact" aria-labelledby="contact-title">
+        <div class="wrap">
+          <div class="sec-head"><span class="sec-path">~/contact</span></div>
+          <h2 class="sec-title" id="contact-title" data-reveal>Building something? <em>Say salaam.</em></h2>
+          <p class="contact-lede" data-reveal>
+            Open to software engineering, AI/ML, and data internships — or a conversation about a
+            system you can't quite untangle.
+          </p>
+          <a class="contact-big" href="mailto:aahaml01@louisville.edu" data-reveal data-magnetic>aahaml01@louisville.edu</a>
+          <div class="contact-links" data-reveal>
+            <a href="https://github.com/aminehamlouchi" target="_blank" rel="noreferrer">github.com/aminehamlouchi</a>
+            <a href="assets/amine-hamlouchi-resume.pdf" target="_blank" rel="noreferrer">resume.pdf</a>
+            <a href="https://findyourrumi.com" target="_blank" rel="noreferrer">findyourrumi.com</a>
           </div>
         </div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>&copy; <span data-year></span> Amine Hamlouchi</p>
-      <div class="footer-links" aria-label="Footer links">
-        <a href="#projects">Projects</a>
-        <a href="resume.html">Resume</a>
-        <a href="https://github.com/aminehamlouchi" target="_blank" rel="noreferrer">GitHub</a>
-      </div>
+      <p>© <span data-year></span> Amine Hamlouchi <span class="ar" aria-hidden="true">· أمين حملوشي</span></p>
+      <p class="src">hand-built, zero frameworks — <a href="https://github.com/aminehamlouchi/aminehamlouchi.github.io" target="_blank" rel="noreferrer">view source</a></p>
+      <p>press <kbd style="border:1px solid var(--line-strong);border-radius:4px;padding:1px 6px;">/</kbd> anywhere for the terminal</p>
     </footer>
 
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <!-- ================= TERMINAL OVERLAY ================= -->
+    <dialog class="terminal" data-terminal aria-label="Interactive terminal">
+      <div class="term-bar">
+        <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="title">amine.sys — interactive shell</span>
+        <button type="button" data-term-close aria-label="Close terminal">✕</button>
+      </div>
+      <div class="term-scroll" data-term-scroll aria-live="polite"></div>
+      <div class="term-input-row">
+        <span class="ps1">amine@louisville:~$</span>
+        <input type="text" data-term-input autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Terminal command input">
+      </div>
+    </dialog>
+
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="assets/vendor/ScrollTrigger.min.js"></script>
+    <script src="assets/vendor/SplitText.min.js"></script>
+    <script src="assets/vendor/lenis.min.js"></script>
     <script src="assets/script.js"></script>
+    <script type="module" src="assets/bust.js"></script>
   </body>
 </html>
