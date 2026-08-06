@@ -1,10 +1,11 @@
 /* ============================================================
-   bust.js — 3D model on a spotlight display
-   Loads assets/model/amine.glb (generated locally with TripoSR
-   from a headshot) and presents it like a game-character select:
-   pedestal, warm spotlight, slow turntable spin, cursor parallax.
-   Degrades: no WebGL / reduced motion / small screens → skipped
-   (the أمين particle field remains the hero visual).
+   bust.js — Paper Amine
+   A Paper-Mario-style cutout of the real headshot (sticker
+   border baked into assets/model/paper-amine.png) standing on
+   a pedestal. It bobs, sways, leans toward the cursor, and does
+   the classic paper flip when you cross sides. The spotlight
+   mimics the mouse: beam, light, and pool all track the cursor.
+   Degrades: no WebGL / reduced motion / small screens → skipped.
    ============================================================ */
 
 const motionOK = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
@@ -21,13 +22,12 @@ const supported = () => {
 
 if (mount && window.innerWidth >= 700 && supported()) {
   init().catch(() => {
-    /* silent — hero works without the display */
+    /* silent — hero works without the stage */
   });
 }
 
 async function init() {
   const THREE = await import("three");
-  const { GLTFLoader } = await import("./vendor/GLTFLoader.js");
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(30, 1, 0.05, 60);
@@ -39,98 +39,106 @@ async function init() {
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.15;
+  renderer.toneMappingExposure = 1.1;
   renderer.domElement.style.opacity = "0";
-  renderer.domElement.style.transition = "opacity 1200ms ease";
+  renderer.domElement.style.transition = "opacity 900ms ease";
   mount.appendChild(renderer.domElement);
 
-  /* ---------- lighting: museum spotlight ---------- */
-  scene.add(new THREE.AmbientLight(0x8a7a5f, 0.55));
+  /* ---------- lights ---------- */
+  scene.add(new THREE.AmbientLight(0x9a8a68, 0.75));
 
-  const spot = new THREE.SpotLight(0xfff0d2, 60);
-  spot.position.set(0.6, 3.4, 1.6);
-  spot.angle = 0.42;
-  spot.penumbra = 0.65;
+  const LAMP = new THREE.Vector3(0.5, 3.3, 1.5);
+
+  const spot = new THREE.SpotLight(0xfff0d2, 70);
+  spot.position.copy(LAMP);
+  spot.angle = 0.4;
+  spot.penumbra = 0.55;
   spot.decay = 1.6;
   spot.castShadow = true;
   spot.shadow.mapSize.set(1024, 1024);
   spot.shadow.bias = -0.0004;
   scene.add(spot);
+  scene.add(spot.target);
 
-  // amber rim from behind-left, ties into the site palette
-  const rim = new THREE.PointLight(0xffb000, 14, 8, 2);
-  rim.position.set(-1.6, 1.1, -1.4);
-  scene.add(rim);
-
-  // soft cool fill so shadows aren't pitch black
-  const fill = new THREE.DirectionalLight(0xdfe8ff, 0.5);
-  fill.position.set(1.4, 0.6, 2.2);
-  scene.add(fill);
+  const rimLight = new THREE.PointLight(0xffb000, 10, 8, 2);
+  rimLight.position.set(-1.6, 1.0, -1.2);
+  scene.add(rimLight);
 
   /* ---------- pedestal ---------- */
   const stage = new THREE.Group();
   scene.add(stage);
 
   const pedestal = new THREE.Mesh(
-    new THREE.CylinderGeometry(0.58, 0.66, 0.14, 64),
+    new THREE.CylinderGeometry(0.52, 0.6, 0.13, 64),
     new THREE.MeshStandardMaterial({ color: 0x16130c, roughness: 0.55, metalness: 0.35 })
   );
-  pedestal.position.y = -0.82;
+  pedestal.position.y = -0.78;
   pedestal.receiveShadow = true;
   stage.add(pedestal);
 
   const ring = new THREE.Mesh(
-    new THREE.TorusGeometry(0.58, 0.01, 12, 96),
+    new THREE.TorusGeometry(0.52, 0.009, 12, 96),
     new THREE.MeshBasicMaterial({ color: 0xffb000, transparent: true, opacity: 0.55 })
   );
   ring.rotation.x = Math.PI / 2;
-  ring.position.y = -0.745;
+  ring.position.y = -0.71;
   stage.add(ring);
 
-  // faint light cone (fake volumetrics, additive)
-  const cone = new THREE.Mesh(
-    new THREE.ConeGeometry(0.8, 3.2, 48, 1, true),
+  /* ---------- visible beam that tracks the cursor ---------- */
+  const BEAM_LEN = 4.6;
+  const beamGroup = new THREE.Group();
+  beamGroup.position.copy(LAMP);
+  scene.add(beamGroup);
+
+  const beam = new THREE.Mesh(
+    new THREE.ConeGeometry(0.9, BEAM_LEN, 40, 1, true),
     new THREE.MeshBasicMaterial({
       color: 0xffe9b8,
       transparent: true,
-      opacity: 0.03,
+      opacity: 0.035,
       blending: THREE.AdditiveBlending,
       side: THREE.DoubleSide,
       depthWrite: false,
     })
   );
-  cone.position.set(0.28, 1.1, 0.75);
-  cone.lookAt(spot.position);
-  cone.rotateX(Math.PI / 2);
-  scene.add(cone);
+  beam.rotation.x = -Math.PI / 2; // tip at group origin, opens along +Z
+  beam.position.z = BEAM_LEN / 2;
+  beamGroup.add(beam);
 
-  /* ---------- the model ---------- */
-  const turntable = new THREE.Group();
-  stage.add(turntable);
+  /* ---------- the paper character ---------- */
+  const texture = await new Promise((resolve, reject) => {
+    new THREE.TextureLoader().load("assets/model/paper-amine.png", resolve, undefined, reject);
+  });
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.anisotropy = 4;
 
-  const gltf = await new Promise((resolve, reject) => {
-    new GLTFLoader().load("assets/model/amine.glb", resolve, undefined, reject);
+  const ASPECT = texture.image.width / texture.image.height;
+  const PAPER_H = 1.08;
+  const PAPER_W = PAPER_H * ASPECT;
+
+  const paperMat = new THREE.MeshStandardMaterial({
+    map: texture,
+    transparent: true,
+    alphaTest: 0.35,
+    roughness: 0.9,
+    metalness: 0,
+    side: THREE.DoubleSide,
   });
 
-  const model = gltf.scene;
-  const box = new THREE.Box3().setFromObject(model);
-  const size = box.getSize(new THREE.Vector3());
-  const center = box.getCenter(new THREE.Vector3());
-  model.position.sub(center);
-
-  const scale = 1.15 / Math.max(size.x, size.y, size.z);
-  model.scale.setScalar(scale);
-  model.position.y = -0.75 + (size.y * scale) / 2; // stand on the pedestal
-  model.traverse((o) => {
-    if (o.isMesh) {
-      o.castShadow = true;
-      if (o.material) {
-        o.material.roughness = 0.85;
-        o.material.metalness = 0.0;
-      }
-    }
+  const paper = new THREE.Mesh(new THREE.PlaneGeometry(PAPER_W, PAPER_H), paperMat);
+  paper.castShadow = true;
+  paper.customDepthMaterial = new THREE.MeshDepthMaterial({
+    depthPacking: THREE.RGBADepthPacking,
+    map: texture,
+    alphaTest: 0.35,
   });
-  turntable.add(model);
+
+  const character = new THREE.Group(); // handles flip + lean
+  character.add(paper);
+  const rig = new THREE.Group(); // handles bob + entrance
+  rig.position.y = -0.715 + PAPER_H / 2;
+  rig.add(character);
+  stage.add(rig);
 
   /* ---------- sizing ---------- */
   const sizeCanvas = () => {
@@ -142,7 +150,7 @@ async function init() {
   sizeCanvas();
   window.addEventListener("resize", sizeCanvas);
 
-  /* ---------- interaction ---------- */
+  /* ---------- pointer ---------- */
   const pointer = { x: 0, y: 0 };
   window.addEventListener(
     "pointermove",
@@ -155,28 +163,50 @@ async function init() {
 
   renderer.domElement.style.opacity = "1";
 
+  const spotTarget = new THREE.Vector3(0, -0.2, 0.3);
+  const aimBeam = () => {
+    spot.target.position.copy(spotTarget);
+    beamGroup.lookAt(spotTarget);
+  };
+
   if (!motionOK) {
-    turntable.rotation.y = 0.35;
+    aimBeam();
     renderer.render(scene, camera);
     return;
   }
 
-  /* ---------- animate: slow turntable under the spotlight ---------- */
+  /* ---------- animate ---------- */
   let running = true;
-  let last = performance.now();
+  let flipTarget = 0; // multiples of PI
+  let lastSide = 0;
+  const start = performance.now();
 
   const tick = (now) => {
     if (!running) return;
-    const dt = Math.min((now - last) / 1000, 0.05);
-    last = now;
+    const t = (now - start) / 1000;
 
-    turntable.rotation.y += dt * 0.55; // one lap ~11.4s
-    stage.position.y = Math.sin(now / 1400) * 0.02;
+    // entrance: paper pops up with a bit of overshoot
+    const e = Math.min(t / 0.9, 1);
+    const pop = 1 - Math.pow(1 - e, 3);
+    const overshoot = e < 1 ? 1 + Math.sin(e * Math.PI) * 0.06 : 1;
+    rig.scale.setScalar(pop * overshoot);
 
-    // gentle parallax: camera drifts toward the cursor
-    camera.position.x += (pointer.x * 0.35 - camera.position.x) * 0.04;
-    camera.position.y += (0.3 - pointer.y * 0.18 - camera.position.y) * 0.04;
-    camera.lookAt(0, -0.05, 0);
+    // idle: bob + sway, like a standee catching a breeze
+    rig.position.y = -0.715 + PAPER_H / 2 + Math.sin(t * 2.1) * 0.025;
+    character.rotation.z = Math.sin(t * 1.3) * 0.03;
+
+    // classic paper flip when the cursor crosses the middle
+    const side = pointer.x > 0.08 ? 1 : pointer.x < -0.08 ? -1 : lastSide;
+    if (side !== 0 && lastSide !== 0 && side !== lastSide) flipTarget += Math.PI;
+    if (side !== 0) lastSide = side;
+
+    const lean = pointer.x * 0.22; // subtle turn toward the cursor
+    character.rotation.y += (flipTarget + lean - character.rotation.y) * 0.14;
+
+    // the spotlight mimics the mouse
+    spotTarget.x += (pointer.x * 1.5 - spotTarget.x) * 0.1;
+    spotTarget.y += (-0.2 - pointer.y * 0.9 - spotTarget.y) * 0.1;
+    aimBeam();
 
     renderer.render(scene, camera);
     requestAnimationFrame(tick);
@@ -187,7 +217,6 @@ async function init() {
   const resume = () => {
     if (!running) {
       running = true;
-      last = performance.now();
       requestAnimationFrame(tick);
     }
   };
