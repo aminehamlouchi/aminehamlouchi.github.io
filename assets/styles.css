@@ -391,7 +391,7 @@ section {
   height: 100%;
 }
 
-/* 3D point-cloud portrait */
+/* paper character stage */
 .bust-wrap {
   position: absolute;
   top: var(--header-h);
@@ -400,6 +400,16 @@ section {
   z-index: 0;
   width: min(44vw, 640px);
   pointer-events: none;
+  /* feather the canvas edges so the spotlight beam never cuts on a hard
+     rectangle — it just dissolves into the page */
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.5) 9%, #000 20%),
+    linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 7%, #000 16%, #000 88%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.5) 9%, #000 20%),
+    linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.5) 7%, #000 16%, #000 88%, transparent 100%);
+  mask-composite: intersect;
 }
 
 .bust-wrap canvas {

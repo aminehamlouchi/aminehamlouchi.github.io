@@ -51,8 +51,8 @@ async function init() {
 
   const spot = new THREE.SpotLight(0xfff0d2, 70);
   spot.position.copy(LAMP);
-  spot.angle = 0.4;
-  spot.penumbra = 0.55;
+  spot.angle = 0.46;
+  spot.penumbra = 0.9;
   spot.decay = 1.6;
   spot.castShadow = true;
   spot.shadow.mapSize.set(1024, 1024);
@@ -90,17 +90,52 @@ async function init() {
   beamGroup.position.copy(LAMP);
   scene.add(beamGroup);
 
-  const beam = new THREE.Mesh(
-    new THREE.ConeGeometry(0.9, BEAM_LEN, 40, 1, true),
-    new THREE.MeshBasicMaterial({
-      color: 0xffe9b8,
-      transparent: true,
-      opacity: 0.035,
-      blending: THREE.AdditiveBlending,
-      side: THREE.DoubleSide,
-      depthWrite: false,
-    })
-  );
+  // soft-shaded shaft: fades along its length and toward its silhouette,
+  // so there is no hard cone edge anywhere
+  const beamMat = new THREE.ShaderMaterial({
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+    side: THREE.DoubleSide,
+    uniforms: {
+      uColor: { value: new THREE.Color(0xffe9b8) },
+      uIntensity: { value: 0.07 },
+    },
+    vertexShader: `
+      varying vec2 vUv;
+      varying vec3 vNormalW;
+      varying vec3 vViewDir;
+      void main() {
+        vUv = uv;
+        vec4 wp = modelMatrix * vec4(position, 1.0);
+        vNormalW = normalize(mat3(modelMatrix) * normal);
+        vViewDir = normalize(cameraPosition - wp.xyz);
+        gl_Position = projectionMatrix * viewMatrix * wp;
+      }
+    `,
+    fragmentShader: `
+      uniform vec3 uColor;
+      uniform float uIntensity;
+      varying vec2 vUv;
+      varying vec3 vNormalW;
+      varying vec3 vViewDir;
+      void main() {
+        // v = 1 at the lamp (apex), 0 at the far end — dissolve with distance
+        float lengthFade = smoothstep(0.0, 0.72, vUv.y);
+        // ease off right at the lamp too, so the tip does not pop
+        lengthFade *= smoothstep(1.0, 0.9, vUv.y);
+        // brightest where the shaft faces us, feathering to nothing at the
+        // silhouette — kills the hard-edged "glass cone" look
+        float facing = abs(dot(normalize(vNormalW), normalize(vViewDir)));
+        float body = pow(facing, 0.8);
+        float alpha = uIntensity * lengthFade * body;
+        if (alpha < 0.001) discard;
+        gl_FragColor = vec4(uColor, alpha);
+      }
+    `,
+  });
+
+  const beam = new THREE.Mesh(new THREE.ConeGeometry(0.78, BEAM_LEN, 48, 24, true), beamMat);
   beam.rotation.x = -Math.PI / 2; // tip at group origin, opens along +Z
   beam.position.z = BEAM_LEN / 2;
   beamGroup.add(beam);
