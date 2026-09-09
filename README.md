@@ -26,4 +26,4 @@ Then visit `http://localhost:8000`.
 
 ## Deployment
 
-GitHub Pages serves this repository from the `main` branch at `https://aminehamlouchi.github.io/`.
+GitHub Pages serves this repository from the `main` branch at `https://aminehamlouchi.com/`.
