@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="no-js page">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,51 +7,44 @@
       name="description"
       content="Play PyCheckers in the browser: a playable project by Amine Hamlouchi."
     >
-    <meta name="theme-color" content="#0b0e13" media="(prefers-color-scheme: dark)">
-    <meta name="theme-color" content="#f4f3ef" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#05070a">
     <title>PyCheckers | Amine Hamlouchi</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="assets/fonts.css?v=20260909b">
-    <link rel="stylesheet" href="assets/vendor/lenis.css">
-    <link rel="stylesheet" href="assets/styles.css?v=20260909b">
-    <script>
-      try {
-        var t = localStorage.getItem("theme");
-        if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
-      } catch (e) {}
-    </script>
+    <link rel="stylesheet" href="assets/fonts.css?v=3">
+    <link rel="stylesheet" href="assets/home.css?v=3">
+    <link rel="stylesheet" href="assets/game.css?v=3">
   </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
+  <body data-scene="4">
+    <a class="skip-link" href="#main">Skip to the game</a>
+    <canvas class="stage" id="stage" data-scene="4" aria-hidden="true"></canvas>
+    <div class="stage-fallback" aria-hidden="true"></div>
 
-    <header class="site-header is-scrolled" data-header>
-      <a class="brand" href="index.html" aria-label="Amine Hamlouchi, home">
-        <span class="brand-ar" lang="ar" aria-hidden="true">أمين</span>
-        <span class="brand-en">amine.hamlouchi</span>
+    <header class="hud">
+      <a class="hud-brand" href="index.html" aria-label="Amine Hamlouchi, home">
+        <span class="ar" lang="ar" aria-hidden="true">أمين</span>
+        <span class="mono" data-scramble>amine.hamlouchi</span>
       </a>
-      <nav class="main-nav" id="main-nav" aria-label="Primary">
-        <a href="index.html#work">work</a>
-        <a href="index.html#code" aria-current="page">arcade</a>
-        <a href="resume.html">résumé</a>
-        <a href="https://github.com/aminehamlouchi/pycheckers" target="_blank" rel="noreferrer">repo ↗</a>
-        <button class="term-toggle" type="button" data-term-open aria-label="Open the terminal">&gt;_ terminal</button>
+      <nav class="hud-nav" aria-label="Scenes">
+        <a href="index.html#work" data-scramble>work</a>
+        <a href="index.html#experience" data-scramble>experience</a>
+        <a href="index.html#community" data-scramble>community</a>
+        <a href="index.html#code" class="is-active" data-scramble>code</a>
+        <a href="index.html#contact" data-scramble>contact</a>
+        <a href="index.html#resume" data-scramble>résumé</a>
       </nav>
-      <div class="header-actions">
-        <button class="icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Toggle light and dark theme">
-          <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg>
-          <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-        </button>
-        <button class="icon-btn nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-controls="main-nav" aria-label="Open menu">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        </button>
+      <div class="hud-tools">
+        <button type="button" data-sound aria-pressed="false">sound off</button>
+        <button type="button" class="term-toggle" data-term-open aria-label="Open the terminal"><kbd>/</kbd> terminal</button>
       </div>
     </header>
 
-    <main id="main" class="game-page">
+    <main id="main" class="scenes">
+      <section class="scene" data-scene="4" data-effect="glass">
+      <div class="scene-inner">
       <section class="game-stage checkers-stage" aria-labelledby="checkers-title">
         <div class="game-copy">
-          <span class="sec-path">~/arcade/checkers</span>
-          <h1 id="checkers-title">PyCheckers</h1>
+          <span class="mono">~/arcade/checkers</span>
+          <h1 class="display" id="checkers-title">PyCheckers</h1>
           <p class="game-lede">
             The Pygame project, ported to the browser with the rules intact: local two-player turns,
             forced captures, multi-jump chaining, kings, and undo.
@@ -98,20 +91,18 @@
           </div>
         </section>
       </section>
+      </div>
+      </section>
     </main>
 
-    <footer class="site-footer">
-      <p>© <span data-year>2026</span> Amine Hamlouchi <span class="ar" lang="ar" aria-hidden="true">· أمين حملوشي</span></p>
-      <p><a href="index.html#code">← back to the arcade</a></p>
-      <p>press <kbd>/</kbd> for the terminal</p>
-    </footer>
+    <footer class="page-foot credits"><span>© <span data-year>2026</span> Amine Hamlouchi</span><a href="index.html#code">← back to the code scene</a><span>press / for the terminal</span></footer>
 
     <div class="toast" data-toast role="status" aria-live="polite"></div>
 
     <dialog class="terminal" data-terminal aria-label="Interactive terminal">
       <div class="term-bar">
-        <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="title">amine.sys v3 · interactive shell</span>
+        <span class="dots-ui" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>amine.sys v3 · the stage</span>
         <button type="button" data-term-close aria-label="Close terminal">✕</button>
       </div>
       <div class="term-scroll" data-term-scroll aria-live="polite"></div>
@@ -122,9 +113,7 @@
     </dialog>
 
     <script src="assets/vendor/gsap.min.js"></script>
-    <script src="assets/vendor/ScrollTrigger.min.js"></script>
-    <script src="assets/vendor/lenis.min.js"></script>
-    <script src="assets/script.js?v=20260909b"></script>
+    <script src="assets/home.js?v=3"></script>
     <script src="assets/checkers.js?v=20260909b"></script>
   </body>
 </html>

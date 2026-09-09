@@ -29,12 +29,13 @@
      ------------------------------------------------------------ */
   const scenes = $$(".scene");
   const TINTS = [
-    [0.36, 0.94, 0.76], // 0 intro: mint
+    [0.62, 0.86, 1.0], // 0 intro: cold glass (cyan-ice)
     [0.91, 0.92, 0.94], // 1 work: bone
     [0.38, 0.78, 1.0], // 2 experience: sky
     [1.0, 0.71, 0.33], // 3 community: saffron
     [0.55, 0.94, 0.48], // 4 code: phosphor
     [0.79, 0.65, 1.0], // 5 contact: violet
+    [0.86, 0.92, 1.0], // 6 résumé: ice
   ];
   const EFFECTS = { glass: 0, ripple: 1, plasma: 2, frost: 3 };
   let sceneIdx = 0;
@@ -126,9 +127,7 @@
     uniform vec2 uMouse;
     uniform float uSceneA, uSceneB, uProgress, uEffect, uStorm, uBoot;
     uniform vec3 uTintA, uTintB;
-    uniform sampler2D uTex0, uTex1;
-    uniform vec2 uTexAsp;
-    uniform float uTexMix, uTexProg;
+    uniform float uQ;
 
     float hash(vec2 p){ p = fract(p * vec2(123.34, 456.21)); p += dot(p, p + 45.32); return fract(p.x * p.y); }
     float noise(vec2 p){
@@ -139,8 +138,37 @@
     float fbm(vec2 p){
       float v = 0.0, a = 0.5;
       mat2 m = mat2(1.6, 1.2, -1.2, 1.6);
-      for (int i = 0; i < 5; i++){ v += a * noise(p); p = m * p; a *= 0.5; }
+      for (int i = 0; i < 5; i++){ if (float(i) >= 3.0 + uQ * 2.0) break; v += a * noise(p); p = m * p; a *= 0.5; }
       return v;
+    }
+    /* liquid glass: a field of drifting lenses, smooth-unioned, plus one under the pointer */
+    float lenses(vec2 p, vec2 m, float t){
+      float d = 1e3;
+      for (int i = 0; i < 4; i++){
+        float fi = float(i);
+        vec2 c = vec2(sin(t * 0.21 + fi * 1.7) * 0.6 + cos(t * 0.09 + fi * 0.9) * 0.22, cos(t * 0.17 + fi * 2.3) * 0.36 + sin(t * 0.07 + fi) * 0.1);
+        float r = 0.2 + 0.05 * sin(t * 0.45 + fi * 1.3);
+        float di = length(p - c) - r;
+        float h = clamp(0.5 + 0.5 * (d - di) / 0.28, 0.0, 1.0);
+        d = mix(d, di, h) - 0.28 * h * (1.0 - h);
+      }
+      float dm = length(p - m) - 0.15;
+      float h = clamp(0.5 + 0.5 * (d - dm) / 0.3, 0.0, 1.0);
+      d = mix(d, dm, h) - 0.3 * h * (1.0 - h);
+      return d;
+    }
+    vec3 lightField(vec2 p, vec3 tint, float t){
+      vec3 bg = vec3(0.02, 0.028, 0.04);
+      float beams = 0.0;
+      for (int i = 0; i < 3; i++){
+        float fi = float(i);
+        float b = sin((p.x * 0.9 - p.y * 0.55) * 3.6 + t * 0.25 + fi * 2.1);
+        beams += smoothstep(0.8, 1.0, b) * (0.25 + 0.18 * fi);
+      }
+      vec2 gp = abs(fract(p * 2.6 + vec2(0.0, t * 0.04)) - 0.5);
+      float grid = smoothstep(0.485, 0.5, max(gp.x, gp.y));
+      float glow = smoothstep(1.3, 0.0, length(p - vec2(0.35, 0.1)));
+      return bg + tint * (beams * 0.22 + grid * 0.16 + glow * 0.07);
     }
     vec2 fold(vec2 p, float n){
       float a = atan(p.y, p.x);
@@ -163,15 +191,26 @@
     vec3 world(float id, vec2 uv, vec2 p, vec3 tint, float t){
       vec3 bg = vec3(0.02, 0.028, 0.04);
       vec3 col = bg;
-      if (id < 0.5) {
-        /* 00 intro: living zellige, ten-fold */
-        vec2 q = fold(p * 1.25 + vec2(0.0, 0.04), 10.0);
-        float w = fbm(q * 3.0 - t * 0.05) * 0.9;
-        float n = fbm(q * 2.4 + vec2(t * 0.07, -t * 0.05) + w);
-        float rings = 0.5 + 0.5 * sin(length(p) * 10.0 - t * 0.9);
-        float v = smoothstep(0.34, 0.95, n) * (0.55 + 0.45 * rings);
-        float star = smoothstep(0.02, 0.0, abs(fract(atan(p.y, p.x) * 10.0 / 6.2831853 + 0.5) - 0.5) - 0.02) * smoothstep(0.9, 0.2, length(p));
-        col = bg + tint * v * 0.85 + tint * star * 0.12 + vec3(0.03) * n;
+      if (id < 0.5 || id > 5.5) {
+        /* 00 intro (and 06 résumé): liquid glass. lenses refract a light field, with dispersion and a specular rim */
+        vec2 m0 = (uMouse - 0.5) * vec2(uRes.x / uRes.y, 1.0);
+        float d0 = lenses(p, m0, t);
+        float e = 0.012;
+        vec2 g = vec2(lenses(p + vec2(e, 0.0), m0, t) - d0, lenses(p + vec2(0.0, e), m0, t) - d0) / e;
+        float inside = smoothstep(0.004, -0.004, d0);
+        float thick = sqrt(max(0.0, -d0)) * 1.2;
+        vec2 bend = -g * thick * 0.18;
+        vec3 r = lightField(p + bend * 1.06, tint, t);
+        vec3 gcol = lightField(p + bend, tint, t);
+        vec3 b = lightField(p + bend * 0.94, tint, t);
+        vec3 refr = vec3(r.r, gcol.g, b.b) * 1.25 + tint * 0.05;
+        vec3 plain = lightField(p, tint, t);
+        vec3 n = normalize(vec3(-g * 0.9, 1.0));
+        float spec = pow(max(0.0, dot(n, normalize(vec3(-0.45, 0.7, 0.6)))), 28.0);
+        float rim = smoothstep(0.035, 0.0, abs(d0));
+        vec3 film = 0.5 + 0.5 * sin(thick * 14.0 + vec3(0.0, 2.1, 4.2));
+        col = mix(plain, refr + film * 0.035, inside);
+        col += (spec * 0.9 * inside + rim * 0.55) * mix(vec3(1.0), tint, 0.5);
       } else if (id < 1.5) {
         /* 01 work: ink in water */
         float n1 = fbm(p * 2.2 + vec2(t * 0.05, 0.0));
@@ -222,13 +261,6 @@
       }
       float vign = smoothstep(1.5, 0.35, length(p));
       return col * (0.55 + 0.45 * vign);
-    }
-
-    vec2 coverUv(vec2 uv, float texAsp){
-      float scrAsp = uRes.x / uRes.y;
-      vec2 s = vec2(1.0);
-      if (scrAsp > texAsp) s = vec2(1.0, scrAsp / texAsp); else s = vec2(texAsp / scrAsp, 1.0);
-      return (uv - 0.5) / s + 0.5;
     }
 
     void main(){
@@ -288,22 +320,6 @@
         }
       }
 
-      /* work scene: the hovered project shows through liquid glass */
-      if (uTexMix > 0.001) {
-        float d = length(p - m);
-        vec2 dir = (p - m) / max(d, 0.001);
-        vec2 wobble = dir * sin(d * 18.0 - t * 2.2) * 0.012 * smoothstep(0.9, 0.0, d);
-        vec2 uv0 = coverUv(uv + wobble, uTexAsp.x);
-        vec2 uv1 = coverUv(uv + wobble, uTexAsp.y);
-        vec3 c0 = texture2D(uTex0, uv0).rgb;
-        vec3 c1 = texture2D(uTex1, uv1).rgb;
-        vec3 img = mix(c0, c1, smoothstep(0.0, 1.0, uTexProg));
-        float lum = dot(img, vec3(0.299, 0.587, 0.114));
-        vec3 graded = mix(vec3(lum), img, 0.55) * 0.5;
-        float mask = smoothstep(0.0, 1.0, uTexMix) * (0.55 + 0.45 * smoothstep(1.3, 0.3, d));
-        col = mix(col, graded, mask * 0.8);
-      }
-
       /* konami storm and boot flash */
       col += uTintA * uStorm * (0.5 + 0.5 * sin(t * 30.0 + p.x * 20.0)) * 0.35;
       col = mix(col, vec3(0.0), uBoot);
@@ -353,58 +369,25 @@
     gl.enableVertexAttribArray(aPos);
     gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
     const U = {};
-    ["uRes", "uTime", "uMouse", "uSceneA", "uSceneB", "uProgress", "uEffect", "uStorm", "uBoot", "uTintA", "uTintB", "uTex0", "uTex1", "uTexAsp", "uTexMix", "uTexProg"].forEach(
+    ["uRes", "uTime", "uMouse", "uSceneA", "uSceneB", "uProgress", "uEffect", "uStorm", "uBoot", "uTintA", "uTintB", "uQ"].forEach(
       (n) => (U[n] = gl.getUniformLocation(prog, n))
     );
 
+    const initial = Number(canvas.dataset.scene || 0) || 0;
     const state = {
-      sceneA: 0,
-      sceneB: 0,
+      sceneA: initial,
+      sceneB: initial,
       progress: 0,
       effect: 0,
       storm: 0,
+      pending: null,
+      tween: null,
       boot: motionOK ? 1 : 0,
-      tintA: TINTS[0].slice(),
-      tintB: TINTS[0].slice(),
-      texMix: 0,
-      texProg: 0,
-      texAsp: [1.6, 1.6],
+      tintA: (TINTS[initial] || TINTS[0]).slice(),
+      tintB: (TINTS[initial] || TINTS[0]).slice(),
       mouse: [0.5, 0.5],
       mouseT: [0.62, 0.45],
     };
-
-    /* textures: a 1x1 dark placeholder until an image lands */
-    const makeTex = () => {
-      const t = gl.createTexture();
-      gl.bindTexture(gl.TEXTURE_2D, t);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, 1, 1, 0, gl.RGB, gl.UNSIGNED_BYTE, new Uint8Array([8, 10, 14]));
-      return t;
-    };
-    const tex = [makeTex(), makeTex()];
-    const images = new Map();
-    let slot = 0;
-    const upload = (unit, img) => {
-      gl.activeTexture(gl.TEXTURE0 + unit);
-      gl.bindTexture(gl.TEXTURE_2D, tex[unit]);
-      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, img);
-      state.texAsp[unit] = img.naturalWidth / img.naturalHeight;
-    };
-    const loadImage = (src) =>
-      new Promise((res, rej) => {
-        if (images.has(src)) return res(images.get(src));
-        const im = new Image();
-        im.onload = () => {
-          images.set(src, im);
-          res(im);
-        };
-        im.onerror = rej;
-        im.src = src;
-      });
 
     const scale = finePointer ? Math.min(window.devicePixelRatio || 1, 1.5) * 0.8 : 0.55;
     const resize = () => {
@@ -436,11 +419,7 @@
       gl.uniform1f(U.uBoot, state.boot);
       gl.uniform3fv(U.uTintA, state.tintA);
       gl.uniform3fv(U.uTintB, state.tintB);
-      gl.uniform1i(U.uTex0, 0);
-      gl.uniform1i(U.uTex1, 1);
-      gl.uniform2f(U.uTexAsp, state.texAsp[0], state.texAsp[1]);
-      gl.uniform1f(U.uTexMix, state.texMix);
-      gl.uniform1f(U.uTexProg, state.texProg);
+      gl.uniform1f(U.uQ, finePointer ? 1 : 0);
       gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
       if (running && motionOK) raf = requestAnimationFrame(draw);
     };
@@ -468,57 +447,47 @@
       state,
       once,
       transition(to, effect, done) {
+        const commit = () => {
+          state.sceneA = state.sceneB;
+          state.tintA = state.tintB.slice();
+          state.progress = 0;
+          state.tween = null;
+        };
+        const runNext = () => {
+          const next = state.pending;
+          state.pending = null;
+          if (next) this.transition(next.to, next.effect, next.done);
+        };
+        if (to === state.sceneB && state.tween) return;
+        /* already mid-transition: never reset progress (that is the visible
+           snap-back). Queue the newest target and let the running tween
+           accelerate to its end, so the picture keeps moving one way. */
+        if (state.tween && state.tween.isActive()) {
+          state.pending = { to, effect, done };
+          state.tween.timeScale(Math.min(4, state.tween.timeScale() * 1.9));
+          return;
+        }
         state.sceneB = to;
         state.tintB = TINTS[to].slice();
         state.effect = effect;
         if (!motionOK || !hasGsap) {
-          state.sceneA = to;
-          state.tintA = TINTS[to].slice();
-          state.progress = 0;
+          commit();
           once();
           if (done) done();
           return;
         }
-        gsap.killTweensOf(state, "progress");
         state.progress = 0.0001;
-        gsap.to(state, {
+        state.tween = gsap.to(state, {
           progress: 1,
-          duration: effect === EFFECTS.glass ? 1.25 : 1.45,
+          duration: finePointer ? (effect === EFFECTS.glass ? 1.0 : 1.15) : 0.85,
           ease: "power2.inOut",
           onComplete: () => {
-            state.sceneA = to;
-            state.tintA = TINTS[to].slice();
-            state.progress = 0;
-            if (done) done();
+            commit();
+            if (state.pending) runNext();
+            else if (done) done();
           },
         });
       },
-      async showImage(src) {
-        try {
-          const im = await loadImage(src);
-          const next = 1 - slot;
-          upload(next, im);
-          state.texProg = next === 1 ? 0 : 1;
-          const target = next === 1 ? 1 : 0;
-          slot = next;
-          if (hasGsap && motionOK) {
-            gsap.to(state, { texProg: target, duration: 0.8, ease: "power2.inOut" });
-            gsap.to(state, { texMix: 1, duration: 0.6, ease: "power2.out" });
-          } else {
-            state.texProg = target;
-            state.texMix = 1;
-            once();
-          }
-        } catch {}
-      },
-      hideImage() {
-        if (hasGsap && motionOK) gsap.to(state, { texMix: 0, duration: 0.5, ease: "power2.out" });
-        else {
-          state.texMix = 0;
-          once();
-        }
-      },
-      preload: (srcs) => srcs.forEach((s) => loadImage(s).catch(() => {})),
       storm() {
         if (!hasGsap) return;
         gsap.killTweensOf(state, "storm");
@@ -652,26 +621,29 @@
   const counters = $$("[data-counter], [data-counter-mini]");
   const entered = new Set();
 
+  const sceneById = (n) => scenes.find((s) => Number(s.dataset.scene) === n);
   const setScene = (n, { silent = false } = {}) => {
+    const sec = sceneById(n);
+    if (!sec) return;
     if (n === sceneIdx && entered.has(n)) return;
     const prev = sceneIdx;
     sceneIdx = n;
     body.setAttribute("data-scene", String(n));
-    navLinks.forEach((a) => a.classList.toggle("is-active", a.getAttribute("href") === "#" + scenes[n].id));
+    navLinks.forEach((a) => a.classList.toggle("is-active", a.getAttribute("href") === "#" + sec.id));
     dots.forEach((d, i) => d.classList.toggle("is-active", i === n));
     counters.forEach((c) => (c.textContent = String(n).padStart(2, "0")));
-    const effect = EFFECTS[scenes[n].dataset.effect] ?? 0;
+    const effect = EFFECTS[sec.dataset.effect] ?? 0;
     if (stage && prev !== n) stage.transition(n, effect);
-    if (stage && n !== 1) stage.hideImage();
     if (!entered.has(n)) {
       entered.add(n);
-      enterScene(scenes[n]);
+      enterScene(sec);
     }
     if (!silent && prev !== n) sound.tick();
-    if (prev !== n) history.replaceState(null, "", "#" + scenes[n].id);
+    if (prev !== n && scenes.length > 1) history.replaceState(null, "", "#" + sec.id);
   };
 
   scenes.forEach((s, i) => i > 0 && primeScene(s));
+  sceneIdx = Number(scenes[0]?.dataset.scene || 0);
   /* a scene is "on" when it crosses the vertical midline of the viewport,
      which works for scenes taller than the screen (phones) as well */
   if ("IntersectionObserver" in window) {
@@ -699,7 +671,8 @@
     if (/input|textarea/i.test(document.activeElement.tagName)) return;
     const step = e.key === "ArrowDown" || e.key === "j" || e.key === "PageDown" ? 1 : e.key === "ArrowUp" || e.key === "k" || e.key === "PageUp" ? -1 : 0;
     if (!step) return;
-    const next = scenes[Math.min(scenes.length - 1, Math.max(0, sceneIdx + step))];
+    const cur = scenes.findIndex((sc) => Number(sc.dataset.scene) === sceneIdx);
+    const next = scenes[Math.min(scenes.length - 1, Math.max(0, cur + step))];
     if (next) {
       e.preventDefault();
       next.scrollIntoView({ behavior: motionOK ? "smooth" : "auto" });
@@ -711,6 +684,10 @@
      ------------------------------------------------------------ */
   const boot = async () => {
     const lines = $$(".intro-name .line");
+    if (!lines.length) {
+      html.classList.add("is-ready");
+      return;
+    }
     const arName = $(".intro-ar");
     const lede = $(".intro-lede");
     const meta = $(".intro-meta");
@@ -719,19 +696,21 @@
       html.classList.add("is-ready");
       return;
     }
-    gsap.set([lede, meta, paper, arName].filter(Boolean), { opacity: 0, y: 16 });
+    const introBits = [lede, meta, paper, arName].filter(Boolean);
+    if (introBits.length) gsap.set(introBits, { opacity: 0, y: 16 });
     if (stage) stage.boot();
     await Promise.all(lines.map((l, i) => scramble(l, l.dataset.text || l.textContent, { duration: 1100 + i * 250, from: ARABIC })));
     lines.forEach((l) => splitChars(l));
-    gsap.to([arName, lede, meta].filter(Boolean), { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", stagger: 0.12 });
-    gsap.to(paper, { opacity: 1, y: 0, duration: 1.1, ease: "power3.out", delay: 0.2 });
+    const reveal = [arName, lede, meta].filter(Boolean);
+    if (reveal.length) gsap.to(reveal, { opacity: 1, y: 0, duration: 0.9, ease: "power3.out", stagger: 0.12 });
+    if (paper) gsap.to(paper, { opacity: 1, y: 0, duration: 1.1, ease: "power3.out", delay: 0.2 });
     html.classList.add("is-ready");
     entered.add(0);
     sound.chord();
   };
   $$(".intro-name .line").forEach((l) => (l.dataset.text = l.textContent));
   document.fonts.ready.then(boot);
-  setScene(0, { silent: true });
+  setScene(sceneIdx, { silent: true });
 
   /* paper cutout: tilt with the pointer, flip on click */
   const paper = $(".paper");
@@ -755,21 +734,29 @@
   }
 
   /* ------------------------------------------------------------
-     01 work: hover a project, the world shows it through glass
+     01 work: hover a project, the hologram shows it
      ------------------------------------------------------------ */
   const workItems = $$(".work-item");
-  if (workItems.length) {
+  const holo = $("[data-holo]");
+  if (workItems.length && holo) {
     const d = {
-      img: $("[data-detail-img]"),
-      num: $("[data-detail-num]"),
-      numLabel: $("[data-detail-numlabel]"),
-      title: $("[data-detail-title]"),
-      desc: $("[data-detail-desc]"),
-      meta: $("[data-detail-meta]"),
-      link: $("[data-detail-link]"),
-      receipt: $("[data-detail-receipt]"),
+      img: $("[data-holo-img]", holo),
+      num: $("[data-detail-num]", holo),
+      numLabel: $("[data-detail-numlabel]", holo),
+      title: $("[data-detail-title]", holo),
+      barTitle: $("[data-holo-title]", holo),
+      idx: $("[data-holo-idx]", holo),
+      desc: $("[data-detail-desc]", holo),
+      meta: $("[data-detail-meta]", holo),
+      link: $("[data-detail-link]", holo),
+      receipt: $("[data-detail-receipt]", holo),
     };
-    if (stage) stage.preload(workItems.map((w) => w.dataset.img).filter(Boolean));
+    workItems.forEach((w) => {
+      if (w.dataset.img) {
+        const im = new Image();
+        im.src = w.dataset.img;
+      }
+    });
     let current = null;
     const pick = (item) => {
       if (item === current) return;
@@ -777,6 +764,8 @@
       workItems.forEach((w) => w.classList.toggle("is-on", w === item));
       const ds = item.dataset;
       if (d.title) d.title.textContent = ds.title;
+      if (d.barTitle) d.barTitle.textContent = ds.title;
+      if (d.idx) d.idx.textContent = `${String(workItems.indexOf(item) + 1).padStart(2, "0")} / ${String(workItems.length).padStart(2, "0")}`;
       if (d.desc) d.desc.textContent = ds.desc;
       if (d.meta) d.meta.textContent = ds.meta;
       if (d.receipt) d.receipt.textContent = ds.receipt || "";
@@ -799,13 +788,14 @@
         if (ds.img) {
           d.img.src = ds.img;
           d.img.alt = ds.title + ", screenshot";
-          d.img.hidden = false;
-        } else d.img.hidden = true;
+          holo.classList.add("has-img");
+        } else {
+          holo.classList.remove("has-img");
+        }
       }
-      if (stage) {
-        if (ds.img) stage.showImage(ds.img);
-        else stage.hideImage();
-      }
+      holo.classList.remove("is-glitch");
+      void holo.offsetWidth;
+      if (motionOK) holo.classList.add("is-glitch");
       const nameEl = $(".name", item);
       if (nameEl && finePointer) scramble(nameEl, nameEl.dataset.text || nameEl.textContent, { duration: 380 });
       sound.hover();
@@ -821,9 +811,47 @@
       });
     });
     pick(workItems[0]);
-    current = null;
-    workItems[0].classList.add("is-on");
-    current = workItems[0];
+    holo.classList.remove("is-glitch");
+    if (finePointer && motionOK) {
+      window.addEventListener("pointermove", (e) => {
+        if (sceneIdx !== 1) return;
+        const r = holo.getBoundingClientRect();
+        const cx = (e.clientX - (r.left + r.width / 2)) / Math.max(r.width, 1);
+        const cy = (e.clientY - (r.top + r.height / 2)) / Math.max(r.height, 1);
+        holo.style.setProperty("--rx", `${(-cy * 9).toFixed(2)}deg`);
+        holo.style.setProperty("--ry", `${(cx * 12).toFixed(2)}deg`);
+      });
+    }
+  }
+
+  /* ------------------------------------------------------------
+     résumé: floating sheet, in-page PDF viewer, tilt
+     ------------------------------------------------------------ */
+  const resumeDialog = $("[data-resume-dialog]");
+  if (resumeDialog && typeof resumeDialog.showModal === "function") {
+    const frame = $("iframe", resumeDialog);
+    const open = () => {
+      if (frame && !frame.src) frame.src = frame.dataset.src;
+      resumeDialog.showModal();
+      sound.tick();
+    };
+    $$("[data-open-resume]").forEach((b) => b.addEventListener("click", (e) => {
+      e.preventDefault();
+      open();
+    }));
+    $("[data-resume-close]", resumeDialog)?.addEventListener("click", () => resumeDialog.close());
+    resumeDialog.addEventListener("click", (e) => e.target === resumeDialog && resumeDialog.close());
+  }
+  const sheet = $("[data-sheet]");
+  if (sheet && finePointer && motionOK) {
+    window.addEventListener("pointermove", (e) => {
+      if (sceneIdx !== Number(sheet.dataset.sheet || 6)) return;
+      const r = sheet.getBoundingClientRect();
+      const cx = (e.clientX - (r.left + r.width / 2)) / Math.max(r.width, 1);
+      const cy = (e.clientY - (r.top + r.height / 2)) / Math.max(r.height, 1);
+      sheet.style.setProperty("--rx", `${(-cy * 8).toFixed(2)}deg`);
+      sheet.style.setProperty("--ry", `${(cx * 10).toFixed(2)}deg`);
+    });
   }
 
   /* ------------------------------------------------------------
@@ -939,6 +967,7 @@
           "  community   masjid · msa · dawah  scene 3",
           "  code        public repos          scene 4",
           "  contact     reach me              scene 5",
+          "  resume      the one page          scene 6  (pdf for the file)",
           "  scene <n>   jump to a scene",
           "  play        checkers · ttt",
           "  flip        flip the paper me",
@@ -956,7 +985,8 @@
       contact: () => go("#contact"),
       scene: (a) => {
         const n = Number(a[0]);
-        return Number.isInteger(n) && scenes[n] ? go("#" + scenes[n].id) : "scene 0 … 5";
+        const sec = sceneById(n);
+        return sec ? go("#" + sec.id) : "scene 0 … 6";
       },
       receipts: () =>
         [
@@ -978,7 +1008,8 @@
       storm: () => (stage ? (stage.storm(), "stage overload, five seconds") : "no stage here"),
       arabic: () => ({ text: "أهلاً وسهلاً! أدرس العربية كتخصص فرعي، ولهذا يسكن شيء من العربية في زوايا هذا الموقع.", cls: "line-out ar" }),
       salaam: () => ({ text: "وعليكم السلام ورحمة الله وبركاته", cls: "line-out ar" }),
-      resume: () => "→ " + LINK("assets/amine-hamlouchi-resume.pdf", "amine-hamlouchi-resume.pdf") + '  ·  <a href="resume.html">resume.html</a>',
+      resume: () => go("#resume"),
+      pdf: () => "→ " + LINK("assets/amine-hamlouchi-resume.pdf", "amine-hamlouchi-resume.pdf") + '  ·  <a href="resume.html">full text</a>',
       email: () => "email    : " + LINK("mailto:amine@hamlouchi.com", "amine@hamlouchi.com") + "\nphone    : " + LINK("tel:+15026931063", "(502) 693-1063") + "\ngithub   : " + LINK("https://github.com/aminehamlouchi", "github.com/aminehamlouchi") + "\nlinkedin : " + LINK("https://www.linkedin.com/in/aminehamlouchi", "linkedin.com/in/aminehamlouchi"),
       cv: () => "that page is private. if a family is meant to see it, they already have the link.",
       sudo: (a) => (a.join(" ") === "hire-me" ? "[sudo] permission granted.\nforwarding to " + LINK("mailto:amine@hamlouchi.com", "amine@hamlouchi.com") + " ..." : "amine is not in the sudoers file. this incident will be reported."),
@@ -995,6 +1026,7 @@
     C.dawah = C.community;
     C.nikah = C.cv;
     C.mail = C.email;
+    C.cv2 = C.resume;
     const run = (raw) => {
       const line = raw.trim();
       if (!line) return;
