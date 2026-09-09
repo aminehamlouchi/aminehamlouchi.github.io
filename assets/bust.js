@@ -5,7 +5,8 @@
    a pedestal. It bobs, sways, leans toward the cursor, and does
    the classic paper flip when you cross sides. The spotlight
    mimics the mouse: beam, light, and pool all track the cursor.
-   Degrades: no WebGL / reduced motion / small screens → skipped.
+   Degrades: no WebGL / reduced motion / small screens → the plain
+   <img> of the cutout stays in place; nothing else is required.
    ============================================================ */
 
 const motionOK = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
@@ -20,10 +21,12 @@ const supported = () => {
   }
 };
 
-if (mount && window.innerWidth >= 700 && supported()) {
-  init().catch(() => {
-    /* silent — hero works without the stage */
-  });
+if (mount && window.innerWidth > 1000 && supported()) {
+  init()
+    .then(() => mount.classList.add("has-webgl"))
+    .catch(() => {
+      /* silent — the static cutout stays visible */
+    });
 }
 
 async function init() {
@@ -31,13 +34,13 @@ async function init() {
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(30, 1, 0.05, 60);
-  camera.position.set(0, 0.3, 4.4);
-  camera.lookAt(0, -0.05, 0);
+  camera.position.set(0, 0.22, 3.6);
+  camera.lookAt(0, -0.08, 0);
 
   const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true, powerPreference: "low-power" });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
   renderer.shadowMap.enabled = true;
-  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.shadowMap.type = THREE.PCFShadowMap;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 1.1;
   renderer.domElement.style.opacity = "0";
@@ -45,7 +48,7 @@ async function init() {
   mount.appendChild(renderer.domElement);
 
   /* ---------- lights ---------- */
-  scene.add(new THREE.AmbientLight(0x9a8a68, 0.75));
+  scene.add(new THREE.AmbientLight(0xb8c0cc, 0.7));
 
   const LAMP = new THREE.Vector3(0.5, 3.3, 1.5);
 
@@ -60,7 +63,7 @@ async function init() {
   scene.add(spot);
   scene.add(spot.target);
 
-  const rimLight = new THREE.PointLight(0xffb000, 10, 8, 2);
+  const rimLight = new THREE.PointLight(0x3fd2ad, 10, 8, 2);
   rimLight.position.set(-1.6, 1.0, -1.2);
   scene.add(rimLight);
 
@@ -70,7 +73,7 @@ async function init() {
 
   const pedestal = new THREE.Mesh(
     new THREE.CylinderGeometry(0.52, 0.6, 0.13, 64),
-    new THREE.MeshStandardMaterial({ color: 0x16130c, roughness: 0.55, metalness: 0.35 })
+    new THREE.MeshStandardMaterial({ color: 0x141922, roughness: 0.55, metalness: 0.35 })
   );
   pedestal.position.y = -0.78;
   pedestal.receiveShadow = true;
@@ -78,7 +81,7 @@ async function init() {
 
   const ring = new THREE.Mesh(
     new THREE.TorusGeometry(0.52, 0.009, 12, 96),
-    new THREE.MeshBasicMaterial({ color: 0xffb000, transparent: true, opacity: 0.55 })
+    new THREE.MeshBasicMaterial({ color: 0x3fd2ad, transparent: true, opacity: 0.6 })
   );
   ring.rotation.x = Math.PI / 2;
   ring.position.y = -0.71;
@@ -142,7 +145,7 @@ async function init() {
 
   /* ---------- the paper character ---------- */
   const texture = await new Promise((resolve, reject) => {
-    new THREE.TextureLoader().load("assets/model/paper-amine.png", resolve, undefined, reject);
+    new THREE.TextureLoader().load("assets/model/paper-amine.webp", resolve, undefined, reject);
   });
   texture.colorSpace = THREE.SRGBColorSpace;
   texture.anisotropy = 4;
@@ -214,6 +217,13 @@ async function init() {
   let running = true;
   let flipTarget = 0; // multiples of PI
   let lastSide = 0;
+  // the terminal (and a tap on the stage) can ask for a flip
+  window.addEventListener("amine:flip", () => {
+    flipTarget += Math.PI;
+  });
+  mount.addEventListener("click", () => {
+    flipTarget += Math.PI;
+  });
   const start = performance.now();
 
   const tick = (now) => {
