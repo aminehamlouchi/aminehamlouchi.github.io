@@ -560,6 +560,40 @@ html.no-js .hud-corner {
   font-weight: 500;
 }
 
+/* the hackathon award, sitting above the name so it reads before anything else */
+.intro-award {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 clamp(10px, 1.6vh, 18px);
+  padding: 7px 14px 7px 12px;
+  border: 1px solid rgba(var(--tint-rgb), 0.45);
+  background: rgba(var(--tint-rgb), 0.07);
+  font-family: var(--font-mono);
+  font-size: clamp(0.66rem, 0.78vw, 0.76rem);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--bone-2);
+  transition: border-color 600ms ease, background-color 600ms ease;
+}
+
+.intro-award::before {
+  content: "";
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--tint);
+  box-shadow: 0 0 10px rgba(var(--tint-rgb), 0.9);
+  transition: background-color 600ms ease, box-shadow 600ms ease;
+}
+
+.intro-award b {
+  color: var(--tint);
+  font-weight: 600;
+  transition: color 600ms ease;
+}
+
 /* the paper cutout: a real image with a pointer tilt and a click flip */
 .paper {
   position: relative;
@@ -774,6 +808,12 @@ html.no-js .hud-corner {
   text-transform: uppercase;
   color: var(--bone-3);
   white-space: nowrap;
+}
+
+.work-item .kind .win {
+  font-style: normal;
+  color: var(--tint);
+  transition: color 600ms ease;
 }
 
 .receipt::before {
