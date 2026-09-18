@@ -51,7 +51,11 @@ for (const file of walk(ROOT)) {
     // not a path. Only count it if a file of that name really sits at the root.
     if (!href.includes("/") && !existsSync(join(ROOT, href))) continue;
     refCount++;
-    const target = normalize(join(ROOT, href.replace(/^\//, "")));
+    // Absolute hrefs are site rooted; relative ones resolve against the file
+    // that contains them, which matters for pages in subdirectories like /hi.
+    const target = href.startsWith("/")
+      ? normalize(join(ROOT, href.slice(1)))
+      : normalize(join(dirname(file), href));
     if (!existsSync(target)) bad(`${rel} -> ${href} does not resolve`);
     else if (sha1(target) !== manifest.sha1) bad(`${rel} -> ${href} is a stale resume (${sha1(target).slice(0, 12)})`);
   }
