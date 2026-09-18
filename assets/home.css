@@ -2245,3 +2245,65 @@ html.has-cursor button {
 /* The stage is opt in on phones. The control only exists when it is off. */
 html.full [data-stage-on] { display: none; }
 [data-stage-on] { font-variant-numeric: tabular-nums; }
+
+/* A dialog opened with showModal() paints in the top layer, which sits above
+   every z-index, so the custom cursor at z-index 120 is hidden behind it while
+   html.has-cursor still sets cursor: none. That left no pointer and no caret
+   inside the terminal and the resume viewer. Hand those two back to the
+   native cursor. */
+html.has-cursor .terminal,
+html.has-cursor .terminal *,
+html.has-cursor .viewer,
+html.has-cursor .viewer * {
+  cursor: auto;
+}
+
+html.has-cursor .terminal a,
+html.has-cursor .terminal button,
+html.has-cursor .viewer a,
+html.has-cursor .viewer button {
+  cursor: pointer;
+}
+
+html.has-cursor .term-input-row,
+html.has-cursor .term-input-row input,
+html.has-cursor .term-scroll {
+  cursor: text;
+}
+
+.term-input-row input {
+  caret-color: var(--tint, #9fd0ff);
+}
+
+/* Clicking anywhere in the body of the terminal should focus the prompt. */
+.term-scroll {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* The contact rows broke mid token: "aahaml01@louisville.e / du" and
+   "linkedin.com/in/aminehamlo / uchi". Cause was overflow-wrap: anywhere
+   inside columns that could go as narrow as 220px. Widen the column so the
+   long values fit beside their label, let the row wrap so a value that still
+   does not fit drops to its own line, and only break inside a word when there
+   is no other option. */
+.contact-grid {
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+}
+
+.contact-grid .row {
+  flex-wrap: wrap;
+}
+
+.contact-grid .k {
+  white-space: nowrap;
+}
+
+.contact-grid .v {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.credits {
+  overflow-wrap: break-word;
+}
