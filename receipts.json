@@ -1,0 +1,45 @@
+{
+  "note": "Every number and claim that appears on aminehamlouchi.com, with the source it traces to. tools/check-receipts.mjs fails the build when a figure on the site is not in here, or when a receipt points at something that does not exist. The terminal's receipts command reads this same file, so the two cannot drift.",
+  "sources": {
+    "resume": {
+      "kind": "file",
+      "path": "AmineHamlouchiResume.pdf",
+      "label": "resume v13"
+    },
+    "repo": {
+      "kind": "github",
+      "owner": "aminehamlouchi",
+      "label": "a public repository"
+    },
+    "site": {
+      "kind": "file",
+      "label": "this repository"
+    }
+  },
+  "receipts": [
+    { "claim": "731 canonical arguments", "figure": "731", "source": "resume", "where": "projects, Argument Knowledge Base" },
+    { "claim": "893 paired rebuttals", "figure": "893", "source": "resume", "where": "projects, Argument Knowledge Base" },
+    { "claim": "1,100+ citations", "figure": "1,100", "source": "resume", "where": "projects, Argument Knowledge Base" },
+    { "claim": "712 citations validated against 4 primary source APIs", "figure": "712", "source": "resume", "where": "projects, Argument Knowledge Base" },
+    { "claim": "32 multi hour audio debates ingested", "figure": "32", "source": "resume", "where": "projects, Argument Knowledge Base" },
+    { "claim": "80 active users", "figure": "80", "source": "resume", "where": "projects, School Operations Platform" },
+    { "claim": "106 API routes", "figure": "106", "source": "resume", "where": "projects, School Operations Platform" },
+    { "claim": "15 Postgres migrations", "figure": "15", "source": "resume", "where": "projects, School Operations Platform" },
+    { "claim": "51 regression tests", "figure": "51", "source": "resume", "where": "projects, School Operations Platform" },
+    { "claim": "10 MB client cap against a 5 MB server cap, the upload defect", "figure": "10 MB", "source": "resume", "where": "experience, Kamel Ride" },
+    { "claim": "11 page public website for Alnur Mosque", "figure": "11", "source": "resume", "where": "experience, Alnur Mosque" },
+    { "claim": "SHA-256 photo dedupe pipeline", "figure": "SHA-256", "source": "site", "where": ".github/workflows/alnur-gallery.yml" },
+    { "claim": "GPA 3.5 out of 4.0", "figure": "3.5", "source": "resume", "where": "education" },
+    { "claim": "Bachelor of Arts in Computer Science, minor in Arabic, expected May 2028", "figure": "2028", "source": "resume", "where": "education" },
+    { "claim": "HackKentucky 2026: 3rd overall and the Prologue Stories sponsor bounty", "figure": "3rd", "source": "resume", "where": "education, HackKentucky 2026" },
+    { "claim": "Fourteen centuries on one timeline", "figure": "14", "source": "repo", "repo": "timeline", "where": "the timeline repository" },
+    { "claim": "8 to 12 parallel LLM sub agents over about 1,000 records", "figure": "8", "source": "resume", "where": "projects, Argument Knowledge Base" },
+    { "claim": "9,994 orders modeled at 94.36 percent accuracy", "figure": "9,994", "source": "repo", "repo": "superstore-retail-analytics", "where": "the superstore-retail-analytics repository" }
+  ],
+  "removed": [
+    {
+      "claim": "17k followers across platforms",
+      "why": "Self reported and not on the resume, so nothing on this site or in a public repository backs it. Removed from index.html and from the terminal rather than shipped without a source. Amine can put it back with a receipt: a screenshot of the platform totals, or the numbers in the resume."
+    }
+  ]
+}
