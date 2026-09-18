@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="robots" content="noindex">
+    <meta name="description" content="That page is not here. Links back to the work, the resume, and the contact card.">
+    <meta name="theme-color" content="#05070a">
+    <title>404 · Amine Hamlouchi</title>
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="assets/fonts.css?v=4">
+    <style>
+      :root{ --ink:#f4f1ea; --bg:#05070a; --dim:#8ea3c0; --gold:#cbb68a; }
+      *{ margin:0; padding:0; box-sizing:border-box; }
+      body{
+        min-height:100svh; background:var(--bg); color:var(--ink);
+        font-family:"Hanken Grotesk",system-ui,sans-serif;
+        display:grid; place-items:center; padding:32px 20px;
+        background-image:
+          radial-gradient(60% 50% at 20% 10%, rgba(96,165,250,.14), transparent 70%),
+          linear-gradient(rgba(244,241,234,.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(244,241,234,.05) 1px, transparent 1px);
+        background-size:auto, 56px 56px, 56px 56px;
+      }
+      main{ width:100%; max-width:36rem; }
+      .code{
+        font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.82rem;
+        letter-spacing:.22em; text-transform:uppercase; color:var(--dim);
+      }
+      h1{
+        font-family:"Big Shoulders Display","Hanken Grotesk",sans-serif; font-weight:800;
+        font-size:clamp(3.4rem,17vw,7rem); line-height:.86; text-transform:uppercase;
+        letter-spacing:-.02em; margin:.35em 0 .1em;
+      }
+      h1 span{ font-weight:300; color:#b9c6d8; display:block; }
+      .ar{ font-family:"IBM Plex Sans Arabic",serif; color:var(--gold); font-size:1.05rem; direction:rtl; unicode-bidi:isolate; }
+      p{ color:#d6dce6; line-height:1.55; margin:1.1rem 0 1.6rem; max-width:32rem; }
+      nav{ display:flex; flex-wrap:wrap; gap:.6rem; }
+      a{
+        color:var(--ink); text-decoration:none; border:1px solid rgba(244,241,234,.24);
+        border-radius:999px; padding:.62rem 1.05rem; font-size:.95rem;
+        transition:border-color .18s ease, background .18s ease;
+      }
+      a:hover, a:focus-visible{ border-color:var(--gold); background:rgba(203,182,138,.10); }
+      a:focus-visible{ outline:2px solid var(--gold); outline-offset:2px; }
+      a.solid{ background:var(--ink); color:var(--bg); border-color:var(--ink); font-weight:600; }
+      a.solid:hover, a.solid:focus-visible{ background:var(--gold); border-color:var(--gold); }
+      hr{ border:0; border-top:1px solid rgba(244,241,234,.16); margin:2rem 0 1rem; }
+      .foot{ font-family:"JetBrains Mono",ui-monospace,monospace; font-size:.8rem; color:var(--dim); }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p class="code">404 · no such scene</p>
+      <h1>Nothing<span>here.</span></h1>
+      <p class="ar" lang="ar">لا يوجد شيء هنا</p>
+      <p>
+        This address does not point at anything. Either it moved, or it never
+        existed. The stage is one door to the left.
+      </p>
+      <nav aria-label="Where to go instead">
+        <a class="solid" href="/">The stage</a>
+        <a href="/resume.html">R&eacute;sum&eacute;</a>
+        <a href="/hi/">Contact card</a>
+        <a href="mailto:amine@hamlouchi.com">Email me</a>
+      </nav>
+      <hr>
+      <p class="foot">aminehamlouchi.com</p>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Hamlouchi;Amine;;;
+FN:Amine Hamlouchi
+TITLE:Product Engineering Intern
+ORG:Kamel Ride
+EMAIL;TYPE=INTERNET,PREF:amine@hamlouchi.com
+EMAIL;TYPE=INTERNET:aahaml01@louisville.edu
+TEL;TYPE=CELL,VOICE:+15026931063
+ADR;TYPE=HOME:;;;Louisville;KY;;USA
+URL:https://aminehamlouchi.com
+X-SOCIALPROFILE;TYPE=github:https://github.com/aminehamlouchi
+X-SOCIALPROFILE;TYPE=linkedin:https://www.linkedin.com/in/aminehamlouchi
+NOTE:Computer science at the University of Louisville, J.B. Speed School of Engineering. Minor in Arabic. Expected May 2028.
+END:VCARD
