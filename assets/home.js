@@ -17,10 +17,25 @@
   const motionOK = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
   const finePointer = window.matchMedia("(pointer: fine)").matches;
   const hasGsap = typeof window.gsap !== "undefined";
+  // Set by the classifier in the head. On the lite path the WebGL stage is
+  // never built and GSAP is never fetched, so the phone renders the static
+  // composition and nothing else runs.
+  const LITE = html.classList.contains("lite");
   const lerp = (a, b, t) => a + (b - a) * t;
   const clamp01 = (v) => Math.min(1, Math.max(0, v));
 
   html.classList.remove("no-js");
+  // The stage is opt in on phones, per the quality tier idea from
+  // bruno-simon.com: auto detection decides the default, the visitor decides.
+  const stageBtn = $("[data-stage-on]");
+  if (stageBtn) {
+    stageBtn.textContent = LITE ? "stage off" : "stage on";
+    stageBtn.setAttribute("aria-pressed", LITE ? "false" : "true");
+    stageBtn.addEventListener("click", () => {
+      try { localStorage.setItem("amine:stage", LITE ? "force" : "off"); } catch (e) {}
+      location.reload();
+    });
+  }
   // keep DOM motion on wall-clock time even when the GPU frame rate dips
   if (hasGsap) gsap.ticker.lagSmoothing(0);
 
@@ -329,7 +344,7 @@
       gl_FragColor = vec4(col, 1.0);
     }`;
 
-  const stage = (() => {
+  const stage = LITE ? null : (() => {
     const canvas = $("#stage");
     if (!canvas) return null;
     const gl = canvas.getContext("webgl", { antialias: false, alpha: false, powerPreference: "high-performance" });
