@@ -1,0 +1,25 @@
+name: site checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: internal links
+        run: node tools/check-links.mjs
+      - name: resume is the current resume
+        run: node tools/check-resume.mjs
+      - name: copy rules
+        run: node tools/check-copy.mjs
