@@ -33,7 +33,8 @@
     { "claim": "Bachelor of Arts in Computer Science, minor in Arabic, expected May 2028", "figure": "2028", "source": "resume", "where": "education" },
     { "claim": "HackKentucky 2026: 3rd overall and the Prologue Stories sponsor bounty", "figure": "3rd", "source": "resume", "where": "education, HackKentucky 2026" },
     { "claim": "Fourteen centuries on one timeline", "figure": "14", "source": "repo", "repo": "timeline", "where": "the timeline repository" },
-    { "claim": "8 to 12 parallel LLM sub agents over about 1,000 records", "figure": "8", "source": "resume", "where": "projects, Argument Knowledge Base" }
+    { "claim": "8 to 12 parallel LLM sub agents over about 1,000 records", "figure": "8", "source": "resume", "where": "projects, Argument Knowledge Base" },
+    { "claim": "9,994 orders modeled at 94.36 percent accuracy", "figure": "9,994", "source": "repo", "repo": "superstore-retail-analytics", "where": "the superstore-retail-analytics repository" }
   ],
   "removed": [
     {

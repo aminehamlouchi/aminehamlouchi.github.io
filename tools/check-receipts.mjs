@@ -65,10 +65,22 @@ for (const key of seen) {
 console.log("3. nothing on the site is unsourced");
 // A notable figure is a number a reader would treat as a claim: three or more
 // digits, or a grouped thousand. Years, phone numbers and dates are not claims.
-const covered = new Set(data.receipts.flatMap((r) => [r.figure, r.figure.replace(/,/g, "")]));
-// Not claims: years, his own phone number, and the Louisville coordinates
-// that the HUD prints as a location readout.
-const IGNORE = /^(20\d\d|19\d\d|502|693|1063|15026931063|2527|7585|109|100)$/;
+// A receipt covers its own figure and every number named in its claim text,
+// so "SHA-256" covers 256 and "about 1,000 records" covers 1,000.
+const covered = new Set();
+for (const r of data.receipts) {
+  for (const v of [r.figure, r.claim]) {
+    for (const m of String(v).matchAll(/\d[\d,]*/g)) {
+      covered.add(m[0]);
+      covered.add(m[0].replace(/,/g, ""));
+    }
+  }
+  covered.add(r.figure);
+}
+// Not claims: years, his own phone number, the Louisville coordinates the HUD
+// prints as a location readout, and 365 as part of the product name
+// Microsoft 365.
+const IGNORE = /^(20\d\d|19\d\d|502|693|1063|15026931063|2527|7585|109|100|365)$/;
 const found = new Set();
 for (const m of visible.matchAll(/\b(\d{1,3}(?:,\d{3})+|\d{3,})\b/g)) {
   const raw = m[1];
