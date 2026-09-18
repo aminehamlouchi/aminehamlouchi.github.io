@@ -21,5 +21,7 @@ jobs:
         run: node tools/check-links.mjs
       - name: resume is the current resume
         run: node tools/check-resume.mjs
+      - name: every number has a receipt
+        run: node tools/check-receipts.mjs
       - name: copy rules
         run: node tools/check-copy.mjs

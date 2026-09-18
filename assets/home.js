@@ -988,15 +988,21 @@
         const sec = sceneById(n);
         return sec ? go("#" + sec.id) : "scene 0 … 6";
       },
-      receipts: () =>
-        [
-          "731 canonical arguments · 893 rebuttals · 1,100+ citations   résumé › projects",
-          "80 active users · 106 API routes · 51 regression tests         résumé › projects",
-          "10 MB client cap vs 5 MB server cap (the upload bug)            résumé › experience",
-          "11 pages · SHA-256 photo dedupe pipeline                        résumé › experience",
-          "14 centuries on one timeline                                    repo › timeline",
-          "17k followers across platforms                                  amine, sep 2026",
-        ].join("\n"),
+      receipts: () => {
+        // receipts.json is the same file tools/check-receipts.mjs gates the
+        // build on, so the terminal and CI can never disagree.
+        if (receiptCache) return receiptCache;
+        fetch("receipts.json")
+          .then((r) => r.json())
+          .then((d) => {
+            receiptCache = d.receipts
+              .map((r) => "  " + r.claim.padEnd(52) + (d.sources[r.source]?.label || r.source) + " \u203a " + r.where)
+              .join("\n");
+            print(receiptCache);
+          })
+          .catch(() => print("  receipts.json did not load. it is at /receipts.json"));
+        return "reading receipts.json ...";
+      },
       play: (a) => {
         const g = (a[0] || "").toLowerCase();
         if (g.startsWith("check")) return (location.href = "checkers.html"), null;
@@ -1027,6 +1033,7 @@
     C.nikah = C.cv;
     C.mail = C.email;
     C.cv2 = C.resume;
+    let receiptCache = null;
     const run = (raw) => {
       const line = raw.trim();
       if (!line) return;
