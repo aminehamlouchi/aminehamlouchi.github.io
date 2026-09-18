@@ -1,5 +1,5 @@
 /* ============================================================
-   fonts.css — self-hosted, subset, no third-party requests.
+   fonts.css: self-hosted, subset, no third-party requests.
    Display : Bricolage Grotesque (variable weight, instanced at
              width 90 / optical size 96 to keep it under 40 KB)
    Body    : Hanken Grotesk (variable weight, Latin subset)
@@ -8,7 +8,7 @@
    Mono    : JetBrains Mono (status, receipts, terminal)
    ============================================================ */
 
-/* Bricolage Grotesque — latin */
+/* Bricolage Grotesque: latin */
 @font-face {
   font-family: "Bricolage Grotesque";
   font-style: normal;
@@ -18,7 +18,7 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Hanken Grotesk — latin */
+/* Hanken Grotesk: latin */
 @font-face {
   font-family: "Hanken Grotesk";
   font-style: normal;
@@ -28,7 +28,7 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* IBM Plex Sans Arabic — arabic */
+/* IBM Plex Sans Arabic: arabic */
 @font-face {
   font-family: "IBM Plex Sans Arabic";
   font-style: normal;
@@ -46,7 +46,7 @@
   unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
 }
 
-/* Reem Kufi — arabic (decorative accents only) */
+/* Reem Kufi: arabic (decorative accents only) */
 @font-face {
   font-family: "Reem Kufi";
   font-style: normal;
@@ -56,7 +56,7 @@
   unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
 }
 
-/* JetBrains Mono — latin */
+/* JetBrains Mono: latin */
 @font-face {
   font-family: "JetBrains Mono";
   font-style: normal;
@@ -90,7 +90,7 @@
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
-/* Big Shoulders Display — latin (v3 display face) */
+/* Big Shoulders Display: latin (v3 display face) */
 @font-face {
   font-family: "Big Shoulders Display";
   font-style: normal;
@@ -100,7 +100,7 @@
   unicode-range: U+0000-00FF, U+2013-2014, U+2019, U+2026, U+2192;
 }
 
-/* Instrument Serif — latin (v3 italic accents) */
+/* Instrument Serif: latin (v3 italic accents) */
 @font-face {
   font-family: "Instrument Serif";
   font-style: italic;

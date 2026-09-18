@@ -1,0 +1,12 @@
+{
+  "source": "~/Claude/JobHunt",
+  "sourcePattern": "AmineHamlouchiResume<N>.pdf, highest N wins",
+  "version": 13,
+  "sha1": "722a65013fd0f5a4dded72e93391decf9cdfb93a",
+  "paths": [
+    "AmineHamlouchiResume.pdf",
+    "assets/amine-hamlouchi-resume.pdf"
+  ],
+  "preview": "assets/previews/resume-page.webp",
+  "note": "Both paths are byte identical on purpose. The job-application automation uploads /AmineHamlouchiResume.pdf; the site has linked assets/amine-hamlouchi-resume.pdf since 2026, so neither may 404."
+}

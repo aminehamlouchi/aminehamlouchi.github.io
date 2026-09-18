@@ -1,5 +1,5 @@
 /* ============================================================
-   home.js — aminehamlouchi.com v3, "the stage"
+   home.js: aminehamlouchi.com v3, "the stage"
    A full-screen WebGL stage (raw WebGL, no library) renders a
    procedural world per scene and shader transitions between them.
    Native scroll + snap drives the scene index. GSAP (vendored,

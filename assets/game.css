@@ -1,5 +1,5 @@
 /* ============================================================
-   game.css — checkers and 3D tic-tac-toe on the stage system.
+   game.css: checkers and 3D tic-tac-toe on the stage system.
    Layout and board rules ported from the v2 stylesheet onto the
    home.css tokens. The game engines (checkers.js, tictactoe3d.js)
    only depend on these class names.
