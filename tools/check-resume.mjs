@@ -51,13 +51,15 @@ for (const file of walk(ROOT)) {
     // not a path. Only count it if a file of that name really sits at the root.
     if (!href.includes("/") && !existsSync(join(ROOT, href))) continue;
     refCount++;
-    // Absolute hrefs are site rooted; relative ones resolve against the file
-    // that contains them, which matters for pages in subdirectories like /hi.
-    const target = href.startsWith("/")
-      ? normalize(join(ROOT, href.slice(1)))
-      : normalize(join(dirname(file), href));
-    if (!existsSync(target)) bad(`${rel} -> ${href} does not resolve`);
-    else if (sha1(target) !== manifest.sha1) bad(`${rel} -> ${href} is a stale resume (${sha1(target).slice(0, 12)})`);
+    // An href in an HTML file resolves against that file. The same string in
+    // a script resolves against whichever page loaded the script, so try the
+    // repository root too and accept either.
+    const candidates = href.startsWith("/")
+      ? [normalize(join(ROOT, href.slice(1)))]
+      : [normalize(join(dirname(file), href)), normalize(join(ROOT, href))];
+    const hit = candidates.find((c) => existsSync(c));
+    if (!hit) bad(`${rel} -> ${href} does not resolve`);
+    else if (sha1(hit) !== manifest.sha1) bad(`${rel} -> ${href} is a stale resume (${sha1(hit).slice(0, 12)})`);
   }
 }
 ok(`${refCount} PDF references, all resolving to the current resume`);
