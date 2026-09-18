@@ -8,17 +8,181 @@
       content="Amine Hamlouchi. Computer science at the University of Louisville, minor in Arabic. Product engineering intern at Kamel Ride, IT analyst intern at Parker Hannifin, founder of InterLogue, Rumi, and Minbar."
     >
     <meta name="theme-color" content="#05070a">
+    <link rel="canonical" href="https://aminehamlouchi.com/">
+    <meta property="og:site_name" content="Amine Hamlouchi">
+    <meta property="og:type" content="profile">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ar_MA">
     <meta property="og:title" content="Amine Hamlouchi · أمين حملوشي">
     <meta property="og:description" content="CS at Louisville, Arabic minor. Seven scenes, one stage.">
-    <meta property="og:url" content="https://aminehamlouchi.com">
-    <meta property="og:type" content="website">
-    <link rel="canonical" href="https://aminehamlouchi.com/">
+    <meta property="og:url" content="https://aminehamlouchi.com/">
+    <meta property="og:image" content="https://aminehamlouchi.com/assets/og/home.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Amine Hamlouchi, computer science at the University of Louisville, minor in Arabic.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Amine Hamlouchi · أمين حملوشي">
+    <meta name="twitter:description" content="CS at Louisville, Arabic minor. Seven scenes, one stage.">
+    <meta name="twitter:image" content="https://aminehamlouchi.com/assets/og/home.jpg">
     <title>Amine Hamlouchi · أمين حملوشي</title>
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="preload" href="assets/fonts/BigShouldersDisplay-100-900-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/IBMPlexSansArabic-700-normal-arabic.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="stylesheet" href="assets/fonts.css?v=3">
-    <link rel="stylesheet" href="assets/home.css?v=4">
+    <link rel="preload" href="assets/model/paper-amine.webp" as="image" type="image/webp" fetchpriority="high">
+    <style>
+/* fonts.css inlined: it was the second render blocking request in
+   the critical path and it is 1 KB. The file stays for the other pages. */
+/* ============================================================
+   fonts.css: self-hosted, subset, no third-party requests.
+   Display : Bricolage Grotesque (variable weight, instanced at
+             width 90 / optical size 96 to keep it under 40 KB)
+   Body    : Hanken Grotesk (variable weight, Latin subset)
+   Arabic  : IBM Plex Sans Arabic 400 / 700 (name, phrases)
+             Reem Kufi 400–700 (large decorative Kufi accents)
+   Mono    : JetBrains Mono (status, receipts, terminal)
+   ============================================================ */
+
+/* Bricolage Grotesque: latin */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url(assets/fonts/BricolageGrotesque-400-800-normal-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Hanken Grotesk: latin */
+@font-face {
+  font-family: "Hanken Grotesk";
+  font-style: normal;
+  font-weight: 300 800;
+  font-display: swap;
+  src: url(assets/fonts/HankenGrotesk-300-800-normal-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* IBM Plex Sans Arabic: arabic */
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/IBMPlexSansArabic-400-normal-arabic.woff2) format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+@font-face {
+  font-family: "IBM Plex Sans Arabic";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(assets/fonts/IBMPlexSansArabic-700-normal-arabic.woff2) format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+
+/* Reem Kufi: arabic (decorative accents only) */
+@font-face {
+  font-family: "Reem Kufi";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url(assets/fonts/ReemKufi-400-700-normal-arabic.woff2) format("woff2");
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-088E, U+0890-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E, U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC;
+}
+
+/* JetBrains Mono: latin */
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/JetBrainsMono-400-normal-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/JetBrainsMono-400-italic-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(assets/fonts/JetBrainsMono-500-normal-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(assets/fonts/JetBrainsMono-700-normal-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* Big Shoulders Display: latin (v3 display face) */
+@font-face {
+  font-family: "Big Shoulders Display";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url(assets/fonts/BigShouldersDisplay-100-900-normal-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+2013-2014, U+2019, U+2026, U+2192;
+}
+
+/* Instrument Serif: latin (v3 italic accents) */
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/InstrumentSerif-400-italic-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/fonts/InstrumentSerif-400-normal-latin.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+    </style>
+    <link rel="stylesheet" href="assets/home.css?v=5">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Amine Hamlouchi",
+        "alternateName": "أمين حملوشي",
+        "url": "https://aminehamlouchi.com/",
+        "image": "https://aminehamlouchi.com/assets/og/home.jpg",
+        "email": "mailto:amine@hamlouchi.com",
+        "jobTitle": "Product Engineering Intern",
+        "description": "Computer science student at the University of Louisville, J.B. Speed School of Engineering, with a minor in Arabic.",
+        "homeLocation": { "@type": "Place", "name": "Louisville, Kentucky" },
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Louisville, J.B. Speed School of Engineering"
+        },
+        "worksFor": [
+          { "@type": "Organization", "name": "Kamel Ride" },
+          { "@type": "Organization", "name": "Parker Hannifin" },
+          { "@type": "Organization", "name": "Alnur Mosque Islamic Center" }
+        ],
+        "knowsLanguage": ["en", "ar"],
+        "sameAs": [
+          "https://github.com/aminehamlouchi",
+          "https://www.linkedin.com/in/aminehamlouchi",
+          "https://interloguemcp.com",
+          "https://findyourrumi.com"
+        ]
+      }
+    </script>
   </head>
   <body data-scene="0">
     <a class="skip-link" href="#work">Skip to the work</a>
@@ -41,6 +205,7 @@
       </nav>
       <div class="hud-tools">
         <span class="hud-mini" aria-hidden="true"><b data-counter-mini>00</b>/06</span>
+        <button type="button" data-stage-on aria-pressed="false">stage off</button>
         <button type="button" data-sound aria-pressed="false">sound off</button>
         <button type="button" class="term-toggle" data-term-open aria-label="Open the terminal"><kbd>/</kbd> terminal</button>
       </div>
@@ -260,7 +425,7 @@
             <h2 class="display comm-title" id="comm-title" data-split>Raised in a masjid. <span class="serif">Built for it.</span></h2>
             <div class="comm-copy" data-stagger>
               <p>I grew up around Alnur Mosque, and most of what I build outside work exists because someone there needed it: <b>a website, a way for volunteers to publish photos without a developer, a platform to host a visiting scholar.</b></p>
-              <p>Dawah is a real part of my life. I make educational Islamic reminders and short teaching posts; across platforms that has reached <b>17k followers</b>. I also serve on the executive board of UofL's Muslim Student Association.</p>
+              <p>Dawah is a real part of my life. I make educational Islamic reminders and short teaching posts. I also serve on the executive board of UofL's Muslim Student Association.</p>
               <div class="proverb">
                 <p class="ar" lang="ar">مَن <em>جَدَّ</em> وَجَدَ</p>
                 <p class="en">whoever strives, finds.</p>
@@ -270,7 +435,7 @@
           <div class="comm-list" data-stagger>
             <article class="comm-item"><span class="when">2025–26</span><div><h3>UofL Muslim Student Association</h3><p>Executive board, 2025–26.</p></div></article>
             <article class="comm-item"><span class="when">2024–</span><div><h3>Alnur Mosque Islamic Center</h3><p>Technical lead for digital operations: the public site, the volunteer photo pipeline, the Google Workspace migration, livestreaming and A/V for weekly programs.</p><div class="links"><a href="alnur/">the site</a><a href="https://github.com/aminehamlouchi/aminehamlouchi.github.io/blob/main/.github/workflows/alnur-gallery.yml" target="_blank" rel="noreferrer">the pipeline</a></div></div></article>
-            <article class="comm-item"><span class="when">ongoing</span><div><h3>Dawah content</h3><p>Educational Islamic reminders and short teaching posts. 17k followers across platforms.</p><div class="links"><a href="https://www.tiktok.com/@aminehamlouchi" target="_blank" rel="noreferrer">TikTok</a><a href="https://www.youtube.com/@AmineHamlouchi" target="_blank" rel="noreferrer">YouTube</a></div></div></article>
+            <article class="comm-item"><span class="when">ongoing</span><div><h3>Dawah content</h3><p>Educational Islamic reminders and short teaching posts, on TikTok and YouTube.</p><div class="links"><a href="https://www.tiktok.com/@aminehamlouchi" target="_blank" rel="noreferrer">TikTok</a><a href="https://www.youtube.com/@AmineHamlouchi" target="_blank" rel="noreferrer">YouTube</a></div></div></article>
             <article class="comm-item"><span class="when">2026</span><div><h3><a href="https://ourminbar.com" target="_blank" rel="noreferrer">Minbar</a></h3><p>Book and host a visiting scholar, from first confirmation to a gracious farewell. Founded and built; it has run a real visit.</p><div class="links"><a href="https://ourminbar.com" target="_blank" rel="noreferrer">ourminbar.com</a></div></div></article>
             <article class="comm-item"><span class="when">2026</span><div><h3><a href="timeline/">The Islamic Timeline</a></h3><p>Fourteen centuries on one honest scale, with Hijri and Gregorian dating, an atlas, and cited sources.</p><div class="links"><a href="timeline/">aminehamlouchi.com/timeline</a><a href="https://github.com/aminehamlouchi/timeline" target="_blank" rel="noreferrer">repo</a></div></div></article>
             <article class="comm-item"><span class="when">2026</span><div><h3>Tools for masjids and MSAs</h3><p>A source-grounded dawah content assistant that cites the notes it used, and an operations dashboard for RSVPs, volunteer shifts, and staffing.</p><div class="links"><a href="https://github.com/aminehamlouchi/sourcewise-dawah-agent" target="_blank" rel="noreferrer">sourcewise-dawah-agent</a><a href="https://github.com/aminehamlouchi/masjidflow-ops" target="_blank" rel="noreferrer">masjidflow-ops</a></div></div></article>
@@ -384,7 +549,40 @@
       </div>
     </dialog>
 
-    <script src="assets/vendor/gsap.min.js"></script>
-    <script src="assets/home.js?v=3"></script>
+    <script>
+      /* Capability gate, inline and first, so nothing heavy is requested on a
+         device that cannot afford it. A WebGL stage with six shader worlds is
+         the wrong trade on a phone: the reader wants the work, not the frame
+         rate. Phones get the static composition and can opt in with the
+         "stage off" control in the header. The choice sticks. */
+      (function () {
+        var d = document, n = navigator, h = d.documentElement, forced = null;
+        try { forced = localStorage.getItem("amine:stage"); } catch (e) {}
+        var conn = n.connection || {};
+        var lite =
+          forced === "off" ||
+          conn.saveData === true ||
+          /(^|-)(2g|slow-2g)$/.test(conn.effectiveType || "") ||
+          (typeof n.deviceMemory === "number" && n.deviceMemory <= 4) ||
+          (typeof n.hardwareConcurrency === "number" && n.hardwareConcurrency <= 4) ||
+          matchMedia("(prefers-reduced-motion: reduce)").matches ||
+          (matchMedia("(pointer: coarse)").matches && matchMedia("(max-width: 900px)").matches);
+        if (forced === "force") lite = false;
+        if (!lite) {
+          try {
+            var c = d.createElement("canvas");
+            lite = !(c.getContext("webgl2") || c.getContext("webgl"));
+          } catch (e) { lite = true; }
+        }
+        h.classList.add(lite ? "lite" : "full");
+        var q = "?v=5";
+        function load(src) {
+          var s = d.createElement("script");
+          s.src = src; s.async = false; d.head.appendChild(s);
+        }
+        if (!lite) load("assets/vendor/gsap.min.js");
+        load("assets/home.js" + q);
+      })();
+    </script>
   </body>
 </html>

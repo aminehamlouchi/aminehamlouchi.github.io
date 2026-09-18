@@ -179,11 +179,13 @@ button {
   transition: background 800ms ease;
 }
 
-html.no-gl .stage-fallback {
+html.no-gl .stage-fallback,
+html.lite .stage-fallback {
   display: block;
 }
 
-html.no-gl .stage {
+html.no-gl .stage,
+html.lite .stage {
   display: none;
 }
 
@@ -2239,3 +2241,7 @@ html.has-cursor button {
     transform: none !important;
   }
 }
+
+/* The stage is opt in on phones. The control only exists when it is off. */
+html.full [data-stage-on] { display: none; }
+[data-stage-on] { font-variant-numeric: tabular-nums; }

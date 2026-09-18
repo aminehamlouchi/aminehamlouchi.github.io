@@ -17,10 +17,25 @@
   const motionOK = window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
   const finePointer = window.matchMedia("(pointer: fine)").matches;
   const hasGsap = typeof window.gsap !== "undefined";
+  // Set by the classifier in the head. On the lite path the WebGL stage is
+  // never built and GSAP is never fetched, so the phone renders the static
+  // composition and nothing else runs.
+  const LITE = html.classList.contains("lite");
   const lerp = (a, b, t) => a + (b - a) * t;
   const clamp01 = (v) => Math.min(1, Math.max(0, v));
 
   html.classList.remove("no-js");
+  // The stage is opt in on phones, per the quality tier idea from
+  // bruno-simon.com: auto detection decides the default, the visitor decides.
+  const stageBtn = $("[data-stage-on]");
+  if (stageBtn) {
+    stageBtn.textContent = LITE ? "stage off" : "stage on";
+    stageBtn.setAttribute("aria-pressed", LITE ? "false" : "true");
+    stageBtn.addEventListener("click", () => {
+      try { localStorage.setItem("amine:stage", LITE ? "force" : "off"); } catch (e) {}
+      location.reload();
+    });
+  }
   // keep DOM motion on wall-clock time even when the GPU frame rate dips
   if (hasGsap) gsap.ticker.lagSmoothing(0);
 
@@ -329,7 +344,7 @@
       gl_FragColor = vec4(col, 1.0);
     }`;
 
-  const stage = (() => {
+  const stage = LITE ? null : (() => {
     const canvas = $("#stage");
     if (!canvas) return null;
     const gl = canvas.getContext("webgl", { antialias: false, alpha: false, powerPreference: "high-performance" });
@@ -988,15 +1003,21 @@
         const sec = sceneById(n);
         return sec ? go("#" + sec.id) : "scene 0 … 6";
       },
-      receipts: () =>
-        [
-          "731 canonical arguments · 893 rebuttals · 1,100+ citations   résumé › projects",
-          "80 active users · 106 API routes · 51 regression tests         résumé › projects",
-          "10 MB client cap vs 5 MB server cap (the upload bug)            résumé › experience",
-          "11 pages · SHA-256 photo dedupe pipeline                        résumé › experience",
-          "14 centuries on one timeline                                    repo › timeline",
-          "17k followers across platforms                                  amine, sep 2026",
-        ].join("\n"),
+      receipts: () => {
+        // receipts.json is the same file tools/check-receipts.mjs gates the
+        // build on, so the terminal and CI can never disagree.
+        if (receiptCache) return receiptCache;
+        fetch("receipts.json")
+          .then((r) => r.json())
+          .then((d) => {
+            receiptCache = d.receipts
+              .map((r) => "  " + r.claim.padEnd(52) + (d.sources[r.source]?.label || r.source) + " \u203a " + r.where)
+              .join("\n");
+            print(receiptCache);
+          })
+          .catch(() => print("  receipts.json did not load. it is at /receipts.json"));
+        return "reading receipts.json ...";
+      },
       play: (a) => {
         const g = (a[0] || "").toLowerCase();
         if (g.startsWith("check")) return (location.href = "checkers.html"), null;
@@ -1027,6 +1048,7 @@
     C.nikah = C.cv;
     C.mail = C.email;
     C.cv2 = C.resume;
+    let receiptCache = null;
     const run = (raw) => {
       const line = raw.trim();
       if (!line) return;

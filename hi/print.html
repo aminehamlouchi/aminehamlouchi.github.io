@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <title>Print card · Amine Hamlouchi</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+    <style>
+      /* A print sheet, not a web page. Four cards to a US Letter page, cut and
+         hand out. The QR points at /hi, which is the 6 KB card. */
+      *{ margin:0; padding:0; box-sizing:border-box; }
+      body{ background:#e9e6df; color:#0b0d11; font:400 16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; padding:24px; }
+      .sheet{ max-width:7.5in; margin:0 auto; display:grid; grid-template-columns:repeat(2,1fr); gap:.25in; }
+      .card{
+        background:#fff; border:1px dashed #b3ada0; border-radius:10px;
+        padding:.34in .36in; display:grid; grid-template-columns:1fr auto; gap:.2in; align-items:center;
+      }
+      .name{ font-weight:750; font-size:15.5pt; letter-spacing:-.01em; line-height:1.1; }
+      .ar{ font-size:11pt; color:#7a6a45; direction:rtl; unicode-bidi:isolate; margin-top:2pt; }
+      .role{ font-size:8.6pt; color:#454b56; margin-top:5pt; line-height:1.35; }
+      .url{ font:600 8.4pt/1 ui-monospace,SFMono-Regular,Menlo,monospace; color:#0b0d11; margin-top:7pt; letter-spacing:.02em; }
+      .qr{ width:1.05in; height:1.05in; }
+      .qr img{ width:100%; height:100%; display:block; }
+      .hint{ max-width:7.5in; margin:0 auto 18px; font-size:13px; color:#4b5159; }
+      @media print{
+        body{ background:#fff; padding:.3in; }
+        .hint{ display:none; }
+        .card{ border-color:#c9c4b8; break-inside:avoid; }
+        @page{ size:letter; margin:.35in; }
+      }
+    </style>
+  </head>
+  <body>
+    <p class="hint">
+      Print this at 100 percent on US Letter, then cut along the dashed lines.
+      Each QR opens aminehamlouchi.com/hi, which is a 6 KB page that loads on
+      career fair wifi.
+    </p>
+    <div class="sheet">
+      <div class="card">
+        <div>
+          <p class="name">Amine Hamlouchi</p>
+          <p class="ar" lang="ar">أمين حملوشي</p>
+          <p class="role">Computer science, University of Louisville<br>Minor in Arabic · May 2028</p>
+          <p class="url">aminehamlouchi.com/hi</p>
+        </div>
+        <div class="qr"><img src="qr.svg" alt="QR code for aminehamlouchi.com/hi" width="100" height="100"></div>
+      </div>
+      <div class="card">
+        <div>
+          <p class="name">Amine Hamlouchi</p>
+          <p class="ar" lang="ar">أمين حملوشي</p>
+          <p class="role">Computer science, University of Louisville<br>Minor in Arabic · May 2028</p>
+          <p class="url">aminehamlouchi.com/hi</p>
+        </div>
+        <div class="qr"><img src="qr.svg" alt="QR code for aminehamlouchi.com/hi" width="100" height="100"></div>
+      </div>
+      <div class="card">
+        <div>
+          <p class="name">Amine Hamlouchi</p>
+          <p class="ar" lang="ar">أمين حملوشي</p>
+          <p class="role">Computer science, University of Louisville<br>Minor in Arabic · May 2028</p>
+          <p class="url">aminehamlouchi.com/hi</p>
+        </div>
+        <div class="qr"><img src="qr.svg" alt="QR code for aminehamlouchi.com/hi" width="100" height="100"></div>
+      </div>
+      <div class="card">
+        <div>
+          <p class="name">Amine Hamlouchi</p>
+          <p class="ar" lang="ar">أمين حملوشي</p>
+          <p class="role">Computer science, University of Louisville<br>Minor in Arabic · May 2028</p>
+          <p class="url">aminehamlouchi.com/hi</p>
+        </div>
+        <div class="qr"><img src="qr.svg" alt="QR code for aminehamlouchi.com/hi" width="100" height="100"></div>
+      </div>
+    </div>
+  </body>
+</html>
