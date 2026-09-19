@@ -19,6 +19,8 @@ jobs:
           node-version: 22
       - name: internal links
         run: node tools/check-links.mjs
+      - name: pdf text extractor
+        run: python3 -m pip install --quiet pypdf
       - name: resume is the current resume
         run: node tools/check-resume.mjs
       - name: every number has a receipt

@@ -2322,3 +2322,12 @@ html.has-cursor .term-scroll {
 @media (pointer: fine) {
   .fine-only { display: inline; }
 }
+
+/* resume.html: the one line that explains why the page and the PDF differ. */
+.rnote {
+  margin: 0.7rem 0 0;
+  max-width: 44ch;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--bone-3);
+}

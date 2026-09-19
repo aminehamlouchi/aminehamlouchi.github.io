@@ -28,29 +28,18 @@
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="preload" href="assets/fonts/BigShouldersDisplay-100-900-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/IBMPlexSansArabic-700-normal-arabic.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/model/paper-amine.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" type="image/webp" fetchpriority="high" href="assets/model/paper-amine.webp" imagesrcset="assets/model/paper-amine-440.webp 440w, assets/model/paper-amine.webp 893w" imagesizes="(max-width: 780px) 58vw, 440px">
     <style>
 /* fonts.css inlined: it was the second render blocking request in
    the critical path and it is 1 KB. The file stays for the other pages. */
 /* ============================================================
    fonts.css: self-hosted, subset, no third-party requests.
-   Display : Bricolage Grotesque (variable weight, instanced at
-             width 90 / optical size 96 to keep it under 40 KB)
    Body    : Hanken Grotesk (variable weight, Latin subset)
    Arabic  : IBM Plex Sans Arabic 400 / 700 (name, phrases)
              Reem Kufi 400–700 (large decorative Kufi accents)
    Mono    : JetBrains Mono (status, receipts, terminal)
    ============================================================ */
 
-/* Bricolage Grotesque: latin */
-@font-face {
-  font-family: "Bricolage Grotesque";
-  font-style: normal;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url(assets/fonts/BricolageGrotesque-400-800-normal-latin.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
 
 /* Hanken Grotesk: latin */
 @font-face {
@@ -91,36 +80,21 @@
 }
 
 /* JetBrains Mono: latin */
+
 @font-face {
   font-family: "JetBrains Mono";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 100 800;
   font-display: swap;
-  src: url(assets/fonts/JetBrainsMono-400-normal-latin.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url(assets/fonts/JetBrainsMono-100-800-normal-latin.woff2) format("woff2");
 }
+
 @font-face {
   font-family: "JetBrains Mono";
   font-style: italic;
   font-weight: 400;
   font-display: swap;
   src: url(assets/fonts/JetBrainsMono-400-italic-latin.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "JetBrains Mono";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(assets/fonts/JetBrainsMono-500-normal-latin.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "JetBrains Mono";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(assets/fonts/JetBrainsMono-700-normal-latin.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
@@ -143,14 +117,7 @@
   src: url(assets/fonts/InstrumentSerif-400-italic-latin.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-@font-face {
-  font-family: "Instrument Serif";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(assets/fonts/InstrumentSerif-400-normal-latin.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
+
     </style>
     <link rel="stylesheet" href="assets/home.css?v=6">
     <script type="application/ld+json">
@@ -257,7 +224,7 @@
             <div class="paper-glow" aria-hidden="true"></div>
             <div class="paper-card">
               <div class="paper-face front">
-                <img src="assets/model/paper-amine.webp" width="893" height="980" alt="Paper cutout of Amine Hamlouchi in a suit and tie" fetchpriority="high">
+                <img src="assets/model/paper-amine.webp" srcset="assets/model/paper-amine-440.webp 440w, assets/model/paper-amine.webp 893w" sizes="(max-width: 780px) 58vw, 440px" width="893" height="980" alt="Paper cutout of Amine Hamlouchi in a suit and tie" fetchpriority="high">
               </div>
               <div class="paper-face back" aria-hidden="true">
                 <p class="ar" lang="ar">مَن جَدَّ وَجَدَ</p>
@@ -482,7 +449,7 @@
             <div class="row"><span class="k">linkedin</span><span class="v"><a href="https://www.linkedin.com/in/aminehamlouchi" target="_blank" rel="noreferrer">linkedin.com/in/aminehamlouchi</a></span></div>
             <div class="row"><span class="k">tiktok</span><span class="v"><a href="https://www.tiktok.com/@aminehamlouchi" target="_blank" rel="noreferrer">@aminehamlouchi</a></span></div>
             <div class="row"><span class="k">youtube</span><span class="v"><a href="https://www.youtube.com/@AmineHamlouchi" target="_blank" rel="noreferrer">@AmineHamlouchi</a></span></div>
-            <div class="row"><span class="k">résumé</span><span class="v"><a href="#resume">on the stage</a> · <a href="resume.html">full text</a></span></div>
+            <div class="row"><span class="k">résumé</span><span class="v"><a href="#resume">on the stage</a> · <a href="resume.html">long version</a></span></div>
             <div class="row"><span class="k">short card</span><span class="v"><a href="hi/">aminehamlouchi.com/hi</a></span></div>
           </div>
           <p class="credits">
@@ -512,7 +479,7 @@
             <div class="actions">
               <button class="btn solid" type="button" data-open-resume>Read the PDF here</button>
               <a class="btn" href="assets/amine-hamlouchi-resume.pdf" download>Download</a>
-              <a class="btn" href="resume.html">Full text</a>
+              <a class="btn" href="resume.html">Long version</a>
             </div>
           </div>
           <button class="sheet" type="button" data-sheet="6" data-open-resume aria-label="Open the résumé PDF in a viewer">

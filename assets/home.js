@@ -473,7 +473,12 @@
           state.pending = null;
           if (next) this.transition(next.to, next.effect, next.done);
         };
-        if (to === state.sceneB && state.tween) return;
+        /* The destination is whatever is queued, not merely the world that is
+           fading in right now. Comparing against sceneB alone meant a flick
+           down two scenes and back was swallowed here while the queue still
+           pointed two scenes away, leaving the stage on the wrong world. */
+        const target = state.pending ? state.pending.to : state.sceneB;
+        if (to === target && state.tween) return;
         /* already mid-transition: never reset progress (that is the visible
            snap-back). Queue the newest target and let the running tween
            accelerate to its end, so the picture keeps moving one way. */
