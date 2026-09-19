@@ -2332,42 +2332,29 @@ html.has-cursor .term-scroll {
   color: var(--bone-3);
 }
 
-/* The cabinet: nine buttons filling one repo card, no words. */
-.repo-cab { cursor: default; display: block; padding: 8px; }
-.repo-cab:hover { transform: none; }
+/* The cabinet: nine flat cells filling one repo card. No border, no dots,
+   no rounded corners. Grey with the scene's green in it. */
+.repo-cab { cursor: default; display: block; padding: 0; border: 0; background: transparent; overflow: visible; }
+.repo-cab::before { display: none; }
+.repo-cab:hover { transform: none; border-color: transparent; }
 .cab-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  gap: 6px;
+  gap: 4px;
   width: 100%;
   height: 100%;
   min-height: 116px;
 }
 .cab-grid button {
-  border: 1px solid var(--line-2, rgba(244, 241, 234, 0.28));
-  border-radius: 4px;
-  background: rgba(5, 7, 10, 0.55);
+  border: 0;
+  border-radius: 0;
+  background: rgba(var(--tint-rgb), 0.13);
   cursor: pointer;
   padding: 0;
-  position: relative;
-  transition: border-color 160ms ease, background 160ms ease, transform 120ms ease;
+  transition: background 140ms ease, transform 100ms ease;
 }
-.cab-grid button::after {
-  content: "";
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  background: rgba(var(--tint-rgb), 0.35);
-  transition: background 160ms ease, box-shadow 160ms ease;
-}
-.cab-grid button:hover { border-color: rgba(var(--tint-rgb), 0.55); }
-.cab-grid button:active, .cab-grid button.is-lit { transform: translateY(1px); background: rgba(var(--tint-rgb), 0.12); }
-.cab-grid button.is-lit::after { background: rgb(var(--tint-rgb)); box-shadow: 0 0 10px rgba(var(--tint-rgb), 0.8); }
-.cab-grid button:focus-visible { outline: 2px solid rgb(var(--tint-rgb)); outline-offset: 2px; }
-.repo-cab.is-open { border-color: rgba(var(--tint-rgb), 0.8); }
-.repo-cab.is-open .cab-grid button::after { background: rgb(var(--tint-rgb)); }
+.cab-grid button:hover { background: rgba(var(--tint-rgb), 0.24); }
+.cab-grid button:active, .cab-grid button.is-lit { background: rgba(var(--tint-rgb), 0.55); transform: scale(0.97); }
+.cab-grid button:focus-visible { outline: 2px solid rgb(var(--tint-rgb)); outline-offset: -2px; }
+.repo-cab.is-open .cab-grid button { background: rgba(var(--tint-rgb), 0.7); }
