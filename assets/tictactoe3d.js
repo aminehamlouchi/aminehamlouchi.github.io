@@ -167,7 +167,17 @@
       fragment.append(layerCard);
     }
 
+    // Same rebuild, same dropped focus as checkers.js. Cells carry
+    // data-index here, so remember that and give it back.
+    const active = document.activeElement;
+    const focusedIndex = active && active.dataset && active.dataset.index !== undefined
+      ? active.dataset.index
+      : null;
     boardEl.replaceChildren(fragment);
+    if (focusedIndex !== null) {
+      const again = boardEl.querySelector(`[data-index="${focusedIndex}"]`);
+      if (again) again.focus({ preventScroll: true });
+    }
     if (turnEl) turnEl.textContent = state.winner || state.turn;
     if (xCountEl) xCountEl.textContent = String(count("X"));
     if (oCountEl) oCountEl.textContent = String(count("O"));

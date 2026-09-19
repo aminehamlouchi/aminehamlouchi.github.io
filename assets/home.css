@@ -9,7 +9,7 @@
   --ink: #05070a;
   --bone: #eef0f2;
   --bone-2: rgba(238, 240, 242, 0.68);
-  --bone-3: rgba(238, 240, 242, 0.42);
+  --bone-3: rgba(238, 240, 242, 0.58);
   --line: rgba(238, 240, 242, 0.12);
   --line-2: rgba(238, 240, 242, 0.24);
   --teal: #5cf0c2;
@@ -2245,3 +2245,116 @@ html.has-cursor button {
 /* The stage is opt in on phones. The control only exists when it is off. */
 html.full [data-stage-on] { display: none; }
 [data-stage-on] { font-variant-numeric: tabular-nums; }
+
+/* A dialog opened with showModal() paints in the top layer, which sits above
+   every z-index, so the custom cursor at z-index 120 is hidden behind it while
+   html.has-cursor still sets cursor: none. That left no pointer and no caret
+   inside the terminal and the resume viewer. Hand those two back to the
+   native cursor. */
+html.has-cursor .terminal,
+html.has-cursor .terminal *,
+html.has-cursor .viewer,
+html.has-cursor .viewer * {
+  cursor: auto;
+}
+
+html.has-cursor .terminal a,
+html.has-cursor .terminal button,
+html.has-cursor .viewer a,
+html.has-cursor .viewer button {
+  cursor: pointer;
+}
+
+html.has-cursor .term-input-row,
+html.has-cursor .term-input-row input,
+html.has-cursor .term-scroll {
+  cursor: text;
+}
+
+.term-input-row input {
+  caret-color: var(--tint, #9fd0ff);
+}
+
+/* Clicking anywhere in the body of the terminal should focus the prompt. */
+.term-scroll {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* The contact rows broke mid token: "aahaml01@louisville.e / du" and
+   "linkedin.com/in/aminehamlo / uchi". Cause was overflow-wrap: anywhere
+   inside columns that could go as narrow as 220px. Widen the column so the
+   long values fit beside their label, let the row wrap so a value that still
+   does not fit drops to its own line, and only break inside a word when there
+   is no other option. */
+.contact-grid {
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+}
+
+.contact-grid .row {
+  flex-wrap: wrap;
+}
+
+.contact-grid .k {
+  white-space: nowrap;
+}
+
+.contact-grid .v {
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.credits {
+  overflow-wrap: break-word;
+}
+
+/* The ask. He is hunting 2027 internships and the page never said so. */
+.intro-ask {
+  margin: 0.55rem 0 0.15rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--tint, #9fd0ff);
+}
+
+/* Instructions that need a keyboard only appear where there is one. */
+.fine-only { display: none; }
+@media (pointer: fine) {
+  .fine-only { display: inline; }
+}
+
+/* resume.html: the one line that explains why the page and the PDF differ. */
+.rnote {
+  margin: 0.7rem 0 0;
+  max-width: 44ch;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--bone-3);
+}
+
+/* The cabinet: nine flat cells filling one repo card. No border, no dots,
+   no rounded corners. Grey with the scene's green in it. */
+.repo-cab { cursor: default; display: block; padding: 0; border: 0; background: transparent; overflow: visible; }
+.repo-cab::before { display: none; }
+.repo-cab:hover { transform: none; border-color: transparent; }
+.cab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  min-height: 116px;
+}
+.cab-grid button {
+  border: 0;
+  border-radius: 0;
+  background: rgba(var(--tint-rgb), 0.13);
+  cursor: pointer;
+  padding: 0;
+  transition: background 140ms ease, transform 100ms ease;
+}
+.cab-grid button:hover { background: rgba(var(--tint-rgb), 0.24); }
+.cab-grid button:active, .cab-grid button.is-lit { background: rgba(var(--tint-rgb), 0.55); transform: scale(0.97); }
+.cab-grid button:focus-visible { outline: 2px solid rgb(var(--tint-rgb)); outline-offset: -2px; }
+.repo-cab.is-open .cab-grid button { background: rgba(var(--tint-rgb), 0.7); }

@@ -300,7 +300,18 @@
       }
     }
 
-    boardEl.replaceChildren(fragment);
+    // render() rebuilds every square, which drops keyboard focus to <body> on
+  // every move. Remember which square was focused and give it back.
+  const active = document.activeElement;
+  const focusedKey = active && active.dataset && active.dataset.row !== undefined
+    ? `${active.dataset.row}:${active.dataset.col}`
+    : null;
+  boardEl.replaceChildren(fragment);
+  if (focusedKey) {
+    const [r, c] = focusedKey.split(":");
+    const again = boardEl.querySelector(`[data-row="${r}"][data-col="${c}"]`);
+    if (again) again.focus({ preventScroll: true });
+  }
     if (turnEl) turnEl.textContent = state.winner ? players[state.winner].label : players[state.turn].label;
     if (redScoreEl) redScoreEl.textContent = String(12 - countPieces("blue"));
     if (blueScoreEl) blueScoreEl.textContent = String(12 - countPieces("red"));

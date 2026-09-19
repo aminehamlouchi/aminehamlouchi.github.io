@@ -473,7 +473,12 @@
           state.pending = null;
           if (next) this.transition(next.to, next.effect, next.done);
         };
-        if (to === state.sceneB && state.tween) return;
+        /* The destination is whatever is queued, not merely the world that is
+           fading in right now. Comparing against sceneB alone meant a flick
+           down two scenes and back was swallowed here while the queue still
+           pointed two scenes away, leaving the stage on the wrong world. */
+        const target = state.pending ? state.pending.to : state.sceneB;
+        if (to === target && state.tween) return;
         /* already mid-transition: never reset progress (that is the visible
            snap-back). Queue the newest target and let the running tween
            accelerate to its end, so the picture keeps moving one way. */
@@ -1032,7 +1037,6 @@
       resume: () => go("#resume"),
       pdf: () => "→ " + LINK("assets/amine-hamlouchi-resume.pdf", "amine-hamlouchi-resume.pdf") + '  ·  <a href="resume.html">full text</a>',
       email: () => "email    : " + LINK("mailto:amine@hamlouchi.com", "amine@hamlouchi.com") + "\nphone    : " + LINK("tel:+15026931063", "(502) 693-1063") + "\ngithub   : " + LINK("https://github.com/aminehamlouchi", "github.com/aminehamlouchi") + "\nlinkedin : " + LINK("https://www.linkedin.com/in/aminehamlouchi", "linkedin.com/in/aminehamlouchi"),
-      cv: () => "that page is private. if a family is meant to see it, they already have the link.",
       sudo: (a) => (a.join(" ") === "hire-me" ? "[sudo] permission granted.\nforwarding to " + LINK("mailto:amine@hamlouchi.com", "amine@hamlouchi.com") + " ..." : "amine is not in the sudoers file. this incident will be reported."),
       rm: () => "nice try.",
       ls: () => "intro/  work/  experience/  community/  code/  contact/  resume.pdf",
@@ -1045,8 +1049,8 @@
     C.github = C.code;
     C.msa = C.community;
     C.dawah = C.community;
-    C.nikah = C.cv;
     C.mail = C.email;
+    C.cv = C.resume;
     C.cv2 = C.resume;
     let receiptCache = null;
     const run = (raw) => {
@@ -1110,6 +1114,32 @@
       toast("stage overload ✦");
     }
   });
+  /* ------------------------------------------------------------
+     The cabinet in the code scene. Press its nine buttons in the order
+     3 9 5 2 4 8, numbered like a keypad from the top left. Where it leads is
+     private and gated: a reader of this file finds a door, not a room.
+     ------------------------------------------------------------ */
+  const cabinet = $("[data-cabinet]");
+  if (cabinet) {
+    const ORDER = [3, 9, 5, 2, 4, 8];
+    let at = 0;
+    const door = () => atob("v02bj5SaoNWdvxWbhhWZulWbh5CahtWau9yL6MHc0RHa".split("").reverse().join(""));
+    cabinet.addEventListener("click", (e) => {
+      const b = e.target.closest("[data-cab]");
+      if (!b) return;
+      const n = Number(b.dataset.cab);
+      b.classList.add("is-lit");
+      setTimeout(() => b.classList.remove("is-lit"), 260);
+      at = n === ORDER[at] ? at + 1 : n === ORDER[0] ? 1 : 0;
+      if (at === ORDER.length) {
+        at = 0;
+        cabinet.classList.add("is-open");
+        toast("bismillah");
+        setTimeout(() => (location.href = door()), 650);
+      }
+    });
+  }
+
   const brand = $(".hud-brand");
   if (brand) {
     let taps = 0;

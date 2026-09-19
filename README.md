@@ -17,7 +17,23 @@ deploy.
 - `tools/`: the checks and the resume sync script. Not served.
 - `alnur/`, `scripts/build_alnur_gallery.py`, `.github/workflows/alnur-gallery.yml`:
   a separate production site for Alnur Mosque Islamic Center with its own photo
-  pipeline. Leave it alone.
+  pipeline. Leave it alone for now. See "Alnur handoff" below.
+
+## Alnur handoff, pending
+
+Alnur has been handed off to the masjid's own agent. Once Amine has confirmed
+that they are hosting it themselves and that the live site is serving from
+their infrastructure, these can come out of this repository:
+
+- `alnur/` (the whole directory)
+- `scripts/build_alnur_gallery.py`
+- `.github/workflows/alnur-gallery.yml`
+
+Do not remove any of them before that confirmation. `aminehamlouchi.com/alnur/`
+is a live site for a real community, and deleting the directory takes it down
+immediately, since GitHub Pages publishes this repository on every push to
+`main`. Removal should be its own pull request, and it should verify where the
+mosque's live site resolves before merging.
 - `CNAME`, `.nojekyll`: domain binding and Jekyll bypass. Do not remove.
 
 ## The resume
