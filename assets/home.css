@@ -2338,9 +2338,10 @@ html.has-cursor .term-scroll {
 .cab-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 6px;
-  width: min(100%, 132px);
-  margin: 2px 0 4px;
+  gap: 5px;
+  /* small enough that the card stays the height of its neighbours */
+  width: min(100%, 84px);
+  margin: 0 0 2px;
 }
 .cab-grid button {
   aspect-ratio: 1;
