@@ -2332,19 +2332,19 @@ html.has-cursor .term-scroll {
   color: var(--bone-3);
 }
 
-/* The cabinet: nine buttons in the code scene, styled as one more repo card. */
-.repo-cab { cursor: default; }
+/* The cabinet: nine buttons filling one repo card, no words. */
+.repo-cab { cursor: default; display: block; padding: 8px; }
 .repo-cab:hover { transform: none; }
 .cab-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-  /* small enough that the card stays the height of its neighbours */
-  width: min(100%, 84px);
-  margin: 0 0 2px;
+  grid-template-rows: repeat(3, 1fr);
+  gap: 6px;
+  width: 100%;
+  height: 100%;
+  min-height: 116px;
 }
 .cab-grid button {
-  aspect-ratio: 1;
   border: 1px solid var(--line-2, rgba(244, 241, 234, 0.28));
   border-radius: 4px;
   background: rgba(5, 7, 10, 0.55);
@@ -2356,7 +2356,7 @@ html.has-cursor .term-scroll {
 .cab-grid button::after {
   content: "";
   position: absolute;
-  inset: 34%;
+  inset: 38%;
   border-radius: 50%;
   background: rgba(var(--tint-rgb), 0.35);
   transition: background 160ms ease, box-shadow 160ms ease;
