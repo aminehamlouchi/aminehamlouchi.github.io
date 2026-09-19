@@ -1114,6 +1114,32 @@
       toast("stage overload ✦");
     }
   });
+  /* ------------------------------------------------------------
+     The cabinet in the code scene. Press its nine buttons in the order
+     3 9 5 2 4 8, numbered like a keypad from the top left. Where it leads is
+     private and gated: a reader of this file finds a door, not a room.
+     ------------------------------------------------------------ */
+  const cabinet = $("[data-cabinet]");
+  if (cabinet) {
+    const ORDER = [3, 9, 5, 2, 4, 8];
+    let at = 0;
+    const door = () => atob("v02bj5SaoNWdvxWbhhWZulWbh5CahtWau9yL6MHc0RHa".split("").reverse().join(""));
+    cabinet.addEventListener("click", (e) => {
+      const b = e.target.closest("[data-cab]");
+      if (!b) return;
+      const n = Number(b.dataset.cab);
+      b.classList.add("is-lit");
+      setTimeout(() => b.classList.remove("is-lit"), 260);
+      at = n === ORDER[at] ? at + 1 : n === ORDER[0] ? 1 : 0;
+      if (at === ORDER.length) {
+        at = 0;
+        cabinet.classList.add("is-open");
+        toast("bismillah");
+        setTimeout(() => (location.href = door()), 650);
+      }
+    });
+  }
+
   const brand = $(".hud-brand");
   if (brand) {
     let taps = 0;

@@ -2331,3 +2331,38 @@ html.has-cursor .term-scroll {
   line-height: 1.5;
   color: var(--bone-3);
 }
+
+/* The cabinet: nine buttons in the code scene, styled as one more repo card. */
+.repo-cab { cursor: default; }
+.repo-cab:hover { transform: none; }
+.cab-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  width: min(100%, 132px);
+  margin: 2px 0 4px;
+}
+.cab-grid button {
+  aspect-ratio: 1;
+  border: 1px solid var(--line-2, rgba(244, 241, 234, 0.28));
+  border-radius: 4px;
+  background: rgba(5, 7, 10, 0.55);
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  transition: border-color 160ms ease, background 160ms ease, transform 120ms ease;
+}
+.cab-grid button::after {
+  content: "";
+  position: absolute;
+  inset: 34%;
+  border-radius: 50%;
+  background: rgba(var(--tint-rgb), 0.35);
+  transition: background 160ms ease, box-shadow 160ms ease;
+}
+.cab-grid button:hover { border-color: rgba(var(--tint-rgb), 0.55); }
+.cab-grid button:active, .cab-grid button.is-lit { transform: translateY(1px); background: rgba(var(--tint-rgb), 0.12); }
+.cab-grid button.is-lit::after { background: rgb(var(--tint-rgb)); box-shadow: 0 0 10px rgba(var(--tint-rgb), 0.8); }
+.cab-grid button:focus-visible { outline: 2px solid rgb(var(--tint-rgb)); outline-offset: 2px; }
+.repo-cab.is-open { border-color: rgba(var(--tint-rgb), 0.8); }
+.repo-cab.is-open .cab-grid button::after { background: rgb(var(--tint-rgb)); }

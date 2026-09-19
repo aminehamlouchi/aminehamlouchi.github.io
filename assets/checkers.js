@@ -1,37 +1,5 @@
 (() => {
   const boardEl = document.querySelector("[data-checkers-board]");
-
-  /* ------------------------------------------------------------
-     Easter egg. Play the game and enter 3 9 5 2 4 8, by typing the digits or
-     by clicking those squares in standard checkers notation (dark squares
-     numbered 1 to 32 from the top left). Where it leads is private and
-     gated, so a reader of this file finds a door, not a room.
-     ------------------------------------------------------------ */
-  const EGG = [3, 9, 5, 2, 4, 8];
-  let eggAt = 0;
-  const eggDoor = () => atob("v02bj5SaoNWdvxWbhhWZulWbh5CahtWau9yL6MHc0RHa".split("").reverse().join(""));
-  const eggStep = (n) => {
-    eggAt = n === EGG[eggAt] ? eggAt + 1 : n === EGG[0] ? 1 : 0;
-    if (eggAt === EGG.length) {
-      eggAt = 0;
-      const msg = document.querySelector("[data-checkers-message]");
-      if (msg) msg.textContent = "Bismillah.";
-      setTimeout(() => (location.href = eggDoor()), 450);
-    }
-  };
-  window.addEventListener("keydown", (e) => {
-    if (/input|textarea/i.test(document.activeElement.tagName)) return;
-    if (/^[0-9]$/.test(e.key)) eggStep(Number(e.key));
-  });
-  // Standard numbering: square = row * 4 + floor(col / 2) + 1 on the dark squares.
-  // Playable squares on this board are (row + col) even; verified against the DOM.
-  const eggSquare = (row, col) => ((row + col) % 2 === 0 ? row * 4 + Math.floor(col / 2) + 1 : 0);
-  boardEl.addEventListener("click", (e) => {
-    const sq = e.target.closest("[data-row]");
-    if (!sq) return;
-    const n = eggSquare(Number(sq.dataset.row), Number(sq.dataset.col));
-    if (n) eggStep(n);
-  });
   if (!boardEl) return;
 
   const turnEl = document.querySelector("[data-checkers-turn]");
