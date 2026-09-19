@@ -1032,7 +1032,6 @@
       resume: () => go("#resume"),
       pdf: () => "→ " + LINK("assets/amine-hamlouchi-resume.pdf", "amine-hamlouchi-resume.pdf") + '  ·  <a href="resume.html">full text</a>',
       email: () => "email    : " + LINK("mailto:amine@hamlouchi.com", "amine@hamlouchi.com") + "\nphone    : " + LINK("tel:+15026931063", "(502) 693-1063") + "\ngithub   : " + LINK("https://github.com/aminehamlouchi", "github.com/aminehamlouchi") + "\nlinkedin : " + LINK("https://www.linkedin.com/in/aminehamlouchi", "linkedin.com/in/aminehamlouchi"),
-      cv: () => "that page is private. if a family is meant to see it, they already have the link.",
       sudo: (a) => (a.join(" ") === "hire-me" ? "[sudo] permission granted.\nforwarding to " + LINK("mailto:amine@hamlouchi.com", "amine@hamlouchi.com") + " ..." : "amine is not in the sudoers file. this incident will be reported."),
       rm: () => "nice try.",
       ls: () => "intro/  work/  experience/  community/  code/  contact/  resume.pdf",
@@ -1045,8 +1044,8 @@
     C.github = C.code;
     C.msa = C.community;
     C.dawah = C.community;
-    C.nikah = C.cv;
     C.mail = C.email;
+    C.cv = C.resume;
     C.cv2 = C.resume;
     let receiptCache = null;
     const run = (raw) => {

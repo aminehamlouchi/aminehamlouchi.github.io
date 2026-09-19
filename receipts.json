@@ -136,6 +136,13 @@
       "figure": "17k",
       "source": "amine",
       "where": "TikTok and YouTube totals, confirmed by Amine 2026-09-18"
+    },
+    {
+      "claim": "69 tests in kamel-analytics",
+      "figure": "69",
+      "source": "repo",
+      "repo": "kamel-analytics",
+      "where": "the kamel-analytics repository"
     }
   ],
   "removed": []

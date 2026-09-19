@@ -9,7 +9,7 @@
   --ink: #05070a;
   --bone: #eef0f2;
   --bone-2: rgba(238, 240, 242, 0.68);
-  --bone-3: rgba(238, 240, 242, 0.42);
+  --bone-3: rgba(238, 240, 242, 0.58);
   --line: rgba(238, 240, 242, 0.12);
   --line-2: rgba(238, 240, 242, 0.24);
   --teal: #5cf0c2;
@@ -2306,4 +2306,19 @@ html.has-cursor .term-scroll {
 
 .credits {
   overflow-wrap: break-word;
+}
+
+/* The ask. He is hunting 2027 internships and the page never said so. */
+.intro-ask {
+  margin: 0.55rem 0 0.15rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--tint, #9fd0ff);
+}
+
+/* Instructions that need a keyboard only appear where there is one. */
+.fine-only { display: none; }
+@media (pointer: fine) {
+  .fine-only { display: inline; }
 }
