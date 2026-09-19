@@ -2356,7 +2356,11 @@ html.has-cursor .term-scroll {
 .cab-grid button::after {
   content: "";
   position: absolute;
-  inset: 38%;
+  width: 12px;
+  height: 12px;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
   background: rgba(var(--tint-rgb), 0.35);
   transition: background 160ms ease, box-shadow 160ms ease;
