@@ -46,9 +46,16 @@ createServer((req, res) => {
   const ext = extname(path);
   const type = TYPES[ext] || "application/octet-stream";
   const immutable = /\.(woff2|webp|png|jpe?g|svg)$/.test(ext);
+  // Nothing hand edited is cached locally. A 600 second cache on a document,
+  // a stylesheet or a script makes previewing an edit look like the edit did
+  // not happen. Only fingerprinted media keeps a long cache, which is what the
+  // Lighthouse numbers were measured against.
+  const isDoc = /\.(html|css|js|mjs|json|svg|xml|txt)$/.test(ext) || ext === "";
   const headers = {
     "content-type": type,
-    "cache-control": immutable ? "public, max-age=31536000, immutable" : "public, max-age=600",
+    "cache-control": immutable
+      ? "public, max-age=31536000, immutable"
+      : isDoc ? "no-cache" : "public, max-age=600",
     "x-content-type-options": "nosniff",
   };
 

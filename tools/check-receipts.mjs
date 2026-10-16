@@ -88,6 +88,16 @@ for (const m of visible.matchAll(/\b(\d{1,3}(?:,\d{3})+|\d{3,})\b/g)) {
   if (covered.has(raw) || covered.has(raw.replace(/,/g, ""))) continue;
   found.add(raw);
 }
+// A number of any length is a claim when it sits next to a countable noun.
+// The scan above only sees three digits or more, which is how "69 tests"
+// reached the site with no receipt.
+const COUNTED = /\b([1-9][\d,]*)[ \t]{0,2}(?:\+[ \t]*)?(tests?|users?|routes?|migrations?|pages?|citations?|arguments?|rebuttals?|followers?|centuries|records?|debates?|sub ?agents?|roles?|regression tests?)\b/gi;
+for (const m of visible.matchAll(COUNTED)) {
+  const raw = m[1];
+  if (covered.has(raw) || covered.has(raw.replace(/,/g, ""))) continue;
+  found.add(`${raw} ${m[2]}`);
+}
+
 if (found.size) bad(`figures on the site with no receipt: ${[...found].join(", ")}`);
 else ok(`${data.receipts.length} receipts cover every notable figure in the copy`);
 

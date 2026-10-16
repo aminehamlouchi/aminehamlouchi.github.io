@@ -23,17 +23,16 @@
     <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
     <style>
       /* Everything is inline on purpose. This page is scanned off a QR code at
-         a career fair, on a phone, on conference wifi. One request, no blocking
-         font, no script. The display face loads only if it is already cached
-         from a previous visit, which is what font-display: optional buys. */
-      @font-face{
-        font-family:"Big Shoulders Display"; font-style:normal; font-weight:100 900;
-        font-display:optional; src:url("../assets/fonts/BigShouldersDisplay-100-900-normal-latin.woff2") format("woff2");
-      }
-      @font-face{
-        font-family:"IBM Plex Sans Arabic"; font-style:normal; font-weight:700;
-        font-display:optional; src:url("../assets/fonts/IBMPlexSansArabic-700-normal-arabic.woff2") format("woff2");
-      }
+         a career fair, on a phone, on conference wifi. One request, no script
+         that blocks, no font on the critical path.
+
+         The display faces are NOT declared here. font-display: optional stops
+         the swap, it does not stop the download, so declaring them up front
+         cost 57 KB that this page then refused to paint: 96 percent of its
+         bytes buying glyphs nobody saw. They are now injected after load, and
+         skipped entirely on Save-Data or a 2g connection, so a first visit
+         paints in system type at 2.6 KB and a return visit gets the real face
+         from cache. */
       *{ margin:0; padding:0; box-sizing:border-box; }
       :root{
         --bg:#05070a; --ink:#f4f1ea; --dim:#93a4bb; --gold:#cbb68a; --line:rgba(244,241,234,.20);
@@ -60,6 +59,9 @@
       .ar{
         font-family:"IBM Plex Sans Arabic",system-ui,serif; font-weight:700;
         color:var(--gold); font-size:1.1rem; direction:rtl; unicode-bidi:isolate;
+        /* Shrink to the text so the Arabic sits under the name instead of
+           flushing to the right edge of a left aligned page. */
+        width:max-content;
       }
       .lede{ color:#dde3ec; margin:.95rem 0 1.5rem; }
       .lede b{ font-weight:600; color:var(--ink); }
@@ -110,5 +112,18 @@
         <span><a href="tel:+15026931063">(502) 693-1063</a></span>
       </footer>
     </main>
+    <script>
+      /* After load, never before, and never on a metered connection. */
+      addEventListener("load", function () {
+        var c = navigator.connection || {};
+        if (c.saveData === true) return;
+        if (/(^|-)(2g|slow-2g)$/.test(c.effectiveType || "")) return;
+        var s = document.createElement("style");
+        s.textContent =
+          '@font-face{font-family:"Big Shoulders Display";font-style:normal;font-weight:100 900;font-display:optional;src:url("../assets/fonts/BigShouldersDisplay-100-900-normal-latin.woff2") format("woff2")}' +
+          '@font-face{font-family:"IBM Plex Sans Arabic";font-style:normal;font-weight:700;font-display:optional;src:url("../assets/fonts/IBMPlexSansArabic-700-normal-arabic.woff2") format("woff2")}';
+        document.head.appendChild(s);
+      });
+    </script>
   </body>
 </html>

@@ -69,5 +69,38 @@ for (const p of [manifest.preview, "assets/previews/resume-page-560.webp"]) {
   existsSync(join(ROOT, p)) ? ok(`${p} present`) : bad(`${p} is missing`);
 }
 
-console.log(fails ? `\ncheck-resume: ${fails} FAILURE(S)` : `\ncheck-resume: OK, resume v${manifest.version} is the only resume on the site`);
-process.exit(fails ? 1 : 0);
+// 4. The PDF is the one page cut; resume.html is the long version. So the
+//    page must contain everything the PDF says, and may say more. A recruiter
+//    who reads one and downloads the other must never meet a contradiction.
+console.log("the PDF is a subset of the page");
+import("node:child_process").then(({ spawnSync }) => {
+  const py = spawnSync("python3", [join(ROOT, "tools/pdf-text.py"), join(ROOT, manifest.paths[0])], { encoding: "utf8" });
+  if (py.status !== 0) {
+    bad(`could not read the PDF text (${(py.stderr || "").trim().split("\n").pop()}). Install pypdf: python3 -m pip install pypdf`);
+  } else {
+    // pypdf sometimes splits a word ("T echnical", "W eb"), so compare with
+    // every non alphanumeric character removed, spaces included.
+    const norm = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, "");
+    const page = norm(readFileSync(join(ROOT, "resume.html"), "utf8").replace(/<[^>]+>/g, " "));
+    const pdfLines = py.stdout.split("\n").map((l) => l.trim()).filter(Boolean);
+    // The things a reader compares: section names, employers, titles, projects,
+    // the degree, the award. Not the free prose, whose line breaks differ.
+    const anchors = [
+      "University of Louisville", "Bachelor of Arts in Computer Science", "Minor in Arabic", "Expected May 2028",
+      "HackKentucky 2026", "Prologue",
+      "Product Engineering Intern", "Kamel Ride", "IT Analyst Intern", "Parker Hannifin",
+      "Technical Lead, Digital Operations", "Alnur Mosque Islamic Center",
+      "InterLogue", "Argument Knowledge Base", "School Operations Platform", "Rumi",
+    ];
+    let missing = 0;
+    for (const a of anchors) {
+      const inPdf = pdfLines.some((l) => norm(l).includes(norm(a)));
+      const inPage = page.includes(norm(a));
+      if (!inPdf) bad(`anchor "${a}" is no longer in the PDF; update the anchor list or the PDF`);
+      else if (!inPage) { bad(`"${a}" is in the PDF but not on resume.html`); missing++; }
+    }
+    if (!missing) ok(`${anchors.length} PDF anchors all present on resume.html (the page may say more, the PDF may not)`);
+  }
+  console.log(fails ? `\ncheck-resume: ${fails} FAILURE(S)` : `\ncheck-resume: OK, resume v${manifest.version} is the only resume on the site`);
+  process.exit(fails ? 1 : 0);
+});

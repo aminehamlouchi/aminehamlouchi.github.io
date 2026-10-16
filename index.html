@@ -28,29 +28,18 @@
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
     <link rel="preload" href="assets/fonts/BigShouldersDisplay-100-900-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/IBMPlexSansArabic-700-normal-arabic.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/model/paper-amine.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="preload" as="image" type="image/webp" fetchpriority="high" href="assets/model/paper-amine.webp" imagesrcset="assets/model/paper-amine-440.webp 440w, assets/model/paper-amine.webp 893w" imagesizes="(max-width: 780px) 58vw, 440px">
     <style>
 /* fonts.css inlined: it was the second render blocking request in
    the critical path and it is 1 KB. The file stays for the other pages. */
 /* ============================================================
    fonts.css: self-hosted, subset, no third-party requests.
-   Display : Bricolage Grotesque (variable weight, instanced at
-             width 90 / optical size 96 to keep it under 40 KB)
    Body    : Hanken Grotesk (variable weight, Latin subset)
    Arabic  : IBM Plex Sans Arabic 400 / 700 (name, phrases)
              Reem Kufi 400–700 (large decorative Kufi accents)
    Mono    : JetBrains Mono (status, receipts, terminal)
    ============================================================ */
 
-/* Bricolage Grotesque: latin */
-@font-face {
-  font-family: "Bricolage Grotesque";
-  font-style: normal;
-  font-weight: 400 800;
-  font-display: swap;
-  src: url(assets/fonts/BricolageGrotesque-400-800-normal-latin.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
 
 /* Hanken Grotesk: latin */
 @font-face {
@@ -91,36 +80,21 @@
 }
 
 /* JetBrains Mono: latin */
+
 @font-face {
   font-family: "JetBrains Mono";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 100 800;
   font-display: swap;
-  src: url(assets/fonts/JetBrainsMono-400-normal-latin.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+  src: url(assets/fonts/JetBrainsMono-100-800-normal-latin.woff2) format("woff2");
 }
+
 @font-face {
   font-family: "JetBrains Mono";
   font-style: italic;
   font-weight: 400;
   font-display: swap;
   src: url(assets/fonts/JetBrainsMono-400-italic-latin.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "JetBrains Mono";
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url(assets/fonts/JetBrainsMono-500-normal-latin.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-@font-face {
-  font-family: "JetBrains Mono";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url(assets/fonts/JetBrainsMono-700-normal-latin.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
@@ -143,16 +117,9 @@
   src: url(assets/fonts/InstrumentSerif-400-italic-latin.woff2) format("woff2");
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-@font-face {
-  font-family: "Instrument Serif";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(assets/fonts/InstrumentSerif-400-normal-latin.woff2) format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
+
     </style>
-    <link rel="stylesheet" href="assets/home.css?v=5">
+    <link rel="stylesheet" href="assets/home.css?v=6">
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -242,22 +209,22 @@
             <p class="intro-lede">
               Computer science at Louisville's Speed School, minor in Arabic. I build
               <b>systems that survive contact with real users</b>: an AI reporter that phones
-              people and files the story, a bilingual school platform serving 80 people every
-              day, a citation-verified knowledge base, a masjid's zero-developer publishing
+              people and files the story, a bilingual school platform 80 people log
+              into, a citation-verified knowledge base, a masjid's zero-developer publishing
               pipeline.
             </p>
+            <p class="intro-ask">Looking for a 2027 co-op or internship.</p>
             <div class="intro-meta">
               <span><b>now</b> Kamel Ride · Parker Hannifin · Alnur Mosque · UofL MSA</span>
-              <span><b>won</b> 3rd overall + the Prologue bounty at HackKentucky 2026</span>
               <span><b>class of</b> 2028</span>
-              <span><b>press</b> / for the terminal</span>
+              <span class="fine-only"><b>press</b> / for the terminal</span>
             </div>
           </div>
           <div class="paper" role="button" tabindex="0" aria-label="Paper cutout of Amine. Click to flip.">
             <div class="paper-glow" aria-hidden="true"></div>
             <div class="paper-card">
               <div class="paper-face front">
-                <img src="assets/model/paper-amine.webp" width="893" height="980" alt="Paper cutout of Amine Hamlouchi in a suit and tie" fetchpriority="high">
+                <img src="assets/model/paper-amine.webp" srcset="assets/model/paper-amine-440.webp 440w, assets/model/paper-amine.webp 893w" sizes="(max-width: 780px) 58vw, 440px" width="893" height="980" alt="Paper cutout of Amine Hamlouchi in a suit and tie" fetchpriority="high">
               </div>
               <div class="paper-face back" aria-hidden="true">
                 <p class="ar" lang="ar">مَن جَدَّ وَجَدَ</p>
@@ -300,7 +267,7 @@
                 data-desc="A bilingual English/Arabic, full-RTL system of record for a real school: grading, attendance, scheduling, payroll, tuition. 106 API routes, 15 Postgres migrations, PBKDF2 hashing with row-level security, 51 regression tests. 80 active users across admin, teacher, family, and student roles."
                 data-meta="TypeScript · Next.js · Supabase · in production · 2026"
                 data-img="assets/previews/school.webp"
-                data-num="80" data-numlabel="active users, every day"
+                data-num="80" data-numlabel="active users"
                 data-receipt="résumé · projects">
                 <span class="idx">03</span><span class="name">School Operations Platform</span><span class="kind">full-stack</span>
               </button>
@@ -425,7 +392,7 @@
             <h2 class="display comm-title" id="comm-title" data-split>Raised in a masjid. <span class="serif">Built for it.</span></h2>
             <div class="comm-copy" data-stagger>
               <p>I grew up around Alnur Mosque, and most of what I build outside work exists because someone there needed it: <b>a website, a way for volunteers to publish photos without a developer, a platform to host a visiting scholar.</b></p>
-              <p>Dawah is a real part of my life. I make educational Islamic reminders and short teaching posts. I also serve on the executive board of UofL's Muslim Student Association.</p>
+              <p>Dawah is a real part of my life. I make educational Islamic reminders and short teaching posts; across platforms that has reached <b>17k followers</b>. I also serve on the executive board of UofL's Muslim Student Association.</p>
               <div class="proverb">
                 <p class="ar" lang="ar">مَن <em>جَدَّ</em> وَجَدَ</p>
                 <p class="en">whoever strives, finds.</p>
@@ -435,7 +402,7 @@
           <div class="comm-list" data-stagger>
             <article class="comm-item"><span class="when">2025–26</span><div><h3>UofL Muslim Student Association</h3><p>Executive board, 2025–26.</p></div></article>
             <article class="comm-item"><span class="when">2024–</span><div><h3>Alnur Mosque Islamic Center</h3><p>Technical lead for digital operations: the public site, the volunteer photo pipeline, the Google Workspace migration, livestreaming and A/V for weekly programs.</p><div class="links"><a href="alnur/">the site</a><a href="https://github.com/aminehamlouchi/aminehamlouchi.github.io/blob/main/.github/workflows/alnur-gallery.yml" target="_blank" rel="noreferrer">the pipeline</a></div></div></article>
-            <article class="comm-item"><span class="when">ongoing</span><div><h3>Dawah content</h3><p>Educational Islamic reminders and short teaching posts, on TikTok and YouTube.</p><div class="links"><a href="https://www.tiktok.com/@aminehamlouchi" target="_blank" rel="noreferrer">TikTok</a><a href="https://www.youtube.com/@AmineHamlouchi" target="_blank" rel="noreferrer">YouTube</a></div></div></article>
+            <article class="comm-item"><span class="when">ongoing</span><div><h3>Dawah content</h3><p>Educational Islamic reminders and short teaching posts. 17k followers across platforms.</p><div class="links"><a href="https://www.tiktok.com/@aminehamlouchi" target="_blank" rel="noreferrer">TikTok</a><a href="https://www.youtube.com/@AmineHamlouchi" target="_blank" rel="noreferrer">YouTube</a></div></div></article>
             <article class="comm-item"><span class="when">2026</span><div><h3><a href="https://ourminbar.com" target="_blank" rel="noreferrer">Minbar</a></h3><p>Book and host a visiting scholar, from first confirmation to a gracious farewell. Founded and built; it has run a real visit.</p><div class="links"><a href="https://ourminbar.com" target="_blank" rel="noreferrer">ourminbar.com</a></div></div></article>
             <article class="comm-item"><span class="when">2026</span><div><h3><a href="timeline/">The Islamic Timeline</a></h3><p>Fourteen centuries on one honest scale, with Hijri and Gregorian dating, an atlas, and cited sources.</p><div class="links"><a href="timeline/">aminehamlouchi.com/timeline</a><a href="https://github.com/aminehamlouchi/timeline" target="_blank" rel="noreferrer">repo</a></div></div></article>
             <article class="comm-item"><span class="when">2026</span><div><h3>Tools for masjids and MSAs</h3><p>A source-grounded dawah content assistant that cites the notes it used, and an operations dashboard for RSVPs, volunteer shifts, and staffing.</p><div class="links"><a href="https://github.com/aminehamlouchi/sourcewise-dawah-agent" target="_blank" rel="noreferrer">sourcewise-dawah-agent</a><a href="https://github.com/aminehamlouchi/masjidflow-ops" target="_blank" rel="noreferrer">masjidflow-ops</a></div></div></article>
@@ -457,6 +424,19 @@
             <a class="repo" href="https://github.com/aminehamlouchi/signaldesk-trust-check" target="_blank" rel="noreferrer"><span class="top"><span>data quality</span><span>↗</span></span><h3>signaldesk-trust-check</h3><p>Weekly trust check on a messy usage export. Stdlib-only Python.</p></a>
             <a class="repo" href="https://github.com/aminehamlouchi/superstore-retail-analytics" target="_blank" rel="noreferrer"><span class="top"><span>data / ml</span><span>↗</span></span><h3>superstore-retail-analytics</h3><p>9,994 orders modeled; 94.36% accuracy on discount-profit behavior.</p></a>
             <a class="repo" href="https://github.com/aminehamlouchi/c-mapreduce-word-counter" target="_blank" rel="noreferrer"><span class="top"><span>systems</span><span>↗</span></span><h3>c-mapreduce-word-counter</h3><p>Forked mappers, bounded buffers, System V queues. C all the way down.</p></a>
+            <div class="repo repo-cab" data-cabinet role="group" aria-label="Nine buttons in a three by three grid">
+              <div class="cab-grid">
+                <button type="button" data-cab="1" aria-label="Button 1"></button>
+                <button type="button" data-cab="2" aria-label="Button 2"></button>
+                <button type="button" data-cab="3" aria-label="Button 3"></button>
+                <button type="button" data-cab="4" aria-label="Button 4"></button>
+                <button type="button" data-cab="5" aria-label="Button 5"></button>
+                <button type="button" data-cab="6" aria-label="Button 6"></button>
+                <button type="button" data-cab="7" aria-label="Button 7"></button>
+                <button type="button" data-cab="8" aria-label="Button 8"></button>
+                <button type="button" data-cab="9" aria-label="Button 9"></button>
+              </div>
+            </div>
           </div>
           <div class="arcade" data-stagger>
             <a class="cartridge" href="checkers.html"><span class="label">cartridge 01 · pygame port</span><h3>PyCheckers</h3><p>Forced captures, multi-jump chains, kings, undo. Rules intact.</p><span class="cta">&gt; insert_coin --play</span></a>
@@ -482,7 +462,8 @@
             <div class="row"><span class="k">linkedin</span><span class="v"><a href="https://www.linkedin.com/in/aminehamlouchi" target="_blank" rel="noreferrer">linkedin.com/in/aminehamlouchi</a></span></div>
             <div class="row"><span class="k">tiktok</span><span class="v"><a href="https://www.tiktok.com/@aminehamlouchi" target="_blank" rel="noreferrer">@aminehamlouchi</a></span></div>
             <div class="row"><span class="k">youtube</span><span class="v"><a href="https://www.youtube.com/@AmineHamlouchi" target="_blank" rel="noreferrer">@AmineHamlouchi</a></span></div>
-            <div class="row"><span class="k">résumé</span><span class="v"><a href="#resume">on the stage</a> · <a href="resume.html">full text</a></span></div>
+            <div class="row"><span class="k">résumé</span><span class="v"><a href="#resume">on the stage</a> · <a href="resume.html">long version</a></span></div>
+            <div class="row"><span class="k">short card</span><span class="v"><a href="hi/">aminehamlouchi.com/hi</a></span></div>
           </div>
           <p class="credits">
             <span>© <span data-year>2026</span> Amine Hamlouchi · <span class="ar" lang="ar">أمين حملوشي</span></span>
@@ -511,7 +492,7 @@
             <div class="actions">
               <button class="btn solid" type="button" data-open-resume>Read the PDF here</button>
               <a class="btn" href="assets/amine-hamlouchi-resume.pdf" download>Download</a>
-              <a class="btn" href="resume.html">Full text</a>
+              <a class="btn" href="resume.html">Long version</a>
             </div>
           </div>
           <button class="sheet" type="button" data-sheet="6" data-open-resume aria-label="Open the résumé PDF in a viewer">
