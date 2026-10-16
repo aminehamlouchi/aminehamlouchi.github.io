@@ -46,9 +46,14 @@ createServer((req, res) => {
   const ext = extname(path);
   const type = TYPES[ext] || "application/octet-stream";
   const immutable = /\.(woff2|webp|png|jpe?g|svg)$/.test(ext);
+  // HTML is never cached locally. A 600 second cache on a document makes
+  // previewing an edit look like the edit did not happen.
+  const isDoc = /\.html$/.test(ext) || ext === "";
   const headers = {
     "content-type": type,
-    "cache-control": immutable ? "public, max-age=31536000, immutable" : "public, max-age=600",
+    "cache-control": immutable
+      ? "public, max-age=31536000, immutable"
+      : isDoc ? "no-cache" : "public, max-age=600",
     "x-content-type-options": "nosniff",
   };
 

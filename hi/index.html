@@ -60,6 +60,9 @@
       .ar{
         font-family:"IBM Plex Sans Arabic",system-ui,serif; font-weight:700;
         color:var(--gold); font-size:1.1rem; direction:rtl; unicode-bidi:isolate;
+        /* Shrink to the text so the Arabic sits under the name instead of
+           flushing to the right edge of a left aligned page. */
+        width:max-content;
       }
       .lede{ color:#dde3ec; margin:.95rem 0 1.5rem; }
       .lede b{ font-weight:600; color:var(--ink); }
